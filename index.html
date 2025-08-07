@@ -76,6 +76,10 @@
             align-items: center;
             padding: 1rem 0;
         }
+        a {
+            text-decoration: none;
+            color: inherit; /* or custom color */
+        }
 
         .logo {
             font-size: 1.8rem;
@@ -463,22 +467,83 @@
             z-index: 9996;
             animation: particle 1s ease-out forwards;
         }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .logo-img {
+            height: 50px; /* adjust size as needed */
+            margin-right: 10px;
+        }
+
+        /* Default desktop view */
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Mobile view */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                top: 60px; /* height of header */
+                right: 10px;
+                padding: 1rem;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                border-radius: 8px;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+            }
+        }
+
     </style>
 </head>
 <body data-theme="light">
     <!-- Header -->
     <header>
         <nav class="container">
-            <div class="logo">Mahsua Technology</div>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#tech">Technology</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></li>
+            <div class="logo-section">
+                <img src="./mahsua-technology.png" alt="Mahsua Logo" class="logo-img" />
+            </div>
+
+            <!-- Hamburger icon for mobile -->
+            <button class="hamburger" onclick="toggleMobileMenu()" style=" color: #ee508c; ">☰</button>
+
+            <ul class="nav-links" id="navMenu">
+                <li><a href="#services" style=" color: #ee508c; ">Services</a></li>
+                <li><a href="#tech" style=" color: #ee508c; ">Technology</a></li>
+                <li><a href="#about" style=" color: #ee508c; ">About</a></li>
+                <li><a href="#contact" style=" color: #ee508c; ">Contact</a></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()" style=" color: #ee508c; ">🌙 Dark</button></li>
             </ul>
         </nav>
     </header>
+
 
     <!-- Hero Section -->
     <section class="hero">
@@ -662,7 +727,9 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 Mahsua Technology. All rights reserved. Building digital confidence for everyone.</p>
+
+            <p>Made With ❤️ INDIA ~ Designed by <a href="https://apps.mahsua.com/developer-profile/index.html"> SHIVAM KUSHWAHA </p><br>
+            <p class="text-sm opacity-75">Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
         </div>
     </footer>
 
@@ -672,6 +739,12 @@
 
     <script>
         // Theme toggle functionality
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
         function toggleTheme() {
             const body = document.body;
             const themeToggle = document.querySelector('.theme-toggle');
