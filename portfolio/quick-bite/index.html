@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickBite - Fast Food & Lunch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .hero-gradient { background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%); }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold text-orange-500">🍔 QuickBite</div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="#menu" class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium transition-colors">Menu</a>
+                        <a href="#about" class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="#contact" class="text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="cartBtn" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center">
+                        🛒 Cart (<span id="cartCount">0</span>)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">Delicious Fast Food & Fresh Lunch</h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">Quick bites, fresh ingredients, unbeatable taste!</p>
+            <button onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'})" class="bg-white text-orange-500 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+                Order Now 🚀
+            </button>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Our Menu</h2>
+                <p class="text-gray-600 text-lg">Fresh, fast, and absolutely delicious!</p>
+            </div>
+
+            <!-- Menu Categories -->
+            <div class="flex justify-center mb-8">
+                <div class="bg-gray-100 rounded-full p-1">
+                    <button onclick="showCategory('burgers')" id="burgersTab" class="category-tab px-6 py-2 rounded-full font-medium transition-colors bg-orange-500 text-white">
+                        🍔 Burgers
+                    </button>
+                    <button onclick="showCategory('lunch')" id="lunchTab" class="category-tab px-6 py-2 rounded-full font-medium transition-colors text-gray-600 hover:text-orange-500">
+                        🥗 Lunch Specials
+                    </button>
+                    <button onclick="showCategory('sides')" id="sidesTab" class="category-tab px-6 py-2 rounded-full font-medium transition-colors text-gray-600 hover:text-orange-500">
+                        🍟 Sides & Drinks
+                    </button>
+                </div>
+            </div>
+
+            <!-- Menu Items -->
+            <div id="menuItems" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Burgers -->
+                <div class="menu-item burgers bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
+                        <span class="text-6xl">🍔</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Classic Cheeseburger</h3>
+                        <p class="text-gray-600 mb-4">Juicy beef patty with cheese, lettuce, tomato, and our special sauce</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-orange-500">$8.99</span>
+                            <button onclick="addToCart('Classic Cheeseburger', 8.99)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item burgers bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+                        <span class="text-6xl">🍗</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Crispy Chicken Burger</h3>
+                        <p class="text-gray-600 mb-4">Crispy fried chicken breast with mayo, pickles, and fresh lettuce</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-orange-500">$9.49</span>
+                            <button onclick="addToCart('Crispy Chicken Burger', 9.49)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item burgers bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                        <span class="text-6xl">🥬</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Veggie Deluxe</h3>
+                        <p class="text-gray-600 mb-4">Plant-based patty with avocado, sprouts, and herb aioli</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-orange-500">$10.99</span>
+                            <button onclick="addToCart('Veggie Deluxe', 10.99)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lunch Specials -->
+                <div class="menu-item lunch bg-white rounded-xl shadow-lg overflow-hidden card-hover" style="display: none;">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                        <span class="text-6xl">🥗</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Caesar Salad Bowl</h3>
+                        <p class="text-gray-600 mb-4">Fresh romaine, parmesan, croutons, and grilled chicken</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-orange-500">$11.99</span>
+                            <button onclick="addToCart('Caesar Salad Bowl', 11.99)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item lunch bg-white rounded-xl shadow-lg overflow-hidden card-hover" style="display: none;">
+                    <div class="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                        <span class="text-6xl">🌯</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Mediterranean Wrap</h3>
+                        <p class="text-gray-600 mb-4">Grilled chicken, hummus, vegetables, and tzatziki sauce</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-orange-500">$9.99</span>
+                            <button onclick="addToCart('Mediterranean Wrap', 9.99)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item lunch bg-white rounded-xl shadow-lg overflow-hidden card-hover" style="display: none;">
+                    <div class="h-48 bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center">
+                        <span class="text-6xl">🍲</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Soup & Sandwich Combo</h3>
+                        <p class="text-gray-600 mb-4">Daily soup with half sandwich of your choice</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-orange-500">$8.49</span>
+                            <button onclick="addToCart('Soup & Sandwich Combo', 8.49)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sides & Drinks -->
+                <div class="menu-item sides bg-white rounded-xl shadow-lg overflow-hidden card-hover" style="display: none;">
+                    <div class="h-48 bg-gradient-to-br from-yellow-300 to-yellow-500 flex items-center justify-center">
+                        <span class="text-6xl">🍟</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Crispy Fries</h3>
+                        <p class="text-gray-600 mb-4">Golden crispy fries with sea salt</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-orange-500">$3.99</span>
+                            <button onclick="addToCart('Crispy Fries', 3.99)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item sides bg-white rounded-xl shadow-lg overflow-hidden card-hover" style="display: none;">
+                    <div class="h-48 bg-gradient-to-br from-orange-300 to-orange-500 flex items-center justify-center">
+                        <span class="text-6xl">🥤</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Fresh Beverages</h3>
+                        <p class="text-gray-600 mb-4">Soft drinks, juices, and specialty drinks</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-orange-500">$2.49</span>
+                            <button onclick="addToCart('Fresh Beverages', 2.49)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item sides bg-white rounded-xl shadow-lg overflow-hidden card-hover" style="display: none;">
+                    <div class="h-48 bg-gradient-to-br from-red-300 to-red-500 flex items-center justify-center">
+                        <span class="text-6xl">🧅</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Onion Rings</h3>
+                        <p class="text-gray-600 mb-4">Crispy beer-battered onion rings with ranch dip</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-orange-500">$4.99</span>
+                            <button onclick="addToCart('Onion Rings', 4.99)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Why Choose QuickBite?</h2>
+                <p class="text-gray-600 text-lg">We're passionate about serving quality food fast!</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <div class="text-6xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold mb-2">Lightning Fast</h3>
+                    <p class="text-gray-600">Your order ready in under 10 minutes, guaranteed!</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-6xl mb-4">🌱</div>
+                    <h3 class="text-xl font-bold mb-2">Fresh Ingredients</h3>
+                    <p class="text-gray-600">We source locally and prepare everything fresh daily.</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="text-6xl mb-4">💝</div>
+                    <h3 class="text-xl font-bold mb-2">Great Value</h3>
+                    <p class="text-gray-600">Delicious food at prices that won't break the bank.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Visit Us Today!</h2>
+                <p class="text-gray-600 text-lg">Come taste the difference at QuickBite</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Location & Hours</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <span class="text-2xl mr-3">📍</span>
+                            <div>
+                                <p class="font-semibold">123 Food Street</p>
+                                <p class="text-gray-600">Downtown, City 12345</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-2xl mr-3">🕒</span>
+                            <div>
+                                <p class="font-semibold">Mon-Sun: 10:00 AM - 10:00 PM</p>
+                                <p class="text-gray-600">Open every day!</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-2xl mr-3">📞</span>
+                            <div>
+                                <p class="font-semibold">(555) 123-BITE</p>
+                                <p class="text-gray-600">Call for takeout orders</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-2xl mr-3">💬</span>
+                            <div>
+                                <p class="font-semibold">WhatsApp: +91 79521 07808</p>
+                                <p class="text-gray-600">Order directly via WhatsApp</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Order Online</h3>
+                    <p class="text-gray-600 mb-6">Skip the line and order ahead for pickup!</p>
+                    <button onclick="alert('Online ordering coming soon! Call us at (555) 123-BITE for now.')" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors w-full md:w-auto">
+                        Start Your Order 🚀
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="text-2xl font-bold mb-4">🍔 QuickBite</div>
+            <p class="text-gray-400 mb-4">Delicious fast food & fresh lunch since 2024</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">Facebook</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">Instagram</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-xl max-w-md w-full p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold">Your Cart</h3>
+                    <button onclick="closeCart()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                <div id="cartItems" class="space-y-3 mb-4">
+                    <p class="text-gray-500 text-center py-8">Your cart is empty</p>
+                </div>
+                <div class="border-t pt-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-bold">Total: $<span id="cartTotal">0.00</span></span>
+                    </div>
+                    <button onclick="checkout()" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-semibold transition-colors">
+                        Order via WhatsApp 💬
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let cartTotal = 0;
+
+        function showCategory(category) {
+            // Hide all menu items
+            const allItems = document.querySelectorAll('.menu-item');
+            allItems.forEach(item => item.style.display = 'none');
+
+            // Show selected category
+            const categoryItems = document.querySelectorAll(`.menu-item.${category}`);
+            categoryItems.forEach(item => item.style.display = 'block');
+
+            // Update tab styles
+            const allTabs = document.querySelectorAll('.category-tab');
+            allTabs.forEach(tab => {
+                tab.classList.remove('bg-orange-500', 'text-white');
+                tab.classList.add('text-gray-600', 'hover:text-orange-500');
+            });
+
+            const activeTab = document.getElementById(`${category}Tab`);
+            activeTab.classList.add('bg-orange-500', 'text-white');
+            activeTab.classList.remove('text-gray-600', 'hover:text-orange-500');
+        }
+
+        function addToCart(itemName, price) {
+            // Check if item already exists in cart
+            const existingItem = cart.find(item => item.name === itemName);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: itemName, price: price, quantity: 1 });
+            }
+            cartTotal += price;
+            updateCartDisplay();
+            
+            // Show success message
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Added! ✓';
+            button.classList.add('bg-green-500');
+            button.classList.remove('bg-orange-500');
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove('bg-green-500');
+                button.classList.add('bg-orange-500');
+            }, 1000);
+        }
+
+        function updateCartDisplay() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = totalItems;
+            document.getElementById('cartTotal').textContent = cartTotal.toFixed(2);
+
+            const cartItemsDiv = document.getElementById('cartItems');
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p class="text-gray-500 text-center py-8">Your cart is empty</p>';
+            } else {
+                cartItemsDiv.innerHTML = cart.map((item, index) => `
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <div class="flex-1">
+                            <span class="font-medium">${item.name}</span>
+                            <div class="text-sm text-gray-600">$${item.price.toFixed(2)} each</div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="decreaseQuantity(${index})" class="bg-gray-300 hover:bg-gray-400 text-gray-700 w-8 h-8 rounded-full flex items-center justify-center font-bold">-</button>
+                            <span class="font-semibold min-w-[20px] text-center">${item.quantity}</span>
+                            <button onclick="increaseQuantity(${index})" class="bg-gray-300 hover:bg-gray-400 text-gray-700 w-8 h-8 rounded-full flex items-center justify-center font-bold">+</button>
+                            <span class="font-semibold text-orange-500 min-w-[50px] text-right">$${(item.price * item.quantity).toFixed(2)}</span>
+                            <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 font-bold ml-2">×</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function increaseQuantity(index) {
+            cart[index].quantity += 1;
+            cartTotal += cart[index].price;
+            updateCartDisplay();
+        }
+
+        function decreaseQuantity(index) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+                cartTotal -= cart[index].price;
+                updateCartDisplay();
+            } else {
+                removeFromCart(index);
+            }
+        }
+
+        function removeFromCart(index) {
+            cartTotal -= cart[index].price * cart[index].quantity;
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        function openCart() {
+            document.getElementById('cartModal').classList.remove('hidden');
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').classList.add('hidden');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            // Create order message for WhatsApp
+            let orderMessage = "New Order from QuickBite Website\n";
+            orderMessage += "================================\n\n";
+            orderMessage += "ORDER DETAILS:\n";
+            orderMessage += "-------------\n";
+            
+            cart.forEach((item, index) => {
+                orderMessage += `${index + 1}. ${item.name}\n`;
+                orderMessage += `   Quantity: ${item.quantity}\n`;
+                orderMessage += `   Price: $${item.price.toFixed(2)} each\n`;
+                orderMessage += `   Subtotal: $${(item.price * item.quantity).toFixed(2)}\n\n`;
+            });
+            
+            orderMessage += "================================\n";
+            orderMessage += `TOTAL AMOUNT: $${cartTotal.toFixed(2)}\n`;
+            orderMessage += "================================\n\n";
+            orderMessage += "Please confirm this order and let me know the pickup time.\n\n";
+            orderMessage += "Thank you for choosing QuickBite!";
+            
+            // Encode message for WhatsApp URL
+            const encodedMessage = encodeURIComponent(orderMessage);
+            const whatsappNumber = "917952107808";
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+            
+            // Clear cart after sending to WhatsApp
+            cart = [];
+            cartTotal = 0;
+            updateCartDisplay();
+            closeCart();
+            
+            // Show confirmation
+            alert('Your order has been sent to WhatsApp! Please complete your order there.');
+        }
+
+        // Event listeners
+        document.getElementById('cartBtn').addEventListener('click', openCart);
+
+        // Close modal when clicking outside
+        document.getElementById('cartModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCart();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97423d5c71f53b07',t:'MTc1NjAzMjExMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
