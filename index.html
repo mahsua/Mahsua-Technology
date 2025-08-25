@@ -30,11 +30,11 @@
         }
 
         [data-theme="light"] {
-            --bg-primary: var(--bg-light);
             --bg-secondary: var(--bg-secondary-light);
             --text-primary: var(--text-light);
             --text-secondary: var(--text-secondary-light);
             --border-color: #ec4899; 
+            scrollbar-color: var(--primary-pink) var(--bg-secondary-light);
         }
 
         [data-theme="dark"] {
@@ -43,7 +43,28 @@
             --text-primary: var(--text-dark);
             --text-secondary: var(--text-secondary-dark);
             --border-color: #2563eb; 
+            scrollbar-color: var(--primary-blue) var(--bg-secondary-dark);
         }
+        
+        /* --- UPDATED: Custom Scrollbar (Now Hidden) --- */
+        ::-webkit-scrollbar {
+            width: 10px;
+            display: none;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+        }
+        [data-theme="light"] ::-webkit-scrollbar-thumb {
+            background-color: var(--primary-pink);
+        }
+        [data-theme="dark"] ::-webkit-scrollbar-thumb {
+            background-color: var(--primary-blue);
+        }
+        /* --- END: Custom Scrollbar Correction --- */
+
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -57,6 +78,22 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+        
+        #scrollProgressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            width: 0%;
+            z-index: 10001;
+            transition: width 0.1s ease-out;
+        }
+        [data-theme="light"] #scrollProgressBar {
+            background: var(--primary-pink);
+        }
+        [data-theme="dark"] #scrollProgressBar {
+            background: var(--primary-blue);
         }
 
         /* Header */
@@ -126,7 +163,7 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            padding: 200px 0 200px;
+            padding: 250px 0 80px;
             text-align: center;
         }
 
@@ -157,7 +194,7 @@
             border-radius: 50px;
             font-weight: 600;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin: 10 10px;
+            margin: 10px;
         }
 
         .cta-button:hover {
@@ -241,7 +278,7 @@
             left: 0;
         }
 
-        /* --- UPDATED: Tech Stack Section --- */
+        /* Tech Stack Section */
         .tech-stack {
             padding: 80px 0;
             background: var(--bg-primary);
@@ -273,7 +310,6 @@
         }
 
         .tech-item .icon {
-            font-size: 2.5rem;
             margin-bottom: 1.5rem;
             height: 50px;
             display: flex;
@@ -291,7 +327,6 @@
             font-size: 0.95rem;
             color: var(--text-secondary);
         }
-        /* --- END: Tech Stack Section --- */
 
         /* Why Choose Us */
         .why-choose {
@@ -405,111 +440,58 @@
         .project-card a:hover { color: var(--primary-green); }
 
         /* Contact Section */
-        .contact {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #1e90ff, #00ced1);
-            color: white;
-            text-align: center;
-        }
-
-        .contact h2 { color: white; font-size: 2.8rem; font-weight: bold; margin-bottom: 1.5rem; }
-        .contact p { font-size: 1.2rem; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .contact { padding: 80px 0; text-align: center; }
         .contact-form { max-width: 700px; margin: 0 auto 3rem auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
         .contact-form .form-group { width: 100%; }
         .contact-form .full-width { grid-column: 1 / -1; }
-        .contact-form input,
-        .contact-form textarea { width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; font-family: inherit; font-size: 1rem; transition: border-color 0.3s ease; }
-        .contact-form input::placeholder,
-        .contact-form textarea::placeholder { color: rgba(255, 255, 255, 0.7); }
-        .contact-form input:focus,
-        .contact-form textarea:focus { outline: none; border-color: white; }
         .contact-form textarea { resize: vertical; min-height: 120px; }
-        .contact-form button { grid-column: 1 / -1; background: white; color: var(--primary-blue); padding: 1rem 2rem; border: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; justify-self: center; }
-        .contact-form button:hover { background: var(--bg-secondary-light); transform: translateY(-2px); }
         .contact-info { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
-        .contact-item { display: flex; align-items: center; gap: 0.8rem; background: rgba(255, 255, 255, 0.15); padding: 1rem 2rem; border-radius: 50px; backdrop-filter: blur(10px); transition: background 0.3s ease; }
-        .contact-item:hover { background: rgba(255, 255, 255, 0.25); }
-        .contact-item a { color: white; text-decoration: none; font-size: 1.1rem; }
-
+        .contact-item { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 2rem; border-radius: 50px; backdrop-filter: blur(10px); transition: background 0.3s ease; }
+        [data-theme="light"] .contact { background: linear-gradient(135deg, #1e90ff, #00ced1); color: white; }
+        [data-theme="light"] .contact h2, [data-theme="light"] .contact p { color: white; }
+        [data-theme="light"] .contact-form input, [data-theme="light"] .contact-form textarea { background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2); color: white; }
+        [data-theme="light"] .contact-form input::placeholder, [data-theme="light"] .contact-form textarea::placeholder { color: rgba(255, 255, 255, 0.7); }
+        [data-theme="light"] .contact-form input:focus, [data-theme="light"] .contact-form textarea:focus { outline: none; border-color: white; }
+        [data-theme="light"] .contact-form button { background: white; color: var(--primary-blue); }
+        [data-theme="light"] .contact-form button:hover { background: var(--bg-secondary-light); }
+        [data-theme="light"] .contact-item { background: rgba(255, 255, 255, 0.15); }
+        [data-theme="light"] .contact-item:hover { background: rgba(255, 255, 255, 0.25); }
+        [data-theme="light"] .contact-item a { color: white; }
+        [data-theme="dark"] .contact { background: linear-gradient(135deg, #1e293b, #0f172a); color: var(--text-dark); }
+        [data-theme="dark"] .contact h2, [data-theme="dark"] .contact p { color: var(--text-dark); }
+        [data-theme="dark"] .contact-form input, [data-theme="dark"] .contact-form textarea { background: var(--bg-secondary-dark); border: 2px solid var(--border-dark); color: var(--text-dark); }
+        [data-theme="dark"] .contact-form input::placeholder, [data-theme="dark"] .contact-form textarea::placeholder { color: var(--text-secondary-dark); }
+        [data-theme="dark"] .contact-form input:focus, [data-theme="dark"] .contact-form textarea:focus { outline: none; border-color: var(--primary-blue); }
+        [data-theme="dark"] .contact-form button { background: var(--primary-blue); color: white; }
+        [data-theme="dark"] .contact-form button:hover { background: #2563eb; opacity: 0.9; }
+        [data-theme="dark"] .contact-item { background: var(--bg-secondary-dark); }
+        [data-theme="dark"] .contact-item:hover { background: #334155; }
+        [data-theme="dark"] .contact-item a { color: var(--text-dark); }
+        .contact h2 { font-size: 2.8rem; font-weight: bold; margin-bottom: 1.5rem; }
+        .contact p { font-size: 1.2rem; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 1rem; border-radius: 10px; font-family: inherit; font-size: 1rem; transition: border-color 0.3s ease; }
+        .contact-form button { grid-column: 1 / -1; padding: 1rem 2rem; border: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; justify-self: center; }
+        .contact-form button:hover { transform: translateY(-2px); }
+        .contact-item a { text-decoration: none; font-size: 1.1rem; }
+        
         /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
+        footer { background: var(--bg-secondary); padding: 2rem 0; text-align: center; border-top: 1px solid var(--border-color); }
 
-        /* --- NEW: Modal Styles --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.6); /* --bg-dark with opacity */
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            backdrop-filter: blur(5px);
-            padding: 20px;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            padding: 2.5rem 2rem;
-            border-radius: 15px;
-            max-width: 600px;
-            width: 100%;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: fadeInModal 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        @keyframes fadeInModal {
-            from { opacity: 0; transform: translateY(20px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 2.5rem;
-            color: var(--text-secondary);
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .modal-content h3 {
-            font-size: 2rem;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-        }
-
-        .modal-content p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
-        }
-        /* --- END: Modal Styles --- */
-
+        /* Modal Styles */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); display: none; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(5px); padding: 20px; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: var(--bg-primary); color: var(--text-primary); padding: 2.5rem 2rem; border-radius: 15px; max-width: 600px; width: 100%; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: fadeInModal 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        @keyframes fadeInModal { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 2.5rem; color: var(--text-secondary); cursor: pointer; line-height: 1; }
+        .modal-content h3 { font-size: 2rem; color: var(--primary-blue); margin-bottom: 1rem; }
+        .modal-content p { font-size: 1.1rem; line-height: 1.7; color: var(--text-secondary); }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-            .hero .subtitle { font-size: 1.1rem; }
-            .services-grid, .tech-grid, .features-grid, .projects-grid { grid-template-columns: 1fr; }
-            .contact-info { flex-direction: column; align-items: center; }
-            .contact-form { grid-template-columns: 1fr; }
+            .nav-links { display: none; } .hero h1 { font-size: 2.5rem; } .hero .subtitle { font-size: 1.1rem; } .services-grid, .tech-grid, .features-grid, .projects-grid { grid-template-columns: 1fr; } .contact-info { flex-direction: column; align-items: center; } .contact-form { grid-template-columns: 1fr; }
+            .hamburger { display: block; position: absolute; right: 1rem; top: 1.2rem; font-size: 1.8rem; color: var(--text-primary); }
+            .nav-links { flex-direction: column; background: var(--bg-primary); position: absolute; top: 70px; right: 10px; padding: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px; z-index: 999; }
+            .nav-links.active { display: flex; }
         }
 
         html { scroll-behavior: smooth; }
@@ -519,30 +501,29 @@
         .service-card:hover ~ .cursor, .tech-item:hover ~ .cursor, .feature-item:hover ~ .cursor, .project-card:hover ~ .cursor { transform: scale(2); background: linear-gradient(45deg, var(--primary-green), var(--primary-pink)); }
         a, button, .cta-button, .service-card, .tech-item, .feature-item, .project-card { cursor: none; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .service-card, .tech-item, .feature-item, .project-card { animation: fadeInUp 0.6s ease forwards; }
-        .logo { display: flex; align-items: center; font-weight: bold; font-size: 1.5rem; }
+        .service-card, .tech-item, .feature-item, .project-card { animation: fadeInUp 0.6s ease forwards; opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .logo-img { height: 50px; margin-right: 10px; }
-        .hamburger { display: none; font-size: 2rem; background: none; border: none; cursor: pointer; }
-        @media (max-width: 768px) {
-            .nav-links { display: none; flex-direction: column; background: white; position: absolute; top: 60px; right: 10px; padding: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px; z-index: 999; }
-            .nav-links.active { display: flex; }
-            .hamburger { display: block; position: absolute; right: 1rem; top: 1rem; }
-        }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; }
     </style>
 </head>
 <body data-theme="light">
+    <!-- Scroll Progress Bar Element -->
+    <div id="scrollProgressBar"></div>
+
     <!-- Header -->
     <header>
         <nav class="container">
-            <div class="logo-section"><img src="./mahsua-technology.png" alt="Mahsua Logo" class="logo-img" /></div>
-            <button class="hamburger" onclick="toggleMobileMenu()" style=" color: #ee508c; ">☰</button>
+            <div class="logo-section">
+                <img src="./mahsua-technology.png" alt="Mahsua Logo" class="logo-img" />
+            </div>
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
             <ul class="nav-links" id="navMenu">
                 <li><a href="#services" style=" color: #ee508c; ">Services</a></li>
                 <li><a href="#tech" style=" color: #ee508c; ">Technology</a></li>
                 <li><a href="#projects" style=" color: #ee508c; ">Projects</a></li>
                 <li><a href="#about" style=" color: #ee508c; ">About</a></li>
                 <li><a href="#contact" style=" color: #ee508c; ">Contact</a></li>
-                <li><button class="theme-toggle" onclick="toggleTheme()" style=" color: #ee508c; ">🌙 Dark</button></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></li>
             </ul>
         </nav>
     </header>
@@ -552,7 +533,7 @@
         <div class="container">
             <h1>Mahsua Technology</h1>
             <p class="subtitle">Your Gateway to Innovative, Inclusive & Affordable Digital Solutions</p>
-            <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto;">We design and develop modern, browser-based digital solutions tailored for small and medium-sized businesses. Make digital transformation accessible and effective for everyone.</p>
+            <p>We design and develop modern, browser-based digital solutions tailored for small and medium-sized businesses. Make digital transformation accessible and effective for everyone.</p>
             <a href="#contact" class="cta-button">Get Started</a>
             <a href="#services" class="cta-button cta-secondary">Our Services</a>
         </div>
@@ -571,36 +552,18 @@
         </div>
     </section>
 
-    <!-- UPDATED Tech Stack Section -->
+    <!-- Tech Stack Section with Local Images -->
     <section class="tech-stack" id="tech">
         <div class="container">
             <h2 class="section-title">How We Build It</h2>
             <p class="section-subtitle">We use a flexible tech stack depending on the project's needs</p>
             <div class="tech-grid">
-                <div class="tech-item">
-                    <div class="icon"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.5 7.5C16.5 8.32843 15.8284 9 15 9C14.1716 9 13.5 8.32843 13.5 7.5C13.5 6.67157 14.1716 6 15 6C15.8284 6 16.5 6.67157 16.5 7.5Z" fill="#EC4899"/><path d="M9 7.5C9 8.32843 8.32843 9 7.5 9C6.67157 9 6 8.32843 6 7.5C6 6.67157 6.67157 6 7.5 6C8.32843 6 9 6.67157 9 7.5Z" fill="#EC4899"/><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C9.23858 2 7 4.23858 7 7V9C7 9.55228 7.44772 10 8 10H9.5C9.77614 10 10 9.77614 10 9.5V8.5C10 7.67157 10.6716 7 11.5 7H12.5C13.3284 7 14 7.67157 14 8.5V9.5C14 9.77614 14.2239 10 14.5 10H16C16.5523 10 17 9.55228 17 9V7C17 4.23858 14.7614 2 12 2ZM8.5 11C7.67157 11 7 11.6716 7 12.5V13.5C7 14.3284 7.67157 15 8.5 15H9C9.55228 15 10 15.4477 10 16V18C10 19.6569 11.3431 21 13 21H14C15.6569 21 17 19.6569 17 18V16C17 15.4477 16.5523 15 16 15H15.5C14.6716 15 14 14.3284 14 13.5V12.5C14 11.6716 14.6716 11 15.5 11H16.5C17.3284 11 18 11.6716 18 12.5V14.5C18 15.8807 17.442 17.1307 16.5355 18.0355C15.6307 18.9403 14.3807 19.5 13 19.5H12C10.6193 19.5 9.36929 18.9403 8.46447 18.0355C7.55967 17.1307 7 15.8807 7 14.5V12.5C7 11.6716 7.67157 11 8.5 11Z" fill="#EC4899"/></svg></div>
-                    <h4>Google Sites</h4><p>Easy-to-edit, cost-effective solutions</p>
-                </div>
-                <div class="tech-item">
-                    <div class="icon"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.66699 19.4633C4.24733 17.5806 4.75233 13.7149 5.00199 12.2155C5.25165 10.7161 4.50365 9.05524 6.00065 7.55824C7.49765 6.06124 9.15833 6.80933 10.6577 6.55967C12.157 6.31 13.5806 4.24733 15.4633 8.66699C17.5806 13.5806 13.7149 14.7523 12.2155 15.002C10.7161 15.2517 9.05524 14.5037 7.55824 16.0007C6.06124 17.4977 6.80933 19.1583 6.55967 20.6577C6.31 22.157 4.24733 21.5806 8.66699 19.4633Z" fill="#F97316"/><path d="M14.002 12.5C13.5539 12.9461 13.0539 13.3384 12.502 14.002C11.6033 14.2473 10.8793 14.3793 10.002 14.502C9.45395 13.5539 9.06165 13.0539 8.50203 12.5C8.25269 11.6033 8.12069 10.8793 8.00203 10.002C8.94607 9.45395 9.94607 9.06165 10.502 8.50203C11.2473 8.25269 12.3793 8.12069 13.002 8.00203C13.5539 8.94607 13.9461 9.94607 14.502 10.502C14.2473 11.2473 14.1207 12.3793 14.002 12.5Z" fill="#FB923C"/></svg></div>
-                    <h4>Firebase</h4><p>Real-time databases, hosting, authentication</p>
-                </div>
-                <div class="tech-item">
-                    <div class="icon"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 20H18C19.1046 20 20 19.1046 20 18V9C20 7.89543 19.1046 7 18 7H6C4.89543 7 4 7.89543 4 9V18C4 19.1046 4.89543 20 6 20Z" fill="#FACC15"/><path d="M12 4C11.4477 4 11 4.44772 11 5V7H13V5C13 4.44772 12.5523 4 12 4Z" fill="#0F172A"/><path d="M9 2H15V4H9V2Z" fill="#FACC15"/><path d="M8 20V22H16V20H8Z" fill="#0F172A"/><circle cx="12" cy="12" r="1.5" fill="#0F172A"/></svg></div>
-                    <h4>JavaScript, HTML, CSS</h4><p>Custom web app development</p>
-                </div>
-                <div class="tech-item">
-                    <div class="icon"><svg width="50" height="50" viewBox="0 0 24 24" fill="#0F172A" xmlns="http://www.w3.org/2000/svg"><path d="M14.243 2.88L12.121 5L14.243 7.121L15.657 5.707L18.485 8.536L17.071 9.95L19.192 12.071L21.314 9.95L14.243 2.88ZM12.121 9.243L9.95 7.071L2.879 14.142L9.95 21.213L17.021 14.142L14.9 12.021L12.778 14.142L9.95 11.314L12.121 9.243ZM4.95 16.213L9.95 11.213L7.778 9.043L4.95 11.871V16.213ZM11.364 21.213L16.364 16.213H11.95L9.95 18.213L11.364 21.213Z"/></svg></div>
-                    <h4>GitHub</h4><p>Version control and collaboration</p>
-                </div>
-                <div class="tech-item">
-                    <div class="icon"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" fill="#60A5FA"/><path d="M12 2C11.1613 5.33333 11.1613 8.66667 12 12C12.8387 15.3333 12.8387 18.6667 12 22C15.3333 20.8387 18.6667 20.8387 22 22C20.8387 18.6667 20.8387 15.3333 22 12C18.6667 11.1613 15.3333 11.1613 12 2Z" fill="#93C5FD"/><path d="M2 12C5.33333 12.8387 8.66667 12.8387 12 12C15.3333 11.1613 18.6667 11.1613 22 12H2Z" fill="#93C5FD"/></svg></div>
-                    <h4>Responsive Design</h4><p>Mobile-first, browser-friendly apps</p>
-                </div>
-                <div class="tech-item">
-                    <div class="icon"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.333 11.0021C19.333 8.13611 17.6521 5.61745 15.1111 4.41505C14.2017 2.45038 12.2452 1 9.91671 1C6.83492 1 4.30561 3.20158 4.02461 6.07545C2.10392 6.64333 0.666718 8.27783 0.666718 10.2321C0.666718 12.5321 2.51862 14.384 4.81862 14.384H6.81862V12.384H4.81862C3.67612 12.384 2.72222 11.4222 2.72222 10.2801C2.72222 9.27333 3.49122 8.42319 4.46412 8.21419L5.20182 8.04699L5.25362 7.27533C5.45422 4.48624 7.42872 2.375 9.91671 2.375C11.6961 2.375 13.2147 3.47562 13.8186 4.96638L14.288 6.06927L15.4674 6.35338C17.2033 6.78463 18.125 8.16913 18.125 9.79399C18.125 11.3651 16.9238 12.7539 15.2639 12.986L14.1819 13.1418L14.3319 14.2217C14.7319 17.2217 14.7319 20.2217 14.3319 23H19.333C21.841 23 23.8988 20.9421 23.8988 18.4342C23.8988 15.9342 21.9341 13.5671 19.333 11.0021Z" fill="#A1A1AA"/></svg></div>
-                    <h4>Google Workspace</h4><p>Streamlined workflows and productivity</p>
-                </div>
+                <div class="tech-item"><div class="icon"><img src="./assets/google-sites.png" alt="Google Sites Icon" width="50" height="50"></div><h4>Google Sites</h4><p>Easy-to-edit, cost-effective solutions</p></div>
+                <div class="tech-item"><div class="icon"><img src="./assets/firebase.png" alt="Firebase Icon" width="50" height="50"></div><h4>Firebase</h4><p>Real-time databases, hosting, authentication</p></div>
+                <div class="tech-item"><div class="icon"><img src="./assets/js-html-css.png" alt="JS, HTML, CSS Icon" width="50" height="50"></div><h4>JavaScript, HTML, CSS</h4><p>Custom web app development</p></div>
+                <div class="tech-item"><div class="icon"><img src="./assets/github.png" alt="GitHub Icon" width="50" height="50"></div><h4>GitHub</h4><p>Version control and collaboration</p></div>
+                <div class="tech-item"><div class="icon"><img src="./assets/responsive-design.png" alt="Responsive Design Icon" width="50" height="50"></div><h4>Responsive Design</h4><p>Mobile-first, browser-friendly apps</p></div>
+                <div class="tech-item"><div class="icon"><img src="./assets/google-workspace.png" alt="Google Workspace Icon" width="50" height="50"></div><h4>Google Workspace</h4><p>Streamlined workflows and productivity</p></div>
             </div>
         </div>
     </section>
@@ -632,12 +595,12 @@
                 <button data-filter="branding">Branding</button>
             </div>
             <div class="projects-grid">
-                <div class="project-card" data-category="web-design"><div class="project-card-image p1">💻</div><div class="project-card-content"><h3>E-Commerce Platform</h3><p>Modern online shopping experience with seamless user interface and secure payment integration.</p><div class="project-tags"><span>React</span><span>Node.js</span></div><a href="https://shop.mahsua.com/">View Project →</a></div></div>
-                <div class="project-card" data-category="web-design"><div class="project-card-image p6">🍔</div><div class="project-card-content"><h3>Quick Bite Fresh Food</h3><p>Delicious Fast Food & Fresh Lunch</p><div class="project-tags"><span>React JS</span><span>CSS3</span></div><a href="./quick-bite/index.html">View Project →</a></div></div>
+                <div class="project-card" data-category="web-design"><div class="project-card-image p1">💻</div><div class="project-card-content"><h3>E-Commerce Platform</h3><p>Modern online shopping experience with seamless user interface and secure payment integration.</p><div class="project-tags"><span>React</span><span>Node.js</span></div><a href="#">View Project →</a></div></div>
                 <div class="project-card" data-category="mobile-apps"><div class="project-card-image p2">🏋️‍♂️</div><div class="project-card-content"><h3>Fitness Tracking App</h3><p>Comprehensive mobile app for tracking workouts, nutrition, and health metrics with social features.</p><div class="project-tags"><span>Flutter</span><span>Firebase</span></div><a href="#">View Project →</a></div></div>
                 <div class="project-card" data-category="branding"><div class="project-card-image p3">🎨</div><div class="project-card-content"><h3>Brand Identity Design</h3><p>Complete brand identity package including logo design, color palette, and brand guidelines.</p><div class="project-tags"><span>Illustrator</span><span>Photoshop</span></div><a href="#">View Project →</a></div></div>
                 <div class="project-card" data-category="web-design"><div class="project-card-image p4">🎓</div><div class="project-card-content"><h3>Learning Management System</h3><p>Educational platform with course management, student tracking, and interactive learning tools.</p><div class="project-tags"><span>Vue.js</span><span>Laravel</span></div><a href="#">View Project →</a></div></div>
                 <div class="project-card" data-category="mobile-apps"><div class="project-card-image p5">📱</div><div class="project-card-content"><h3>Restaurant Ordering App</h3><p>Mobile app for restaurant ordering with real-time tracking and payment processing.</p><div class="project-tags"><span>React Native</span><span>Stripe</span></div><a href="#">View Project →</a></div></div>
+                <div class="project-card" data-category="web-design"><div class="project-card-image p6">🏢</div><div class="project-card-content"><h3>Corporate Website Redesign</h3><p>Complete website overhaul with modern design, improved UX, and enhanced performance.</p><div class="project-tags"><span>WordPress</span><span>CSS3</span></div><a href="#">View Project →</a></div></div>
             </div>
         </div>
     </section>
@@ -673,7 +636,7 @@
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
-    <!-- NEW Modal Structure -->
+    <!-- Modal Structure -->
     <div class="modal-overlay" id="techModalOverlay">
         <div class="modal-content">
             <button class="modal-close" id="modalCloseBtn">&times;</button>
@@ -683,7 +646,6 @@
     </div>
 
     <script>
-        // Theme toggle functionality
         function toggleMobileMenu() { document.getElementById('navMenu').classList.toggle('active'); }
         function toggleTheme() {
             const body = document.body;
@@ -699,7 +661,6 @@
             }
         }
 
-        // Contact form submission
         function handleContactFormSubmit(event) {
             event.preventDefault();
             const name = document.getElementById('fullName').value.trim();
@@ -716,6 +677,13 @@
             const encodedMessage = encodeURIComponent(whatsappMessage);
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
             window.open(whatsappUrl, '_blank');
+        }
+
+        function updateScrollProgress() {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollProgressBar').style.width = scrollPercent + '%';
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -741,7 +709,7 @@
                 });
             });
 
-            // --- NEW: Tech stack modal logic ---
+            // Tech stack modal logic
             const techItems = document.querySelectorAll('.tech-item');
             const modalOverlay = document.getElementById('techModalOverlay');
             const modalTitle = document.getElementById('modalTitle');
@@ -768,9 +736,22 @@
             modalOverlay.addEventListener('click', (event) => {
                 if (event.target === modalOverlay) { closeModal(); }
             });
+            
+            // Card animation on scroll observer initialization
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.service-card, .tech-item, .feature-item, .project-card').forEach(card => {
+                observer.observe(card);
+            });
         });
 
-        // Smooth scrolling
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -779,30 +760,15 @@
             });
         });
 
-        // Header scroll effect
+        // Header scroll effect & Progress Bar update on scroll
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
             header.style.backdropFilter = (window.scrollY > 100) ? 'blur(10px)' : 'none';
             header.style.backgroundColor = (window.scrollY > 100) ? 'rgba(255, 255, 255, 0.9)' : 'var(--bg-primary)';
+            updateScrollProgress();
         });
 
-        // Card animation on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        document.querySelectorAll('.service-card, .tech-item, .feature-item, .project-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-
-        // Custom cursor
+        // Custom cursor logic
         const cursor = document.querySelector('.cursor');
         const cursorFollower = document.querySelector('.cursor-follower');
         let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
