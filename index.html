@@ -5,638 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>❤️ mahsua.com</title>
     <link rel="icon" href="./favicon.png" type="image/svg+xml">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-blue: #2563eb;
-            --primary-green: #10b981;
-            --primary-pink: #ec4899;
-            --bg-light: #ffffff;
-            --bg-secondary-light: #f8fafc;
-            --text-light: #1f2937;
-            --text-secondary-light: #6b7280;
-            --border-light: #e5e7eb;
-            
-            --bg-dark: #0f172a;
-            --bg-secondary-dark: #1e293b;
-            --text-dark: #f1f5f9;
-            --text-secondary-dark: #cbd5e1;
-            --border-dark: #334155;
-        }
-
-        [data-theme="light"] {
-            --bg-secondary: var(--bg-secondary-light);
-            --text-primary: var(--text-light);
-            --text-secondary: var(--text-secondary-light);
-            --border-color: #ec4899; 
-            scrollbar-color: var(--primary-pink) var(--bg-secondary-light);
-        }
-
-        [data-theme="dark"] {
-            --bg-primary: var(--bg-dark);
-            --bg-secondary: var(--bg-secondary-dark);
-            --text-primary: var(--text-dark);
-            --text-secondary: var(--text-secondary-dark);
-            --border-color: #2563eb; 
-            scrollbar-color: var(--primary-blue) var(--bg-secondary-dark);
-        }
-        
-        /* --- UPDATED: Custom Scrollbar (Now Hidden) --- */
-        ::-webkit-scrollbar {
-            width: 10px;
-            display: none;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-        ::-webkit-scrollbar-thumb {
-            border-radius: 5px;
-        }
-        [data-theme="light"] ::-webkit-scrollbar-thumb {
-            background-color: var(--primary-pink);
-        }
-        [data-theme="dark"] ::-webkit-scrollbar-thumb {
-            background-color: var(--primary-blue);
-        }
-        /* --- END: Custom Scrollbar Correction --- */
-
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        #scrollProgressBar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 5px;
-            width: 0%;
-            z-index: 10001;
-            transition: width 0.1s ease-out;
-        }
-        [data-theme="light"] #scrollProgressBar {
-            background: var(--primary-pink);
-        }
-        [data-theme="dark"] #scrollProgressBar {
-            background: var(--primary-blue);
-        }
-
-        /* Header */
-        header {
-            background: var(--bg-primary);
-            border-bottom: 1px solid var(--border-color);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green), var(--primary-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-blue);
-        }
-
-        .theme-toggle {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            background: var(--primary-blue);
-            color: white;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            padding: 250px 0 80px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .subtitle {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
-            color: white;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin: 10px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
-        }
-
-        .cta-secondary {
-            background: linear-gradient(45deg, var(--primary-pink), var(--primary-blue));
-        }
-
-        /* Services Section */
-        .services {
-            padding: 80px 0;
-            background: var(--bg-secondary);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 3rem auto;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: var(--bg-primary);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .service-card h3 {
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .service-card ul {
-            list-style: none;
-            color: var(--text-secondary);
-        }
-
-        .service-card li {
-            margin-bottom: 0.5rem;
-            padding-left: 1rem;
-            position: relative;
-        }
-
-        .service-card li:before {
-            content: "✓";
-            color: var(--primary-green);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        /* Tech Stack Section */
-        .tech-stack {
-            padding: 80px 0;
-            background: var(--bg-primary);
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            justify-content: center;
-        }
-
-        .tech-item {
-            text-align: center;
-            padding: 2rem 1.5rem;
-            background: var(--bg-secondary);
-            border-radius: 10px;
-            border: 2px solid var(--primary-pink);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .tech-item:hover {
-            background: white;
-            border-color: var(--primary-blue);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .tech-item .icon {
-            margin-bottom: 1.5rem;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .tech-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-        
-        .tech-item p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-        }
-
-        /* Why Choose Us */
-        .why-choose {
-            padding: 80px 0;
-            background: var(--bg-secondary);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: var(--bg-primary);
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-        }
-
-        .feature-icon {
-            color: var(--primary-green);
-            font-size: 1.5rem;
-            margin-top: 0.2rem;
-        }
-
-        /* Projects Section Styles */
-        .projects {
-            padding: 80px 0;
-            background: var(--bg-primary);
-        }
-
-        .project-filters {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .project-filters button {
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 0.6rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .project-filters button:hover {
-            background-color: #8a63d2;
-            color: white;
-            border-color: #8a63d2;
-        }
-
-        .project-filters button.active {
-            background-color: #8a63d2;
-            color: white;
-            border-color: #8a63d2;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg-secondary);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .project-card-image {
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 4rem;
-            color: white;
-        }
-        
-        .project-card-image.p1 { background: linear-gradient(45deg, #8A63D2, #6E85E2); }
-        .project-card-image.p2 { background: linear-gradient(45deg, #44D4A3, #38C2B8); }
-        .project-card-image.p3 { background: linear-gradient(45deg, #F06E8A, #EA5E6E); }
-        .project-card-image.p4 { background: linear-gradient(45deg, #FDCB6E, #FD9644); }
-        .project-card-image.p5 { background: linear-gradient(45deg, #38C2B8, #00B894); }
-        .project-card-image.p6 { background: linear-gradient(45deg, #6E85E2, #8A63D2); }
-
-
-        .project-card-content { padding: 1.5rem; }
-        .project-card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--text-primary); }
-        .project-card p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1rem; }
-        .project-tags { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-        .project-tags span { background-color: var(--border-color); color: var(--text-secondary); padding: 0.2rem 0.6rem; border-radius: 5px; font-size: 0.8rem; font-weight: 500; }
-        .project-card a { color: var(--primary-blue); font-weight: bold; text-decoration: none; transition: color 0.3s ease; }
-        .project-card a:hover { color: var(--primary-green); }
-
-        /* Contact Section */
-        .contact { padding: 80px 0; text-align: center; }
-        .contact-form { max-width: 700px; margin: 0 auto 3rem auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        .contact-form .form-group { width: 100%; }
-        .contact-form .full-width { grid-column: 1 / -1; }
-        .contact-form textarea { resize: vertical; min-height: 120px; }
-        .contact-info { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
-        .contact-item { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 2rem; border-radius: 50px; backdrop-filter: blur(10px); transition: background 0.3s ease; }
-        [data-theme="light"] .contact { background: linear-gradient(135deg, #1e90ff, #00ced1); color: white; }
-        [data-theme="light"] .contact h2, [data-theme="light"] .contact p { color: white; }
-        [data-theme="light"] .contact-form input, [data-theme="light"] .contact-form textarea { background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2); color: white; }
-        [data-theme="light"] .contact-form input::placeholder, [data-theme="light"] .contact-form textarea::placeholder { color: rgba(255, 255, 255, 0.7); }
-        [data-theme="light"] .contact-form input:focus, [data-theme="light"] .contact-form textarea:focus { outline: none; border-color: white; }
-        [data-theme="light"] .contact-form button { background: white; color: var(--primary-blue); }
-        [data-theme="light"] .contact-form button:hover { background: var(--bg-secondary-light); }
-        [data-theme="light"] .contact-item { background: rgba(255, 255, 255, 0.15); }
-        [data-theme="light"] .contact-item:hover { background: rgba(255, 255, 255, 0.25); }
-        [data-theme="light"] .contact-item a { color: white; }
-        [data-theme="dark"] .contact { background: linear-gradient(135deg, #1e293b, #0f172a); color: var(--text-dark); }
-        [data-theme="dark"] .contact h2, [data-theme="dark"] .contact p { color: var(--text-dark); }
-        [data-theme="dark"] .contact-form input, [data-theme="dark"] .contact-form textarea { background: var(--bg-secondary-dark); border: 2px solid var(--border-dark); color: var(--text-dark); }
-        [data-theme="dark"] .contact-form input::placeholder, [data-theme="dark"] .contact-form textarea::placeholder { color: var(--text-secondary-dark); }
-        [data-theme="dark"] .contact-form input:focus, [data-theme="dark"] .contact-form textarea:focus { outline: none; border-color: var(--primary-blue); }
-        [data-theme="dark"] .contact-form button { background: var(--primary-blue); color: white; }
-        [data-theme="dark"] .contact-form button:hover { background: #2563eb; opacity: 0.9; }
-        [data-theme="dark"] .contact-item { background: var(--bg-secondary-dark); }
-        [data-theme="dark"] .contact-item:hover { background: #334155; }
-        [data-theme="dark"] .contact-item a { color: var(--text-dark); }
-        .contact h2 { font-size: 2.8rem; font-weight: bold; margin-bottom: 1.5rem; }
-        .contact p { font-size: 1.2rem; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 1rem; border-radius: 10px; font-family: inherit; font-size: 1rem; transition: border-color 0.3s ease; }
-        .contact-form button { grid-column: 1 / -1; padding: 1rem 2rem; border: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; justify-self: center; }
-        .contact-form button:hover { transform: translateY(-2px); }
-        .contact-item a { text-decoration: none; font-size: 1.1rem; }
-        
-        /* Footer */
-        footer { background: var(--bg-secondary); padding: 2rem 0; text-align: center; border-top: 1px solid var(--border-color); }
-
-        /* Modal Styles */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); display: none; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(5px); padding: 20px; }
-        .modal-overlay.active { display: flex; }
-        .modal-content { background: var(--bg-primary); color: var(--text-primary); padding: 2.5rem 2rem; border-radius: 15px; max-width: 600px; width: 100%; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: fadeInModal 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-        @keyframes fadeInModal { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 2.5rem; color: var(--text-secondary); cursor: pointer; line-height: 1; }
-        .modal-content h3 { font-size: 2rem; color: var(--primary-blue); margin-bottom: 1rem; }
-        .modal-content p { font-size: 1.1rem; line-height: 1.7; color: var(--text-secondary); }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; } .hero h1 { font-size: 2.5rem; } .hero .subtitle { font-size: 1.1rem; } .services-grid, .tech-grid, .features-grid, .projects-grid { grid-template-columns: 1fr; } .contact-info { flex-direction: column; align-items: center; } .contact-form { grid-template-columns: 1fr; }
-            .hamburger { display: block; position: absolute; right: 1rem; top: 1.2rem; font-size: 1.8rem; color: var(--text-primary); }
-            .nav-links { flex-direction: column; background: var(--bg-primary); position: absolute; top: 70px; right: 10px; padding: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px; z-index: 999; }
-            .nav-links.active { display: flex; }
-        }
-
-        html { scroll-behavior: smooth; }
-        .cursor { position: fixed; width: 20px; height: 20px; background: linear-gradient(45deg, var(--primary-blue), var(--primary-green)); border-radius: 50%; pointer-events: none; z-index: 9999; transition: transform 0.1s ease; mix-blend-mode: difference; }
-        .cursor-follower { position: fixed; width: 40px; height: 40px; border: 2px solid var(--primary-pink); border-radius: 50%; pointer-events: none; z-index: 9998; transition: all 0.3s ease; opacity: 0.5; }
-        a:hover ~ .cursor, button:hover ~ .cursor, .cta-button:hover ~ .cursor { transform: scale(1.5); background: linear-gradient(45deg, var(--primary-pink), var(--primary-blue)); }
-        .service-card:hover ~ .cursor, .tech-item:hover ~ .cursor, .feature-item:hover ~ .cursor, .project-card:hover ~ .cursor { transform: scale(2); background: linear-gradient(45deg, var(--primary-green), var(--primary-pink)); }
-        a, button, .cta-button, .service-card, .tech-item, .feature-item, .project-card { cursor: none; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .service-card, .tech-item, .feature-item, .project-card { animation: fadeInUp 0.6s ease forwards; opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
-        .logo-img { height: 50px; margin-right: 10px; }
-        .hamburger { display: none; background: none; border: none; cursor: pointer; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body data-theme="light">
-    <!-- Scroll Progress Bar Element -->
+    
+    <!-- HEADER PASTED HERE -->
     <div id="scrollProgressBar"></div>
-
-    <!-- Header -->
     <header>
         <nav class="container">
             <div class="logo-section">
-                <img src="./mahsua-technology.png" alt="Mahsua Logo" class="logo-img" />
+                <a href="index.html"><img src="mahsua-technology.png" alt="Mahsua Logo" class="logo-img" /></a>
             </div>
-            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+            <button class="hamburger" onclick="toggleMobileMenu()">⋮</button>
             <ul class="nav-links" id="navMenu">
-                <li><a href="#services" style=" color: #ee508c; ">Services</a></li>
-                <li><a href="#tech" style=" color: #ee508c; ">Technology</a></li>
-                <li><a href="#projects" style=" color: #ee508c; ">Projects</a></li>
-                <li><a href="#about" style=" color: #ee508c; ">About</a></li>
-                <li><a href="#contact" style=" color: #ee508c; ">Contact</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#tech">Technology</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="./pages/about-us.html">About</a></li>
+                <li><a href="#contact">Contact</a></li>
                 <li><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Mahsua Technology</h1>
-            <p class="subtitle">Your Gateway to Innovative, Inclusive & Affordable Digital Solutions</p>
-            <p>We design and develop modern, browser-based digital solutions tailored for small and medium-sized businesses. Make digital transformation accessible and effective for everyone.</p>
-            <a href="#contact" class="cta-button">Get Started</a>
-            <a href="#services" class="cta-button cta-secondary">Our Services</a>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">Our Digital Solutions</h2>
-            <div class="services-grid">
-                <div class="service-card"><div class="service-icon">🏫</div><h3>School & College Portals</h3><ul><li>Online Result Systems</li><li>Digital Attendance & Student Records</li><li>Notice Boards, Galleries, and Event Calendars</li><li>Mobile-Friendly and Easy to Maintain</li></ul></div>
-                <div class="service-card"><div class="service-icon">🌐</div><h3>Portfolio & Service Websites</h3><ul><li>For Schools, Colleges, Doctors, Clinics, Trainers</li><li>Custom-built using modern web technologies</li><li>Fast, SEO-optimized, responsive, and secure</li><li>Professional online presence</li></ul></div>
-                <div class="service-card"><div class="service-icon">🏥</div><h3>Appointment & Booking Platforms</h3><ul><li>Doctors, Clinics, Hotels, Beauty Parlours</li><li>Appointment & Inquiry Forms</li><li>WhatsApp & Google Calendar Integration</li><li>Admin Dashboards for Management</li></ul></div>
-                <div class="service-card"><div class="service-icon">🧰</div><h3>Custom Business Tools</h3><ul><li>Browser-Based Mini Apps</li><li>Invoicing, Feedback Collection, Attendance</li><li>Google Workspace Integration</li><li>Secure, real-time, accessible across devices</li></ul></div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Mahsua Technology</h1>
+                <p class="subtitle">Your Gateway to Innovative, Inclusive & Affordable Digital Solutions</p>
+                <p>We design and develop modern, browser-based digital solutions tailored for small and medium-sized businesses. Make digital transformation accessible and effective for everyone.</p>
+                <a href="#contact" class="cta-button">Get Started</a>
+                <a href="#services" class="cta-button cta-secondary">Our Services</a>
             </div>
-        </div>
-    </section>
-
-    <!-- Tech Stack Section with Local Images -->
-    <section class="tech-stack" id="tech">
-        <div class="container">
-            <h2 class="section-title">How We Build It</h2>
-            <p class="section-subtitle">We use a flexible tech stack depending on the project's needs</p>
-            <div class="tech-grid">
-                <div class="tech-item"><div class="icon"><img src="./assets/google-sites.png" alt="Google Sites Icon" width="50" height="50"></div><h4>Google Sites</h4><p>Easy-to-edit, cost-effective solutions</p></div>
-                <div class="tech-item"><div class="icon"><img src="./assets/firebase.png" alt="Firebase Icon" width="50" height="50"></div><h4>Firebase</h4><p>Real-time databases, hosting, authentication</p></div>
-                <div class="tech-item"><div class="icon"><img src="./assets/js-html-css.png" alt="JS, HTML, CSS Icon" width="50" height="50"></div><h4>JavaScript, HTML, CSS</h4><p>Custom web app development</p></div>
-                <div class="tech-item"><div class="icon"><img src="./assets/github.png" alt="GitHub Icon" width="50" height="50"></div><h4>GitHub</h4><p>Version control and collaboration</p></div>
-                <div class="tech-item"><div class="icon"><img src="./assets/responsive-design.png" alt="Responsive Design Icon" width="50" height="50"></div><h4>Responsive Design</h4><p>Mobile-first, browser-friendly apps</p></div>
-                <div class="tech-item"><div class="icon"><img src="./assets/google-workspace.png" alt="Google Workspace Icon" width="50" height="50"></div><h4>Google Workspace</h4><p>Streamlined workflows and productivity</p></div>
+        </section>
+        
+        <!-- Services Section -->
+        <section class="services" id="services">
+            <div class="container">
+                <h2 class="section-title">Our Digital Solutions</h2>
+                <div class="services-grid">
+                    <div class="service-card"><div class="service-icon">🏫</div><h3>School & College Portals</h3><ul><li>Online Result Systems</li><li>Digital Attendance & Student Records</li><li>Notice Boards, Galleries, and Event Calendars</li><li>Mobile-Friendly and Easy to Maintain</li></ul></div>
+                    <div class="service-card"><div class="service-icon">🌐</div><h3>Portfolio & Service Websites</h3><ul><li>For Schools, Colleges, Doctors, Clinics, Trainers</li><li>Custom-built using modern web technologies</li><li>Fast, SEO-optimized, responsive, and secure</li><li>Professional online presence</li></ul></div>
+                    <div class="service-card"><div class="service-icon">🏥</div><h3>Appointment & Booking Platforms</h3><ul><li>Doctors, Clinics, Hotels, Beauty Parlours</li><li>Appointment & Inquiry Forms</li><li>WhatsApp & Google Calendar Integration</li><li>Admin Dashboards for Management</li></ul></div>
+                    <div class="service-card"><div class="service-icon">🧰</div><h3>Custom Business Tools</h3><ul><li>Browser-Based Mini Apps</li><li>Invoicing, Feedback Collection, Attendance</li><li>Google Workspace Integration</li><li>Secure, real-time, accessible across devices</li></ul></div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Why Choose Us Section -->
-    <section class="why-choose" id="about">
-        <div class="container">
-            <h2 class="section-title">Why Choose Mahsua Technology?</h2>
-            <div class="features-grid">
-                <div class="feature-item"><div class="feature-icon">✅</div><div><h4>Browser-Based Solutions</h4><p>No complex software or heavy systems – Everything runs in your browser</p></div></div>
-                <div class="feature-item"><div class="feature-icon">✅</div><div><h4>User-Friendly Design</h4><p>Built with real-world users in mind – Low-bandwidth friendly & easy to use</p></div></div>
-                <div class="feature-item"><div class="feature-icon">✅</div><div><h4>Scalable Solutions</h4><p>Start simple, grow smart with our flexible architecture</p></div></div>
-                <div class="feature-item"><div class="feature-icon">✅</div><div><h4>Inclusive Development</h4><p>Women-led team, rooted in community values</p></div></div>
-                <div class="feature-item"><div class="feature-icon">✅</div><div><h4>100% Personalized</h4><p>We tailor every product to your needs, not templates</p></div></div>
-                <div class="feature-item"><div class="feature-icon">✅</div><div><h4>Digital Confidence</h4><p>Building stronger, sustainable futures for businesses</p></div></div>
+        <!-- Tech Stack Section -->
+        <section class="tech-stack" id="tech">
+             <div class="container">
+                <h2 class="section-title">How We Build It</h2>
+                <p class="section-subtitle">We use a flexible tech stack depending on the project's needs</p>
+                <div class="tech-grid">
+                    <div class="tech-item"><div class="icon"><img src="./assets/google-sites.png" alt="Google Sites Icon" width="50" height="50"></div><h4>Google Sites</h4><p>Easy-to-edit, cost-effective solutions</p></div>
+                    <div class="tech-item"><div class="icon"><img src="./assets/firebase.png" alt="Firebase Icon" width="50" height="50"></div><h4>Firebase</h4><p>Real-time databases, hosting, authentication</p></div>
+                    <div class="tech-item"><div class="icon"><img src="./assets/js-html-css.png" alt="JS, HTML, CSS Icon" width="50" height="50"></div><h4>JavaScript, HTML, CSS</h4><p>Custom web app development</p></div>
+                    <div class="tech-item"><div class="icon"><img src="./assets/github.png" alt="GitHub Icon" width="50" height="50"></div><h4>GitHub</h4><p>Version control and collaboration</p></div>
+                    <div class="tech-item"><div class="icon"><img src="./assets/responsive-design.png" alt="Responsive Design Icon" width="50" height="50"></div><h4>Responsive Design</h4><p>Mobile-first, browser-friendly apps</p></div>
+                    <div class="tech-item"><div class="icon"><img src="./assets/google-workspace.png" alt="Google Workspace Icon" width="50" height="50"></div><h4>Google Workspace</h4><p>Streamlined workflows and productivity</p></div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <h2 class="section-title">Our Projects</h2>
-            <p class="section-subtitle">Explore our diverse portfolio of creative solutions, innovative designs, and impactful digital experiences.</p>
-            <div class="project-filters">
-                <button class="active" data-filter="all">All Projects</button>
-                <button data-filter="web-design">Web Design</button>
-                <button data-filter="mobile-apps">Mobile Apps</button>
-                <button data-filter="branding">Branding</button>
+        <!-- Why Choose Us Section -->
+        <section class="why-choose" id="about">
+             <div class="container">
+                <h2 class="section-title">Why Choose Mahsua Technology?</h2>
+                <div class="features-grid">
+                    <div class="feature-item"><div class="feature-icon">✅</div><div><h4>Browser-Based Solutions</h4><p>No complex software or heavy systems – Everything runs in your browser</p></div></div>
+                    <div class="feature-item"><div class="feature-icon">✅</div><div><h4>User-Friendly Design</h4><p>Built with real-world users in mind – Low-bandwidth friendly & easy to use</p></div></div>
+                    <div class="feature-item"><div class="feature-icon">✅</div><div><h4>Scalable Solutions</h4><p>Start simple, grow smart with our flexible architecture</p></div></div>
+                    <div class="feature-item"><div class="feature-icon">✅</div><div><h4>Inclusive Development</h4><p>Women-led team, rooted in community values</p></div></div>
+                    <div class="feature-item"><div class="feature-icon">✅</div><div><h4>100% Personalized</h4><p>We tailor every product to your needs, not templates</p></div></div>
+                    <div class="feature-item"><div class="feature-icon">✅</div><div><h4>Digital Confidence</h4><p>Building stronger, sustainable futures for businesses</p></div></div>
+                </div>
             </div>
-            <div class="projects-grid">
-                <div class="project-card" data-category="web-design"><div class="project-card-image p1">💻</div><div class="project-card-content"><h3>E-Commerce Platform</h3><p>Modern online shopping experience with seamless user interface and secure payment integration.</p><div class="project-tags"><span>React</span><span>Node.js</span></div><a href="#">View Project →</a></div></div>
-                <div class="project-card" data-category="mobile-apps"><div class="project-card-image p2">🏋️‍♂️</div><div class="project-card-content"><h3>Fitness Tracking App</h3><p>Comprehensive mobile app for tracking workouts, nutrition, and health metrics with social features.</p><div class="project-tags"><span>Flutter</span><span>Firebase</span></div><a href="#">View Project →</a></div></div>
-                <div class="project-card" data-category="branding"><div class="project-card-image p3">🎨</div><div class="project-card-content"><h3>Brand Identity Design</h3><p>Complete brand identity package including logo design, color palette, and brand guidelines.</p><div class="project-tags"><span>Illustrator</span><span>Photoshop</span></div><a href="#">View Project →</a></div></div>
-                <div class="project-card" data-category="web-design"><div class="project-card-image p4">🎓</div><div class="project-card-content"><h3>Learning Management System</h3><p>Educational platform with course management, student tracking, and interactive learning tools.</p><div class="project-tags"><span>Vue.js</span><span>Laravel</span></div><a href="#">View Project →</a></div></div>
-                <div class="project-card" data-category="mobile-apps"><div class="project-card-image p5">📱</div><div class="project-card-content"><h3>Restaurant Ordering App</h3><p>Mobile app for restaurant ordering with real-time tracking and payment processing.</p><div class="project-tags"><span>React Native</span><span>Stripe</span></div><a href="#">View Project →</a></div></div>
-                <div class="project-card" data-category="web-design"><div class="project-card-image p6">🏢</div><div class="project-card-content"><h3>Corporate Website Redesign</h3><p>Complete website overhaul with modern design, improved UX, and enhanced performance.</p><div class="project-tags"><span>WordPress</span><span>CSS3</span></div><a href="#">View Project →</a></div></div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2>Get Started with Us</h2>
-            <p>Let's talk about your idea — we'll guide you through tech, design, development, and beyond.</p>
-            <form class="contact-form" id="contactForm">
-                <div class="form-group"><input type="text" id="fullName" name="fullName" placeholder="Full Name *" required></div>
-                <div class="form-group"><input type="tel" id="phone" name="phone" placeholder="Mobile/Phone Number *" required></div>
-                <div class="form-group full-width"><input type="email" id="email" name="email" placeholder="Email *" required></div>
-                <div class="form-group full-width"><textarea id="message" name="message" placeholder="Your Message"></textarea></div>
-                <button type="submit">Send Message via WhatsApp</button>
-            </form>
-            <div class="contact-info">
-                <div class="contact-item"><span>📧</span><a href="mailto:technology@mahsua.com">technology@mahsua.com</a></div>
-                <div class="contact-item"><span>💬</span><a href="https://wa.me/919752107808">WhatsApp: +91 9752107808</a></div>
+        <!-- Projects Section -->
+        <section class="projects" id="projects">
+            <div class="container">
+                <h2 class="section-title">Our Projects</h2>
+                <p class="section-subtitle">Explore our diverse portfolio of creative solutions, innovative designs, and impactful digital experiences.</p>
+                <div class="project-filters">
+                    <button class="active" data-filter="all">All Projects</button>
+                    <button data-filter="web-design">Web Design</button>
+                    <button data-filter="mobile-apps">Mobile Apps</button>
+                    <button data-filter="branding">Branding</button>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card" data-category="web-design"><div class="project-card-image p1">💻</div><div class="project-card-content"><h3>E-Commerce Platform</h3><p>Modern online shopping experience with seamless user interface and secure payment integration.</p><div class="project-tags"><span>React</span><span>Node.js</span></div><a href="https://shop.mahsua.com/">View Project →</a></div></div>
+                    <div class="project-card" data-category="mobile-apps"><div class="project-card-image p2">🏋️‍♂️</div><div class="project-card-content"><h3>Fitness Tracking App</h3><p>Comprehensive mobile app for tracking workouts, nutrition, and health metrics with social features.</p><div class="project-tags"><span>Flutter</span><span>Firebase</span></div><a href="#">View Project →</a></div></div>
+                    <div class="project-card" data-category="branding"><div class="project-card-image p3">🎨</div><div class="project-card-content"><h3>Brand Identity Design</h3><p>Complete brand identity package including logo design, color palette, and brand guidelines.</p><div class="project-tags"><span>Illustrator</span><span>Photoshop</span></div><a href="#">View Project →</a></div></div>
+                    <div class="project-card" data-category="web-design"><div class="project-card-image p4">🎓</div><div class="project-card-content"><h3>Learning Management System</h3><p>Educational platform with course management, student tracking, and interactive learning tools.</p><div class="project-tags"><span>Vue.js</span><span>Laravel</span></div><a href="#">View Project →</a></div></div>
+                    <div class="project-card" data-category="mobile-apps"><div class="project-card-image p5">📱</div><div class="project-card-content"><h3>Restaurant Ordering App</h3><p>Mobile app for restaurant ordering with real-time tracking and payment processing.</p><div class="project-tags"><span>React Native</span><span>Stripe</span></div><a href="#">View Project →</a></div></div>
+                    <div class="project-card" data-category="web-design"><div class="project-card-image p6">🏢</div><div class="project-card-content"><h3>Corporate Website Redesign</h3><p>Complete website overhaul with modern design, improved UX, and enhanced performance.</p><div class="project-tags"><span>WordPress</span><span>CSS3</span></div><a href="./quick-bite/index.html">View Project →</a></div></div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2>Get Started with Us</h2>
+                <p>Let's talk about your idea — we'll guide you through tech, design, development, and beyond.</p>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group"><input type="text" id="fullName" name="fullName" placeholder="Full Name *" required></div>
+                    <div class="form-group"><input type="tel" id="phone" name="phone" placeholder="Mobile/Phone Number *" required></div>
+                    <div class="form-group full-width"><input type="email" id="email" name="email" placeholder="Email *" required></div>
+                    <div class="form-group full-width"><textarea id="message" name="message" placeholder="Your Message"></textarea></div>
+                    <button type="submit">Send Message via WhatsApp</button>
+                </form>
+                <div class="contact-info">
+                    <div class="contact-item"><span>📧</span><a href="mailto:technology@mahsua.com">technology@mahsua.com</a></div>
+                    <div class="contact-item"><span>💬</span><a href="https://wa.me/919752107808">WhatsApp: +91 9752107808</a></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- FOOTER PASTED HERE -->
     <footer>
         <div class="container">
-            <p>Made With ❤️ INDIA ~ Designed by <a href="https://apps.mahsua.com/developer-profile/index.html"> SHIVAM KUSHWAHA </p><br>
+            <div class="footer-links">
+                <a href="./pages/about-us.html">About Us</a>
+                <a href="#contact">Contact Us</a>
+                <a href="./pages/terms-and-condition.html">Privacy Policy</a>
+                <a href="./pages/terms-and-condition.html">Terms & Conditions</a>
+                <a href="./pages/careers.html">Careers</a>
+            </div>
+            <p>Made With ❤️ INDIA ~ Designed by <a href="https://apps.mahsua.com/developer-profile/index.html"> SHIVAM KUSHWAHA </a></p><br>
             <p class="text-sm opacity-75">Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Custom Cursor Elements -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
-    <!-- Modal Structure -->
     <div class="modal-overlay" id="techModalOverlay">
         <div class="modal-content">
             <button class="modal-close" id="modalCloseBtn">&times;</button>
@@ -645,159 +152,6 @@
         </div>
     </div>
 
-    <script>
-        function toggleMobileMenu() { document.getElementById('navMenu').classList.toggle('active'); }
-        function toggleTheme() {
-            const body = document.body;
-            const themeToggle = document.querySelector('.theme-toggle');
-            if (body.getAttribute('data-theme') === 'light') {
-                body.setAttribute('data-theme', 'dark');
-                themeToggle.innerHTML = '☀️ Light';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
-                themeToggle.innerHTML = '🌙 Dark';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        function handleContactFormSubmit(event) {
-            event.preventDefault();
-            const name = document.getElementById('fullName').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-            if (!name || !phone || !email) {
-                alert('Please fill out all required fields: Full Name, Phone Number, and Email.');
-                return;
-            }
-            const whatsappNumber = '919752107808';
-            let whatsappMessage = `Hello Mahsua Technology,\n\nI have a new inquiry:\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Email:* ${email}`;
-            if (message) { whatsappMessage += `\n\n*Message:* ${message}`; }
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-            window.open(whatsappUrl, '_blank');
-        }
-
-        function updateScrollProgress() {
-            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercent = (scrollTop / scrollHeight) * 100;
-            document.getElementById('scrollProgressBar').style.width = scrollPercent + '%';
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Theme setup
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.body.setAttribute('data-theme', savedTheme);
-            document.querySelector('.theme-toggle').innerHTML = (savedTheme === 'dark') ? '☀️ Light' : '🌙 Dark';
-
-            // Contact form listener
-            document.getElementById('contactForm').addEventListener('submit', handleContactFormSubmit);
-
-            // Project filtering logic
-            const filterButtons = document.querySelectorAll('.project-filters button');
-            const projectCards = document.querySelectorAll('.projects-grid .project-card');
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    const filter = button.getAttribute('data-filter');
-                    projectCards.forEach(card => {
-                        card.style.display = (filter === 'all' || card.getAttribute('data-category') === filter) ? 'block' : 'none';
-                    });
-                });
-            });
-
-            // Tech stack modal logic
-            const techItems = document.querySelectorAll('.tech-item');
-            const modalOverlay = document.getElementById('techModalOverlay');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalDescription = document.getElementById('modalDescription');
-            const modalCloseBtn = document.getElementById('modalCloseBtn');
-            const techDescriptions = {
-                "Google Sites": "A user-friendly, no-code website builder integrated with Google Workspace, ideal for simple, cost-effective portfolio sites and internal business tools.",
-                "Firebase": "A platform by Google for building powerful web and mobile applications. It provides a real-time database, user authentication, hosting, and more, without needing to manage servers.",
-                "JavaScript, HTML, CSS": "The core trio of web development. HTML structures the content, CSS styles it, and JavaScript adds interactivity and dynamic functionality to create fully custom web applications.",
-                "GitHub": "A web-based platform for version control using Git. It's essential for collaborative software development, allowing our team to track changes, manage code, and work together efficiently and securely.",
-                "Responsive Design": "An approach to web design that ensures our applications look and work perfectly on all devices, from large desktops to small mobile phones, providing a seamless user experience for everyone.",
-                "Google Workspace": "A suite of cloud productivity and collaboration tools from Google (like Gmail, Drive, and Sheets). We integrate with these tools to automate tasks and streamline your business workflows."
-            };
-            techItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const title = item.querySelector('h4').innerText;
-                    modalTitle.innerText = title;
-                    modalDescription.innerText = techDescriptions[title] || "Description not available.";
-                    modalOverlay.classList.add('active');
-                });
-            });
-            function closeModal() { modalOverlay.classList.remove('active'); }
-            modalCloseBtn.addEventListener('click', closeModal);
-            modalOverlay.addEventListener('click', (event) => {
-                if (event.target === modalOverlay) { closeModal(); }
-            });
-            
-            // Card animation on scroll observer initialization
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-            document.querySelectorAll('.service-card, .tech-item, .feature-item, .project-card').forEach(card => {
-                observer.observe(card);
-            });
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-            });
-        });
-
-        // Header scroll effect & Progress Bar update on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            header.style.backdropFilter = (window.scrollY > 100) ? 'blur(10px)' : 'none';
-            header.style.backgroundColor = (window.scrollY > 100) ? 'rgba(255, 255, 255, 0.9)' : 'var(--bg-primary)';
-            updateScrollProgress();
-        });
-
-        // Custom cursor logic
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
-        let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursor.style.left = mouseX - 10 + 'px';
-            cursor.style.top = mouseY - 10 + 'px';
-        });
-        function animateFollower() {
-            followerX += (mouseX - followerX) * 0.1;
-            followerY += (mouseY - followerY) * 0.1;
-            cursorFollower.style.left = followerX - 20 + 'px';
-            cursorFollower.style.top = followerY - 20 + 'px';
-            requestAnimationFrame(animateFollower);
-        }
-        animateFollower();
-        document.querySelectorAll('a, button, .cta-button, .service-card, .tech-item, .feature-item, .theme-toggle, .project-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(1.5)';
-                cursorFollower.style.transform = 'scale(1.2)';
-                cursorFollower.style.borderColor = 'var(--primary-green)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursorFollower.style.transform = 'scale(1)';
-                cursorFollower.style.borderColor = 'var(--primary-pink)';
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
