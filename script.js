@@ -90,7 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
             "JavaScript, HTML, CSS": "The core trio of web development. HTML structures the content, CSS styles it, and JavaScript adds interactivity and dynamic functionality to create fully custom web applications.",
             "GitHub": "A web-based platform for version control using Git. It's essential for collaborative software development, allowing our team to track changes, manage code, and work together efficiently and securely.",
             "Responsive Design": "An approach to web design that ensures our applications look and work perfectly on all devices, from large desktops to small mobile phones, providing a seamless user experience for everyone.",
-            "Google Workspace": "A suite of cloud productivity and collaboration tools from Google (like Gmail, Drive, and Sheets). We integrate with these tools to automate tasks and streamline your business workflows."
+            "Google Workspace": "A suite of cloud productivity and collaboration tools from Google (like Gmail, Drive, and Sheets). We integrate with these tools to automate tasks and streamline your business workflows.",
+            "React": "React is a popular, open-source JavaScript library for building user interfaces (UIs). Created and maintained by Meta (formerly Facebook), it is used for developing fast, scalable, and dynamic single-page applications (SPAs) and mobile apps.",
+            "Bootstrap": "Bootstrap is a free and open-source front-end framework for building responsive, mobile-first websites. It was originally developed by Mark Otto and Jacob Thornton at Twitter to promote consistency across their internal tools.",
+            "Node JS": "Node.js is a cross-platform, open-source JavaScript runtime environment that can run on Windows, Linux, Unix, macOS, and more. Node.js runs on the V8 JavaScript engine, and executes JavaScript code outside a web browser. Node.js lets developers use JavaScript to write command line tools and server-side scripting.",
+            "AWS": "Amazon Web Services is the world’s most comprehensive and broadly adopted cloud, enabling customers to build anything they can imagine. We offer the greatest choice of innovative cloud capabilities and expertise, on the most extensive global infrastructure with industry-leading security, reliability, and performance."
         };
         techItems.forEach(item => {
             item.addEventListener('click', () => {
