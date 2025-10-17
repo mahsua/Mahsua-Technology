@@ -157,8 +157,12 @@ a {
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-    padding-top: 100px;
-    padding-bottom: 150px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 20px 50px;
+    position: relative;
+    overflow: hidden;
     text-align: center;
 }
 
@@ -430,7 +434,7 @@ a {
 .project-card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--text-primary); }
 .project-card p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1rem; }
 .project-tags { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-.project-tags span { background-color: var(--border-color); color: var(--text-secondary); padding: 0.2rem 0.6rem; border-radius: 5px; font-size: 0.8rem; font-weight: 500; }
+.project-tags span { background-color: #ec4899; color: #ffffff; padding: 0.2rem 0.6rem; border-radius: 5px; font-size: 0.8rem; font-weight: 500; }
 .project-card a { color: var(--primary-blue); font-weight: bold; text-decoration: none; transition: color 0.3s ease; }
 .project-card a:hover { color: var(--primary-green); }
 

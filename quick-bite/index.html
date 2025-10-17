@@ -8,7 +8,14 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         body { font-family: 'Poppins', sans-serif; }
-        .hero-gradient { background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%); }
+        .hero-gradient { background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 20px 50px;
+            position: relative;
+            overflow: hidden;
+        }
         .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
     </style>
@@ -83,7 +90,7 @@
                         <h3 class="text-xl font-bold mb-2">Classic Cheeseburger</h3>
                         <p class="text-gray-600 mb-4">Juicy beef patty with cheese, lettuce, tomato, and our special sauce</p>
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-orange-500">$8.99</span>
+                            <span class="text-2xl font-bold text-orange-500">₹8.99</span>
                             <button onclick="addToCart('Classic Cheeseburger', 8.99)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
                                 Add to Cart
                             </button>
@@ -99,7 +106,7 @@
                         <h3 class="text-xl font-bold mb-2">Crispy Chicken Burger</h3>
                         <p class="text-gray-600 mb-4">Crispy fried chicken breast with mayo, pickles, and fresh lettuce</p>
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-orange-500">$9.49</span>
+                            <span class="text-2xl font-bold text-orange-500">₹9.49</span>
                             <button onclick="addToCart('Crispy Chicken Burger', 9.49)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
                                 Add to Cart
                             </button>
@@ -115,7 +122,7 @@
                         <h3 class="text-xl font-bold mb-2">Veggie Deluxe</h3>
                         <p class="text-gray-600 mb-4">Plant-based patty with avocado, sprouts, and herb aioli</p>
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-orange-500">$10.99</span>
+                            <span class="text-2xl font-bold text-orange-500">₹10.99</span>
                             <button onclick="addToCart('Veggie Deluxe', 10.99)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
                                 Add to Cart
                             </button>
@@ -132,7 +139,7 @@
                         <h3 class="text-xl font-bold mb-2">Caesar Salad Bowl</h3>
                         <p class="text-gray-600 mb-4">Fresh romaine, parmesan, croutons, and grilled chicken</p>
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-orange-500">$11.99</span>
+                            <span class="text-2xl font-bold text-orange-500">₹11.99</span>
                             <button onclick="addToCart('Caesar Salad Bowl', 11.99)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
                                 Add to Cart
                             </button>
@@ -148,7 +155,7 @@
                         <h3 class="text-xl font-bold mb-2">Mediterranean Wrap</h3>
                         <p class="text-gray-600 mb-4">Grilled chicken, hummus, vegetables, and tzatziki sauce</p>
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-orange-500">$9.99</span>
+                            <span class="text-2xl font-bold text-orange-500">₹9.99</span>
                             <button onclick="addToCart('Mediterranean Wrap', 9.99)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
                                 Add to Cart
                             </button>
@@ -164,7 +171,7 @@
                         <h3 class="text-xl font-bold mb-2">Soup & Sandwich Combo</h3>
                         <p class="text-gray-600 mb-4">Daily soup with half sandwich of your choice</p>
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-orange-500">$8.49</span>
+                            <span class="text-2xl font-bold text-orange-500">₹8.49</span>
                             <button onclick="addToCart('Soup & Sandwich Combo', 8.49)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
                                 Add to Cart
                             </button>
@@ -181,7 +188,7 @@
                         <h3 class="text-xl font-bold mb-2">Crispy Fries</h3>
                         <p class="text-gray-600 mb-4">Golden crispy fries with sea salt</p>
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-orange-500">$3.99</span>
+                            <span class="text-2xl font-bold text-orange-500">₹3.99</span>
                             <button onclick="addToCart('Crispy Fries', 3.99)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
                                 Add to Cart
                             </button>
@@ -197,7 +204,7 @@
                         <h3 class="text-xl font-bold mb-2">Fresh Beverages</h3>
                         <p class="text-gray-600 mb-4">Soft drinks, juices, and specialty drinks</p>
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-orange-500">$2.49</span>
+                            <span class="text-2xl font-bold text-orange-500">₹2.49</span>
                             <button onclick="addToCart('Fresh Beverages', 2.49)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
                                 Add to Cart
                             </button>
@@ -213,7 +220,7 @@
                         <h3 class="text-xl font-bold mb-2">Onion Rings</h3>
                         <p class="text-gray-600 mb-4">Crispy beer-battered onion rings with ranch dip</p>
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl font-bold text-orange-500">$4.99</span>
+                            <span class="text-2xl font-bold text-orange-500">₹4.99</span>
                             <button onclick="addToCart('Onion Rings', 4.99)" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
                                 Add to Cart
                             </button>
