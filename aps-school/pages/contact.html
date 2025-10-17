@@ -6,6 +6,21 @@
     <title>Contact Us - APS School</title>
     <link rel="stylesheet" href="../style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* This is a temporary block to make the inline fix work better.
+        The external style.css is the best place for this. 
+        It forces the content to stack on small screens.
+        */
+        @media (max-width: 800px) {
+            .contact-grid > div {
+                width: 100% !important;
+                margin-bottom: 30px; /* Add space between stacked elements */
+            }
+            .contact-info h2 {
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="navbar"></div>
@@ -19,16 +34,22 @@
 
     <section class="contact-us-section why-choose-us">
         <div class="container">
-            <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: flex-start;"> 
+            <div class="contact-grid" style="
+                display: flex; 
+                flex-wrap: wrap; /* CRITICAL: Allows elements to wrap/stack */
+                justify-content: space-between; 
+                align-items: flex-start;
+                gap: 40px; 
+            "> 
                 
-                <div class="contact-info">
+                <div class="contact-info" style="flex-basis: 45%; min-width: 300px; flex-grow: 1;">
                     <h2 style="color: #3b82f6; font-size: 2rem;">Reach Out to APS School</h2>
                     
                     <div class="info-item" style="display: flex; align-items: center; margin-bottom: 30px;">
                         <i class="fas fa-map-marker-alt" style="
                             font-size: 1.5rem; 
                             color: white; 
-                            background: radial-gradient(circle at center, #6366f1, #3b82f6); /* Gradient effect */
+                            background: radial-gradient(circle at center, #6366f1, #3b82f6); 
                             width: 60px; 
                             height: 60px; 
                             border-radius: 50%; 
@@ -47,7 +68,7 @@
                         <i class="fas fa-phone-alt" style="
                             font-size: 1.5rem; 
                             color: white; 
-                            background: radial-gradient(circle at center, #ec4899, #f43f5e); /* Gradient effect */
+                            background: radial-gradient(circle at center, #ec4899, #f43f5e); 
                             width: 60px; 
                             height: 60px; 
                             border-radius: 50%; 
@@ -66,7 +87,7 @@
                         <i class="fas fa-envelope" style="
                             font-size: 1.5rem; 
                             color: white; 
-                            background: radial-gradient(circle at center, #34d399, #10b981); /* Gradient effect */
+                            background: radial-gradient(circle at center, #34d399, #10b981); 
                             width: 60px; 
                             height: 60px; 
                             border-radius: 50%; 
@@ -83,7 +104,7 @@
 
                     <div class="map-placeholder" style="margin-top: 30px;">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d229.2337705186067!2d77.4189853955949!3d23.17967567370735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c4374719d15fb%3A0x9ff6981426fb588e!2sAzad%20Public%20School!5e0!3m2!1sen!2sin!4v1760707961927!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d229.2337705186067!2d77.4189853955949!3d23.17967567370735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c4374719d15fb%3A0x9ff6981426fb588e!2sAzad%20Public%20School!5e0!3m2!1sen!2sin!4v1760707961927!5m2!1sen!2sin" 
                             width="100%" 
                             height="300" 
                             style="border:0; border-radius: 12px;" 
@@ -93,7 +114,16 @@
                         <a href="#" style="display: block; text-align: left; margin-top: 10px; font-size: 0.9em; color: #3b82f6;">View target map</a>
                     </div>
                 </div>
-                <div class="contact-form-card" style="background-color: white; border-radius: 16px; padding: 30px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
+
+                <div class="contact-form-card" style="
+                    background-color: white; 
+                    border-radius: 16px; 
+                    padding: 30px; 
+                    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                    flex-basis: 45%; 
+                    min-width: 300px;
+                    flex-grow: 1;
+                ">
                     <h4 class="form-title" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 25px; color: #1f2937;">Send us a Message</h4>
                     <form id="contactForm" class="contact-form-style" style="display: flex; flex-direction: column; gap: 15px;">
                         
@@ -168,13 +198,11 @@
 
             // 3. Format the message for WhatsApp (use URL-encoded characters for line breaks: %0A)
             const whatsappMessage = `
-                *--- New Contact Inquiry (APS School) ---*%0A%0A
-                *Name:* ${name}%0A
-                *Phone:* ${phone}%0A
-                *Subject:* ${subject}%0A%0A
-                *Message:*%0A
-                ${message}%0A%0A
-                --------------------------------------------------
+                *New Contact Inquiry (APS School)*
+                *Name:* ${name}
+                *Phone:* ${phone}
+                *Subject:* ${subject}
+                *Message:*${message}
                 `;
 
             // 4. Construct the WhatsApp URL

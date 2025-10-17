@@ -506,3 +506,30 @@ a:hover ~ .cursor, button:hover ~ .cursor, .cta-button:hover ~ .cursor { transfo
 a, button, .cta-button, .service-card, .tech-item, .feature-item, .project-card { cursor: none; }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 .service-card, .tech-item, .feature-item, .project-card { animation: fadeInUp 0.6s ease forwards; opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+
+@media (max-width: 768px) {
+    /* Target the main 2-column container */
+    .contact-grid {
+        /* This changes the grid from two columns (1fr 1fr) to one column (1fr) */
+        grid-template-columns: 1fr !important;
+        /* Remove the side-by-side gap for stacking */
+        gap: 0; 
+    }
+
+    /* Optional: Add some vertical padding between the stacked sections */
+    .contact-info {
+        padding-bottom: 40px; 
+    }
+
+    /* Adjust the font size of the main heading for mobile */
+    .contact-info h2 {
+        font-size: 1.8rem !important; /* Smaller on mobile */
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    /* Ensure contact items stack neatly with better spacing on mobile */
+    .contact-info .info-item {
+        justify-content: center; /* Center the icon/text block */
+    }
+}
