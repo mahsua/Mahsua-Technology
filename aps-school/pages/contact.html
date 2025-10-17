@@ -93,7 +93,6 @@
                         <a href="#" style="display: block; text-align: left; margin-top: 10px; font-size: 0.9em; color: #3b82f6;">View target map</a>
                     </div>
                 </div>
-
                 <div class="contact-form-card" style="background-color: white; border-radius: 16px; padding: 30px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
                     <h4 class="form-title" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 25px; color: #1f2937;">Send us a Message</h4>
                     <form id="contactForm" class="contact-form-style" style="display: flex; flex-direction: column; gap: 15px;">
@@ -125,7 +124,7 @@
                             <textarea id="userMessage" required rows="4" class="form-input" placeholder="Tell us how we can help you..." style="width: 100%; padding: 10px 15px; border: 1px solid #d1d5db; border-radius: 8px;"></textarea>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary btn-whatsapp" style="
+                        <button type="submit" id="whatsapp-btn" class="btn btn-primary btn-whatsapp" style="
                             background-image: linear-gradient(to right, #ec4899, #f43f5e, #3b82f6); 
                             color: white;
                             display: flex;
@@ -153,5 +152,38 @@
     <div id="footer"></div>
 
     <script src="../script.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+        // Prevents the default form submission (which would cause a page reload)
+            event.preventDefault();
+
+            // 1. Get values from the form inputs
+            const name = document.getElementById('userName').value;
+            const phone = document.getElementById('userPhone').value;
+            const subject = document.getElementById('messageSubject').value;
+            const message = document.getElementById('userMessage').value;
+
+            // 2. Define the recipient number (India code + number)
+            const phoneNumber = '919752107808'; 
+
+            // 3. Format the message for WhatsApp (use URL-encoded characters for line breaks: %0A)
+            const whatsappMessage = `
+                *--- New Contact Inquiry (APS School) ---*%0A%0A
+                *Name:* ${name}%0A
+                *Phone:* ${phone}%0A
+                *Subject:* ${subject}%0A%0A
+                *Message:*%0A
+                ${message}%0A%0A
+                --------------------------------------------------
+                `;
+
+            // 4. Construct the WhatsApp URL
+            // Use the wa.me API for easy linking
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+            // 5. Open the link in a new tab/window
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
 </body>
 </html>
