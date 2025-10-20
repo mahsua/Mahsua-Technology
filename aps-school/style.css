@@ -406,6 +406,9 @@ body {
 .highlight-green {
     color: var(--green-primary);
 }
+.highlight-blue {
+    color: var(--blue-primary);
+}
 
 .highlight-pink {
     color: var(--pink-primary);
@@ -522,7 +525,7 @@ body {
 
 /* Page Hero Section */
 .page-hero {
-    background: linear-gradient(135deg, var(--pink-primary), var(--blue-primary));
+    background: linear-gradient(135deg, var(--pink-light) 0%, var(--blue-light) 50%, var(--green-light) 100%);
     color: var(--white);
     padding: 120px 0 60px;
     text-align: center;
@@ -678,4 +681,286 @@ body {
 /* You may also want to center the text in the card */
 .topper-card {
     text-align: center;
+}
+
+/* General Card Styling (if not already present from feature-card) */
+.feature-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Specific Award Card Styling */
+.award-card {
+    min-height: 180px; /* Ensure consistent height for cards in the grid */
+}
+
+.award-icon {
+    font-size: 3.5em; /* Larger icons */
+    color: var(--primary-pink); /* Use your theme's highlight color */
+    margin-bottom: 15px;
+}
+
+.award-card .award-name {
+    font-size: 1.3em;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.award-card .award-description {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Adjustments for grid titles */
+.awards-category-title {
+    text-align: center;
+    font-size: 2.2em;
+    color: #333;
+    margin-top: 80px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.awards-category-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-green); /* Or pink, depending on your highlight */
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* Ensure the highlight colors are defined in your variables if using them */
+:root {
+    --primary-pink: #FF6B81; /* Example, adjust to your actual color */
+    --primary-green: #2ecc71; /* Example, adjust to your actual color */
+}
+
+/* To ensure all sections have proper spacing */
+.toppers-section {
+    padding: 80px 0; /* Consistent padding for sections */
+}
+
+.toppers-section.gray-background {
+    background-color: #f9f9f9;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+    .features-grid.three-col-grid,
+    .features-grid.two-col-grid {
+        grid-template-columns: 1fr; /* Stack cards on small screens */
+    }
+}
+
+/* ===================================
+   New Notice List Styles
+   =================================== */
+
+.notice-list-container {
+    max-width: 900px;
+    margin: 40px auto 0;
+}
+
+.notice-card {
+    display: flex;
+    background: var(--white, #ffffff);
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.notice-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.notice-date {
+    flex-basis: 90px;
+    flex-shrink: 0;
+    background: var(--pink-primary, #e91e63);
+    color: var(--white, #ffffff);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    text-align: center;
+}
+
+.notice-date .day {
+    font-size: 2.5em;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.notice-date .month {
+    font-size: 1.1em;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.notice-content {
+    padding: 1.5rem 2rem;
+    flex-grow: 1;
+}
+
+.notice-title {
+    font-size: 1.4em;
+    color: var(--blue-dark, #1565c0);
+    margin: 0 0 0.5rem;
+}
+
+.notice-summary {
+    font-size: 1em;
+    color: var(--gray-dark, #424242);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.notice-read-more {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--pink-primary, #e91e63);
+    font-weight: 600;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.notice-read-more:hover {
+    color: var(--pink-dark, #ad1457);
+}
+
+.notice-read-more i {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.notice-read-more:hover i {
+    transform: translateX(3px);
+}
+
+/* Responsive for mobile */
+@media (max-width: 500px) {
+    .notice-card {
+        flex-direction: column;
+    }
+    
+    .notice-date {
+        flex-basis: auto;
+        flex-direction: row;
+        gap: 10px;
+        padding: 0.75rem 1rem;
+    }
+
+    .notice-date .day {
+        font-size: 1.5em;
+    }
+    
+    .notice-date .month {
+        font-size: 1em;
+    }
+
+    .notice-content {
+        padding: 1.25rem 1.5rem;
+    }
+}
+
+/* ===================================
+   Modal Popup
+   =================================== */
+
+.modal-overlay {
+    display: none; /* This is the line that hides it by default */
+    position: fixed; /* Stays in place */
+    z-index: 1000; /* Sits on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.6); /* Black with opacity */
+    
+    /* For centering the content */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px; /* Good for readability */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+
+.modal-close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2.5em;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modal-title {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    /* Using your theme's --green-primary variable */
+    border-bottom: 2px solid var(--green-primary, #4caf50);
+    padding-bottom: 10px;
+}
+
+#modal-body p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Modal Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

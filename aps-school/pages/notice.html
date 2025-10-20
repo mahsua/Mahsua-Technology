@@ -3,40 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admissions - APS School</title>
-    <link rel="stylesheet" href="../style.css">
+    <title>Notice Board - APS School</title>
+    <link rel="stylesheet" href="../style.css"> 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="navbar"></div>
 
-    <!-- Admission Page Content -->
     <section class="page-hero">
         <div class="container">
-            <h1>Admissions</h1>
-            <p>Join the APS School family 1</p>
-            <p>Join the APS School family 2</p>
-            <p>Join the APS School family 3</p>
-            <p>Join the APS School family 4</p>
-            <p>Join the APS School family 5</p>
-            <p>Join the APS School family 6</p>
-            <p>Join the APS School family 7</p>
-            <p>Join the APS School family 8</p>
-            <p>Join the APS School family 7</p>
-            <p>Join the APS School family 10</p>
-            <p>Join the APS School family 11</p>
+            <h1>School <span class="highlight-pink">Notice Board</span></h1>
+            <p class="hero-description">
+                Stay updated with the latest news, events, and announcements from APS School.
+            </p>
         </div>
     </section>
 
-    <section class="admission-content">
-        <div class="container">
-            <h2>Admission Process</h2>
-            <!-- Your admission content here -->
+    <section class="why-choose-us"> <div class="container">
+            <h2>Latest <span class="highlight-green">Notices & Updates</span></h2>
+            
+            <div class="notice-list-container">
+
+                <div class="notice-card" 
+                     data-title="Annual Day Function: 'Utsav 2025'" 
+                     data-body="<p>We are excited to announce our Annual Day Function 'Utsav 2025' on <strong>October 25th</strong>.</p><p>All students participating in plays and dances must report to the auditorium for final rehearsals at 10:00 AM. Parents are invited to join the main event starting at 5:00 PM. Entry passes will be distributed by class teachers.</p>">
+                    
+                    <div class="notice-date">
+                        <span class="day">18</span>
+                        <span class="month">Oct</span>
+                    </div>
+                    <div class="notice-content">
+                        <h3 class="notice-title">Annual Day Function: 'Utsav 2025'</h3>
+                        <p class="notice-summary">Preparations and schedule for the upcoming "Utsav 2025" annual function.</p>
+                        <button class="notice-read-more">Read More <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="notice-card"
+                     data-title="Annual Sports Meet 2025"
+                     data-body="<p>The Annual Sports Meet is scheduled for <strong>November 10th</strong>. Registrations are now open for all track and field events.</p><p>Students interested in participating should give their names to their respective house captains by November 1st. Let's show our team spirit!</p>">
+                    
+                    <div class="notice-date">
+                        <span class="day">15</span>
+                        <span class="month">Oct</span>
+                    </div>
+                    <div class="notice-content">
+                        <h3 class="notice-title">Annual Sports Meet 2025</h3>
+                        <p class="notice-summary">Registrations are now open for all houses for the upcoming sports meet.</p>
+                        <button class="notice-read-more">Read More <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="notice-card"
+                     data-title="Parent-Teacher Meeting (Classes 1-5)"
+                     data-body="<p>A Parent-Teacher Meeting for students of <strong>Classes 1st to 5th</strong> will be held on <strong>November 1st</strong> to discuss the half-yearly progress report.</p><p>Timings: 9:00 AM to 12:00 PM. Attendance of at least one parent is mandatory.</p>">
+                    
+                    <div class="notice-date">
+                        <span class="day">14</span>
+                        <span class="month">Oct</span>
+                    </div>
+                    <div class="notice-content">
+                        <h3 class="notice-title">Parent-Teacher Meeting (Classes 1-5)</h3>
+                        <p class="notice-summary">Scheduled for November 1st to discuss half-yearly progress reports.</p>
+                        <button class="notice-read-more">Read More <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                </div>
         </div>
     </section>
+
+    
+    <div id="noticeModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" id="modalCloseButton">&times;</span>
+            <h3 id="modal-title">Notice Title</h3>
+            <div id="modal-body">
+                <p>Detailed notice information.</p>
+            </div>
+        </div>
+    </div>
 
     <div id="footer"></div>
 
-    <script src="../script.js"></script>
+    <script src="../script.js"></script> 
+    <script>
+        // --- Notice Modal Logic (New Version) ---
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // 1. Get all the modal elements
+            const modalOverlay = document.getElementById('noticeModal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const modalCloseButton = document.getElementById('modalCloseButton');
+            
+            // 2. Get all the "Read More" buttons
+            // We use .notice-read-more from your new HTML/CSS
+            const readMoreButtons = document.querySelectorAll('.notice-read-more'); 
+
+            // 3. Check if we are on a page with notices
+            if (modalOverlay && readMoreButtons.length > 0) {
+                
+                // 4. Function to open the modal
+                function openModal(title, body) {
+                    modalTitle.textContent = title;
+                    modalBody.innerHTML = body; // Use .innerHTML to render HTML tags like <p> <strong>
+                    modalOverlay.style.display = 'flex'; // Show the modal
+                }
+
+                // 5. Function to close the modal
+                function closeModal() {
+                    modalOverlay.style.display = 'none'; // Hide the modal
+                }
+
+                // 6. Add click listeners to all "Read More" buttons
+                readMoreButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // Find the parent .notice-card
+                        const noticeCard = button.closest('.notice-card');
+                        
+                        // Get the data from the data-* attributes
+                        const title = noticeCard.dataset.title;
+                        const body = noticeCard.dataset.body;
+                        
+                        openModal(title, body);
+                    });
+                });
+
+                // 7. Add click listeners to close the modal
+                if (modalCloseButton) {
+                    modalCloseButton.addEventListener('click', closeModal);
+                }
+                
+                // Also close if the user clicks on the dark background
+                modalOverlay.addEventListener('click', (event) => {
+                    if (event.target === modalOverlay) {
+                        closeModal();
+                    }
+                });
+            }
+
+        });
+            
+    </script>
 </body>
 </html>
