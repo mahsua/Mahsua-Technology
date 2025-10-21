@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Mahsua Market</title>
+    <!-- Link to the main stylesheet -->
+   <link rel="stylesheet" href="../../style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <a href="https://technology.mahsua.com/" class="logo">Mahsua Market</a>
+        <nav class="navbar">
+            <a href="../../index.html">Home</a>
+            <!-- UPDATE: Products link is now a dropdown -->
+            <div class="nav-dropdown">
+                <a href="#" class="nav-dropdown-toggle">Products <i class="fas fa-chevron-down"></i></a>
+                <div class="nav-dropdown-menu">
+                    <a href="../products/rural-products.html">🧺 Rural Products</a>
+                    <a href="../products/electronics.html">💡 Electronics & Solar</a>
+                    <a href="../products/stationery.html">📚 Stationery & Study</a>
+                </div>
+            </div>
+            <a href="../../pages/about-us.html">About Us</a>
+            <a href="../../pages/contact-us.html">Contact Us</a>
+        </nav>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="container">
+            <h2>Our Products</h2>
+            <p class="subtitle">From handmade rural treasures to essential electronics and study materials - everything you need in one place.</p>
+            <!-- Electronics & Solar Category -->
+            <div class="category-section">
+                <h2>💡 Electronics & Solar Solutions</h2>
+                <p>"We bring quality electronics at fair prices, making technology accessible to both rural and urban households."</p>
+                <div class="product-grid">
+                    <!-- Product Card 4 -->
+                    <div class="product-card"
+                         data-name="LED Bulb 9W (Pack of 4)" 
+                         data-price="12.99" 
+                         data-original-price="16.99"
+                         data-img="https://placehold.co/400x400/4FC3F7/FFFFFF?text=LED+Bulb"
+                         data-description="A pack of four high-quality, energy-efficient 9W LED bulbs. Provides bright, long-lasting light, perfect for any room in your home while helping you save on electricity bills."
+                         data-features='["Pack of 4 bulbs", "Energy efficient 9W", "Long-lasting (up to 15,000 hours)", "Bright white light", "Standard B22 base"]'>
+                        <div class="product-image-container">
+                           <img src="https://placehold.co/400x400/4FC3F7/FFFFFF?text=LED+Bulb" alt="LED Bulb 9W">
+                        </div>
+                        <div class="product-card-content">
+                            <h4>LED Bulb 9W (Pack of 4)</h4>
+                            <span class="category">💡 Electronics & Solar</span>
+                            <div class="price">
+                                $12.99 <span class="original-price">$16.99</span>
+                            </div>
+                           <button class="details-button">View Details</button>
+                        </div>
+                    </div>
+                    <!-- Product Card 5 -->
+                     <div class="product-card"
+                         data-name="Solar Emergency Lamp" 
+                         data-price="24.99" 
+                         data-original-price="29.99"
+                         data-img="https://placehold.co/400x400/FBC02D/FFFFFF?text=Solar+Lamp"
+                         data-description="A reliable and eco-friendly solar-powered emergency lamp. Perfect for power outages or outdoor activities, it provides hours of light on a single charge from the sun."
+                         data-features='["Solar powered", "Up to 8 hours of light", "Portable and lightweight", "Multiple brightness modes", "Includes USB charging option"]'>
+                        <div class="product-image-container">
+                            <img src="https://placehold.co/400x400/FBC02D/FFFFFF?text=Solar+Lamp" alt="Solar Emergency Lamp">
+                        </div>
+                        <div class="product-card-content">
+                            <h4>Solar Emergency Lamp</h4>
+                            <span class="category">💡 Electronics & Solar</span>
+                            <div class="price">
+                                $24.99 <span class="original-price">$29.99</span>
+                            </div>
+                            <button class="details-button">View Details</button>
+                        </div>
+                    </div>
+                    <!-- Product Card 6 -->
+                    <div class="product-card"
+                         data-name="Electrical Wire Bundle" 
+                         data-price="18.99" 
+                         data-original-price="22.99"
+                         data-img="https://placehold.co/400x400/78909C/FFFFFF?text=Wire"
+                         data-description="A bundle of high-quality, multi-purpose electrical wire. ISI-marked for safety and reliability, this wire is ideal for various household wiring and electrical projects."
+                         data-features='["90-meter bundle", "High-quality copper", "Fire-retardant PVC insulation", "ISI certified for safety", "Suitable for home wiring"]'>
+                        <div class="product-image-container">
+                            <img src="https://placehold.co/400x400/78909C/FFFFFF?text=Wire" alt="Electrical Wire Bundle">
+                        </div>
+                        <div class="product-card-content">
+                            <h4>Electrical Wire Bundle</h4>
+                            <span class="category">💡 Electronics & Solar</span>
+                            <div class="price">
+                                $18.99 <span class="original-price">$22.99</span>
+                            </div>
+                            <button class="details-button">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <!-- Product Modal (Popup) -->
+    <div class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body">
+                <img src="https://placehold.co/400x400/cccccc/FFFFFF?text=Product" alt="Product Image" class="modal-product-image">
+                <div class="modal-product-details">
+                    <h2 id="modal-product-name">Product Name</h2>
+                    <div class="price" id="modal-product-price">$0.00</div>
+                    <p id="modal-product-description">Product description goes here.</p>
+                    
+                    <h3>Features</h3>
+                    <ul id="modal-product-features">
+                        <!-- Features will be populated by JS -->
+                    </ul>
+
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity:</label>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" id="decrease-quantity">-</button>
+                            <input type="number" id="quantity-input" class="quantity-input" value="1" min="1">
+                            <button class="quantity-btn" id="increase-quantity">+</button>
+                        </div>
+                    </div>
+
+                    <button class="cta-button add-to-cart-btn">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container container">
+            <div class="footer-column">
+                <h3>🛍️ Mahsua Market</h3>
+                <p>Connecting Villages, Empowering Communities, Simplifying Shopping.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Our Categories</h4>
+                <ul>
+                    <li><a href="#">🧺 Rural Products</a></li>
+                    <li><a href="#">💡 Electronics & Solar</a></li>
+                    <li><a href="#">📚 Stationery & Study</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Why Choose Us</h4>
+                 <ul>
+                    <li>✨ Affordable Prices</li>
+                    <li>🎯 Trusted Quality</li>
+                    <li>💪 Support Rural Economy</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>📞 Contact Us</h4>
+                <p><i class="fas fa-phone"></i> +91 9752107808</p>
+                <p><i class="fab fa-whatsapp"></i> +91 9752107808</p>
+                <p><i class="fas fa-envelope"></i> mahsuashop@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Mahsua Market. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Link to the JavaScript file -->
+    <script src="../../script.js"></script>
+
+</body>
+</html>
