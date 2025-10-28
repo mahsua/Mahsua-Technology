@@ -8,7 +8,17 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         body { font-family: 'Poppins', sans-serif; }
-        .hero-gradient { background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+        
+        /* === UPDATED HERO SECTION === */
+        .hero-gradient { 
+            /* This adds a 50% black overlay, then loads your image */
+            background: linear-gradient(rgba(0, 0, 0, 0.555), rgba(0, 0, 0, 0.562)), url('./assets/cover.jpg');
+            /* This makes it a "cover" image and centers it */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            
+            /* Original layout styles */
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -16,6 +26,8 @@
             position: relative;
             overflow: hidden;
         }
+        /* === END OF UPDATE === */
+
         .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
 
@@ -70,8 +82,8 @@
 
     <section id="home" class="hero-gradient text-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">Delicious Indian Cuisine</h1>
-            <p class="text-xl md:text-2xl mb-8 opacity-90">Authentic flavors, fresh ingredients, unforgettable taste!</p>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 text-orange-500">Delicious Indian Cuisine</h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 text-orange-500">Authentic flavors, fresh ingredients, unforgettable taste!</p>
             <button onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'})" class="bg-white text-orange-500 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
                 Order Now 🚀
             </button>
@@ -109,10 +121,10 @@
                 </button>
             </div>
 
-            <div id="menuItems" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="menuItems" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 
                 <div class="menu-item all starter bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/paneer-tikka.png" alt="Paneer Tikka" class="w-full h-48 object-cover">
+                    <img src="./assets/paneer-tikka.png" alt="Paneer Tikka" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Paneer Tikka</h3>
                         <p class="text-gray-600 mb-4">Cubes of paneer marinated in spices and grilled in a tandoor.</p>
@@ -126,7 +138,7 @@
                 </div>
 
                 <div class="menu-item all starter bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/hara-bhara-kebab.jpg" alt="Hara Bhara Kebab" class="w-full h-48 object-cover">
+                     <img src="./assets/hara-bhara-kebab.jpg" alt="Hara Bhara Kebab" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Hara Bhara Kebab</h3>
                         <p class="text-gray-600 mb-4">Patties made from a mix of mashed vegetables, spinach, and green peas.</p>
@@ -140,7 +152,7 @@
                 </div>
                 
                 <div class="menu-item all starter bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/shakahari-seekh-kebab.jpg" alt="Shakahari Seekh Kebab" class="w-full h-48 object-cover">
+                     <img src="./assets/shakahari-seekh-kebab.jpg" alt="Shakahari Seekh Kebab" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Shakahari Seekh Kebab</h3>
                         <p class="text-gray-600 mb-4">A blended mix of minced vegetables, skewered and roasted in a clay oven.</p>
@@ -154,7 +166,7 @@
                 </div>
 
                 <div class="menu-item all starter bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/dahi-ke-kebab.jpg" alt="Dahi ke Kebab" class="w-full h-48 object-cover">
+                     <img src="./assets/dahi-ke-kebab.jpg" alt="Dahi ke Kebab" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Dahi ke Kebab</h3>
                         <p class="text-gray-600 mb-4">Kebabs made from hung curd and paneer, known for their soft texture.</p>
@@ -168,7 +180,7 @@
                 </div>
 
                 <div class="menu-item all starter bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/tandoori-gobi.jpg" alt="Tandoori Gobi" class="w-full h-48 object-cover">
+                     <img src="./assets/tandoori-gobi.jpg" alt="Tandoori Gobi" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Tandoori Gobi</h3>
                         <p class="text-gray-600 mb-4">Cauliflower florets marinated in a tandoori masala before being grilled.</p>
@@ -182,7 +194,7 @@
                 </div>
 
                 <div class="menu-item all maincourse bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/paneer-butter-masala.jpg" alt="Paneer Butter Masala" class="w-full h-48 object-cover">
+                     <img src="./assets/paneer-butter-masala.jpg" alt="Paneer Butter Masala" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Paneer Butter Masala</h3>
                         <p class="text-gray-600 mb-4">Cottage cheese cubes in a creamy, buttery, and slightly sweet tomato-based gravy.</p>
@@ -196,7 +208,7 @@
                 </div>
 
                 <div class="menu-item all maincourse bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/kadai-paneer.jpg" alt="Kadai Paneer" class="w-full h-48 object-cover">
+                     <img src="./assets/kadai-paneer.jpg" alt="Kadai Paneer" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Kadai Paneer</h3>
                         <p class="text-gray-600 mb-4">A semi-dry preparation of paneer with onions, bell peppers, and spices.</p>
@@ -210,7 +222,7 @@
                 </div>
 
                 <div class="menu-item all maincourse bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/palak-paneer.jpg" alt="Palak Paneer" class="w-full h-48 object-cover">
+                     <img src="./assets/palak-paneer.jpg" alt="Palak Paneer" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Palak Paneer</h3>
                         <p class="text-gray-600 mb-4">Cottage cheese cubes in a thick, flavorful spinach gravy.</p>
@@ -224,7 +236,7 @@
                 </div>
 
                 <div class="menu-item all maincourse dinner bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/shahi-paneer.jpg" alt="Shahi Paneer" class="w-full h-48 object-cover">
+                     <img src="./assets/shahi-paneer.jpg" alt="Shahi Paneer" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Shahi Paneer</h3>
                         <p class="text-gray-600 mb-4">A creamy, rich curry with cashew paste and spices, a luxurious option.</p>
@@ -238,7 +250,7 @@
                 </div>
 
                 <div class="menu-item all maincourse bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/malai-kofta.jpg" alt="Malai Kofta" class="w-full h-48 object-cover">
+                     <img src="./assets/malai-kofta.jpg" alt="Malai Kofta" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Malai Kofta</h3>
                         <p class="text-gray-600 mb-4">Fried paneer and vegetable dumplings cooked in a rich, creamy sauce.</p>
@@ -252,7 +264,7 @@
                 </div>
 
                 <div class="menu-item all maincourse bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/navratan-korma.jpg" alt="Navratan Korma" class="w-full h-48 object-cover">
+                     <img src="./assets/navratan-korma.jpg" alt="Navratan Korma" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Navratan Korma</h3>
                         <p class="text-gray-600 mb-4">A creamy and rich curry made with mixed vegetables and a mix of nuts.</p>
@@ -266,7 +278,7 @@
                 </div>
 
                 <div class="menu-item all maincourse bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/dal-makhani.jpg" alt="Dal Makhani" class="w-full h-48 object-cover">
+                     <img src="./assets/dal-makhani.jpg" alt="Dal Makhani" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Dal Makhani</h3>
                         <p class="text-gray-600 mb-4">Black lentils and kidney beans simmered slowly in a buttery, creamy gravy.</p>
@@ -280,7 +292,7 @@
                 </div>
 
                 <div class="menu-item all maincourse bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/dal-tadka.jpg" alt="Dal Tadka" class="w-full h-48 object-cover">
+                     <img src="./assets/dal-tadka.jpg" alt="Dal Tadka" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Dal Tadka</h3>
                         <p class="text-gray-600 mb-4">A dish of yellow lentils tempered with spices like cumin, garlic, and red chili.</p>
@@ -294,7 +306,7 @@
                 </div>
 
                 <div class="menu-item all maincourse bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/kadhi-pakora.jpg" alt="Kadhi Pakora" class="w-full h-48 object-cover">
+                     <img src="./assets/kadhi-pakora.jpg" alt="Kadhi Pakora" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Kadhi Pakora</h3>
                         <p class="text-gray-600 mb-4">A tangy yogurt-based gravy with gram flour fritters, popular in North India.</p>
@@ -308,7 +320,7 @@
                 </div>
 
                 <div class="menu-item all maincourse bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/vegetable-biryani.jpg" alt="Vegetable Biryani" class="w-full h-48 object-cover">
+                     <img src="./assets/vegetable-biryani.jpg" alt="Vegetable Biryani" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Vegetable Biryani</h3>
                         <p class="text-gray-600 mb-4">Aromatic basmati rice cooked with assorted vegetables and spices.</p>
@@ -322,7 +334,7 @@
                 </div>
 
                 <div class="menu-item all maincourse bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/jeera-rice.jpg" alt="Jeera Rice" class="w-full h-48 object-cover">
+                     <img src="./assets/jeera-rice.jpg" alt="Jeera Rice" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Jeera Rice</h3>
                         <p class="text-gray-600 mb-4">A simple yet flavorful preparation of basmati rice tempered with cumin seeds.</p>
@@ -336,7 +348,7 @@
                 </div>
 
                 <div class="menu-item all maincourse dinner bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/tawa-roti-naan.jpg" alt="Tawa Roti / Naan" class="w-full h-48 object-cover">
+                     <img src="./assets/tawa-roti-naan.jpg" alt="Tawa Roti / Naan" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Tawa Roti / Naan</h3>
                         <p class="text-gray-600 mb-4">Freshly made flatbreads cooked on a griddle or in a tandoor.</p>
@@ -350,7 +362,7 @@
                 </div>
 
                 <div class="menu-item all snacks bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/pani-puri.jpg" alt="Pani Puri / Gol Gappa" class="w-full h-48 object-cover">
+                     <img src="./assets/pani-puri.jpg" alt="Pani Puri / Gol Gappa" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Pani Puri / Gol Gappa</h3>
                         <p class="text-gray-600 mb-4">Crispy, hollow balls filled with spicy and tangy water and a mix of potatoes.</p>
@@ -364,7 +376,7 @@
                 </div>
 
                 <div class="menu-item all snacks bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/samosa.jpg" alt="Samosa" class="w-full h-48 object-cover">
+                     <img src="./assets/samosa.jpg" alt="Samosa" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Samosa</h3>
                         <p class="text-gray-600 mb-4">Crispy, triangular pastries filled with spiced potatoes and peas.</p>
@@ -378,7 +390,7 @@
                 </div>
                 
                 <div class="menu-item all snacks bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/bhel-puri.jpg" alt="Bhel Puri" class="w-full h-48 object-cover">
+                     <img src="./assets/bhel-puri.jpg" alt="Bhel Puri" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Bhel Puri</h3>
                         <p class="text-gray-600 mb-4">A sweet, tangy, and spicy puffed rice snack.</p>
@@ -392,7 +404,7 @@
                 </div>
                 
                 <div class="menu-item all snacks bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/pav-bhaji.jpg" alt="Pav Bhaji" class="w-full h-48 object-cover">
+                     <img src="./assets/pav-bhaji.jpg" alt="Pav Bhaji" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Pav Bhaji</h3>
                         <p class="text-gray-600 mb-4">A thick vegetable curry served with soft, buttered bread rolls.</p>
@@ -406,7 +418,7 @@
                 </div>
 
                 <div class="menu-item all snacks bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/vada-pav.jpg" alt="Vada Pav" class="w-full h-48 object-cover">
+                     <img src="./assets/vada-pav.jpg" alt="Vada Pav" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Vada Pav</h3>
                         <p class="text-gray-600 mb-4">A fried potato patty served in a bread roll.</p>
@@ -420,7 +432,7 @@
                 </div>
 
                 <div class="menu-item all lunch dinner bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/thali.jpg" alt="Thali" class="w-full h-48 object-cover">
+                     <img src="./assets/thali.jpg" alt="Thali" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Thali</h3>
                         <p class="text-gray-600 mb-4">A complete platter with dal, vegetables, rice, and roti.</p>
@@ -434,7 +446,7 @@
                 </div>
                 
                 <div class="menu-item all lunch bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/chole-bhature.jpg" alt="Chole Bhature" class="w-full h-48 object-cover">
+                     <img src="./assets/chole-bhature.jpg" alt="Chole Bhature" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Chole Bhature</h3>
                         <p class="text-gray-600 mb-4">Spicy chickpea curry served with large, fluffy fried bread.</p>
@@ -448,7 +460,7 @@
                 </div>
                 
                 <div class="menu-item all lunch bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/rajma-chawal.jpg" alt="Rajma Chawal" class="w-full h-48 object-cover">
+                     <img src="./assets/rajma-chawal.jpg" alt="Rajma Chawal" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Rajma Chawal</h3>
                         <p class="text-gray-600 mb-4">A comforting plate of red kidney bean curry served with rice.</p>
@@ -462,7 +474,7 @@
                 </div>
 
                 <div class="menu-item all dinner bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/shahi-paneer-with-roti.jpg" alt="Shahi Paneer with Roti" class="w-full h-48 object-cover">
+                     <img src="./assets/shahi-paneer-with-roti.jpg" alt="Shahi Paneer with Roti" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Shahi Paneer with Roti</h3>
                         <p class="text-gray-600 mb-4">A rich, creamy paneer dish paired with Indian flatbread.</p>
@@ -476,7 +488,7 @@
                 </div>
                 
                 <div class="menu-item all dinner bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/special-veg-thali.jpg" alt="Special Veg Thali" class="w-full h-48 object-cover">
+                     <img src="./assets/special-veg-thali.jpg" alt="Special Veg Thali" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Special Veg Thali</h3>
                         <p class="text-gray-600 mb-4">A deluxe platter featuring multiple curries, dal, rice, bread, and a dessert.</p>
@@ -490,7 +502,7 @@
                 </div>
 
                 <div class="menu-item all drinks bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/masala-chai.jpg" alt="Masala Chai" class="w-full h-48 object-cover">
+                     <img src="./assets/masala-chai.jpg" alt="Masala Chai" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Masala Chai</h3>
                         <p class="text-gray-600 mb-4">A spiced milk tea.</p>
@@ -504,7 +516,7 @@
                 </div>
                 
                 <div class="menu-item all drinks bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/lassi.jpg" alt="Lassi" class="w-full h-48 object-cover">
+                     <img src="./assets/lassi.jpg" alt="Lassi" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Lassi</h3>
                         <p class="text-gray-600 mb-4">A yogurt-based drink, which can be either sweet or salty.</p>
@@ -518,7 +530,7 @@
                 </div>
                 
                 <div class="menu-item all drinks bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/fresh-lime-soda.jpg" alt="Fresh Lime Soda" class="w-full h-48 object-cover">
+                     <img src="./assets/fresh-lime-soda.jpg" alt="Fresh Lime Soda" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Fresh Lime Soda</h3>
                         <p class="text-gray-600 mb-4">A refreshing mix of lime juice, sugar, and soda water.</p>
@@ -532,7 +544,7 @@
                 </div>
                 
                 <div class="menu-item all drinks bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/jal-jeera.jpg" alt="Jal Jeera" class="w-full h-48 object-cover">
+                     <img src="./assets/jal-jeera.jpg" alt="Jal Jeera" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Jal Jeera</h3>
                         <p class="text-gray-600 mb-4">A cooling and tangy drink made with cumin and mint.</p>
@@ -546,7 +558,7 @@
                 </div>
                 
                 <div class="menu-item all drinks bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <img src="./assets/buttermilk-chaas.jpg" alt="Buttermilk (Chaas)" class="w-full h-48 object-cover">
+                     <img src="./assets/buttermilk-chaas.jpg" alt="Buttermilk (Chaas)" class="w-full aspect-video object-cover md:aspect-auto md:h-48 lg:aspect-video lg:h-auto">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Buttermilk (Chaas)</h3>
                         <p class="text-gray-600 mb-4">A spiced, savory yogurt drink.</p>
@@ -616,7 +628,7 @@
                         <div class="flex items-center">
                             <span class="text-2xl mr-3">📞</span>
                             <div>
-                                <p class="font-semibold">(555) 123-BITE</p>
+                                <p class="font-semibold">+91 7952107808-BITE</p>
                                 <p class="text-gray-600">Call for takeout orders</p>
                             </div>
                         </div>
@@ -812,7 +824,7 @@
             
             // Encode message for WhatsApp URL
             const encodedMessage = encodeURIComponent(orderMessage);
-            const whatsappNumber = "917952107808";
+            const whatsappNumber = "919752107808";
             const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
             
             // Open WhatsApp
