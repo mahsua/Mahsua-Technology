@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Source - Mahsua Technology</title>
+    <link rel="icon" href="../favicon.png" type="image/svg+xml">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body data-theme="light">
+    
+    <!-- HEADER PASTED HERE (NOTICE THE UPDATED PATHS: ../) -->
+    <div id="scrollProgressBar"></div>
+    <header>
+        <nav class="container">
+            <div class="logo-section">
+                <a href="../index.html"><img src="../mahsua-technology.png" alt="Mahsua Logo" class="logo-img" /></a>
+            </div>
+            <button class="hamburger" onclick="toggleMobileMenu()">⋮</button>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="../index.html#services">Services</a></li>
+                <li><a href="./free-services.html">Free Services</a></li>
+                <li><a href="../index.html#tech">Technology</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="about-us.html">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></li>
+            </ul>
+        </nav>
+    </header>
+
+<main>
+    <div class="container" style="padding-top: 150px; padding-bottom: 80px;">
+
+        <h1 class="section-title">Open Source & Developer Docs</h1>
+
+        <p class="section-subtitle">
+            Practical guides and documentation for developers using modern technologies.
+        </p>
+
+        <p style="text-align: center; max-width: 850px; margin: auto;">
+            Welcome to the Mahsua Open Source documentation hub.  
+            Here we share step-by-step developer guides, real project workflows, and
+            easy explanations for technologies like <strong>Expo</strong>,
+            <strong>React Native</strong>, <strong>Firebase</strong>, and more.
+        </p>
+
+        <!-- Documentation Cards -->
+        <div style="margin-top: 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+
+            <!-- Expo Guide -->
+            <div style="border: 1px solid #eaeaea; border-radius: 12px; padding: 25px;">
+                <h3>Expo Android APK Build Guide</h3>
+                <p style="margin-top: 10px;">
+                    Learn how to build Android APK files using Expo step by step.
+                    This guide covers setup, configuration, build process, and common errors.
+                </p>
+
+                <p style="margin-top: 10px; font-size: 14px; color: #666;">
+                    Tech: Expo · React Native · Android
+                </p>
+
+                <a href="https://mahsuait.github.io/Expo-APK-Build-Guide/"
+                   target="_blank"
+                   style="display: inline-block; margin-top: 15px; color: #2563eb; font-weight: 600;">
+                    Read Documentation →
+                </a>
+            </div>
+
+            <!-- Coming Soon -->
+            <div style="border: 1px dashed #ccc; border-radius: 12px; padding: 25px;">
+                <h3>More Docs Coming Soon</h3>
+                <p style="margin-top: 10px;">
+                    Firebase authentication, Firestore structure, hosting,
+                    React Native best practices, and real production examples
+                    will be added soon.
+                </p>
+
+                <p style="margin-top: 10px; font-size: 14px; color: #666;">
+                    Upcoming: Firebase · Expo EAS · APIs
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</main>
+    <!-- FOOTER PASTED HERE (NOTICE THE UPDATED PATHS: ../) -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="about-us.html">About Us</a>
+                <a href="#contact">Contact Us</a>
+                <a href="https://blog.mahsua.com/">Blogs</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-and-condition.html">Terms & Conditions</a>
+                <a href="careers.html">Careers</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="digital-school-plans.html">School Plans</a>
+            </div>
+            <p>Made With ❤️ INDIA ~ Designed by <a href="https://proshivamkushwaha.mahsua.com"> SHIVAM KUSHWAHA </a></p><br>
+            <p class="text-sm opacity-75">Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <div class="modal-overlay" id="techModalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <h3 id="modalTitle">Technology Title</h3>
+            <p id="modalDescription">Technology description goes here.</p>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>
