@@ -47,8 +47,20 @@ function updateScrollProgress() {
 
 // All code that needs to run after the page loads goes here
 document.addEventListener('DOMContentLoaded', function() {
-    // Theme setup
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    // Inject glowing background for modern tech look
+    if (!document.querySelector('.global-bg-glow')) {
+        const glowContainer = document.createElement('div');
+        glowContainer.className = 'global-bg-glow';
+        glowContainer.innerHTML = `
+            <div class="glow-orb orb-pink"></div>
+            <div class="glow-orb orb-blue"></div>
+            <div class="glow-orb orb-green"></div>
+        `;
+        document.body.prepend(glowContainer);
+    }
+
+    // Theme setup - Default to dark for tech vibe
+    const savedTheme = localStorage.getItem('theme') || 'dark'; 
     document.body.setAttribute('data-theme', savedTheme);
     const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
@@ -105,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         function closeModal() { modalOverlay.classList.remove('active'); }
-        modalCloseBtn.addEventListener('click', closeModal);
+        if(modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
         modalOverlay.addEventListener('click', (event) => {
             if (event.target === modalOverlay) { closeModal(); }
         });
@@ -127,11 +139,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) { 
-                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+            if(this.getAttribute('href').startsWith('#') && this.getAttribute('href').length > 1) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) { 
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+                }
             }
         });
     });
@@ -140,42 +154,12 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', () => {
         const header = document.querySelector('header');
         if (header) {
-            header.style.backdropFilter = (window.scrollY > 100) ? 'blur(10px)' : 'none';
-            header.style.backgroundColor = (window.scrollY > 100) ? 'rgba(255, 255, 255, 0.9)' : 'var(--bg-primary)';
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
         }
         updateScrollProgress();
     });
-
-    // Custom cursor logic
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    if (cursor && cursorFollower) {
-        let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursor.style.left = mouseX - 10 + 'px';
-            cursor.style.top = mouseY - 10 + 'px';
-        });
-        function animateFollower() {
-            followerX += (mouseX - followerX) * 0.1;
-            followerY += (mouseY - followerY) * 0.1;
-            cursorFollower.style.left = followerX - 20 + 'px';
-            cursorFollower.style.top = followerY - 20 + 'px';
-            requestAnimationFrame(animateFollower);
-        }
-        animateFollower();
-        document.querySelectorAll('a, button, .cta-button, .service-card, .tech-item, .feature-item, .theme-toggle, .project-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(1.5)';
-                cursorFollower.style.transform = 'scale(1.2)';
-                cursorFollower.style.borderColor = 'var(--primary-green)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursorFollower.style.transform = 'scale(1)';
-                cursorFollower.style.borderColor = 'var(--primary-pink)';
-            });
-        });
-    }
 });

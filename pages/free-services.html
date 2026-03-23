@@ -4,162 +4,175 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Services - Mahsua Technology</title>
-    
-    <!-- Tailwind CSS CDN for utility classes -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- External Custom CSS Stylesheet (Correct for Multi-File Project Structure) -->
     <link rel="icon" href="../favicon.png" type="image/svg+xml">
-    <link rel="stylesheet" href="../style.css">
-
-    <!-- Modern Google-Inspired Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Modern Google-inspired styles with your brand colors */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables for Pink/Blue/Green Theme */
         :root {
-            --brand-pink: #FF6B8B;
-            --brand-blue: #4285F4;
-            --brand-green: #34A853;
-            --gray-50: #f8f9fa;
-            --gray-100: #f1f3f4;
-            --gray-200: #e8eaed;
-            --gray-700: #5f6368;
-            --gray-900: #202124;
+            /* Light Mode */
+            --bg-gradient-start: #ffe6f0;
+            --bg-gradient-middle: #e0f3ff;
+            --bg-gradient-end: #e6ffe6;
+            --container-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #2d3748;
+            --text-secondary: #4a5568;
+            --heading-gradient: linear-gradient(135deg, #ec489a, #3b82f6, #22c55e);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(236, 72, 153, 0.2);
+            --button-gradient: linear-gradient(135deg, #ec489a, #3b82f6);
+            --button-hover: linear-gradient(135deg, #db2777, #2563eb);
+            --tag-bg: rgba(236, 72, 153, 0.1);
+            --tag-color: #ec489a;
+            --glass-border: rgba(236, 72, 153, 0.2);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --stat-bg: rgba(255, 255, 255, 0.8);
+            --quote-bg: linear-gradient(135deg, rgba(236, 72, 153, 0.05), rgba(59, 130, 246, 0.05));
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient-start: #1a1a2e;
+            --bg-gradient-middle: #16213e;
+            --bg-gradient-end: #0f3460;
+            --container-bg: rgba(30, 41, 59, 0.95);
+            --text-color: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --card-bg: rgba(51, 65, 85, 0.9);
+            --card-border: rgba(236, 72, 153, 0.2);
+            --tag-bg: rgba(236, 72, 153, 0.2);
+            --tag-color: #f472b6;
+            --glass-border: rgba(236, 72, 153, 0.2);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --stat-bg: rgba(51, 65, 85, 0.8);
+            --quote-bg: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(59, 130, 246, 0.1));
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: var(--gray-900);
-            background: #ffffff;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-middle) 50%, var(--bg-gradient-end) 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, var(--brand-blue), var(--brand-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* Glass Grid Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            background-image: 
+                linear-gradient(rgba(236, 72, 153, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+                radial-gradient(circle at top left, rgba(236, 72, 153, 0.12), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.1), transparent 26%);
+            background-size: 26px 26px, 26px 26px, 100% 100%, 100% 100%;
+            background-position: 0 0, 0 0, 0 0, 0 0;
+            z-index: 0;
         }
 
-        .modern-card {
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            height: 100%;
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
         }
 
-        .modern-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-            border-color: var(--gray-300);
+        /* Scroll Progress Bar */
+        #scrollProgressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #ec489a, #3b82f6, #22c55e);
+            z-index: 1001;
+            transition: width 0.1s ease;
         }
 
-        .card-border-blue { border-top: 4px solid var(--brand-blue); }
-        .card-border-green { border-top: 4px solid var(--brand-green); }
-        .card-border-purple { border-top: 4px solid #8B5CF6; }
-        .card-border-yellow { border-top: 4px solid #F59E0B; }
-
-        .project-badge {
-            background: var(--brand-green);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            display: inline-block;
-            margin-bottom: 1rem;
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--container-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
-        .stat-item {
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo-section {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            color: var(--gray-700);
         }
 
-        .btn-modern {
-            display: inline-flex;
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 500;
+        }
+
+        .nav-links li a {
             text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #ec489a;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            background: none;
             border: none;
             cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.9375rem;
-            background: var(--brand-blue);
+            color: #ec489a;
+        }
+
+        .theme-toggle {
+            background: var(--button-gradient);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
             color: white;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
         }
 
-        .btn-modern:hover {
-            background: #3367d6;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
-        }
-
-        .btn-modern-outline {
-            background: transparent;
-            color: var(--brand-blue);
-            border: 2px solid var(--brand-blue);
-        }
-
-        .btn-modern-outline:hover {
-            background: var(--brand-blue);
-            color: white;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 500;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            font-size: 1.125rem;
-            color: var(--gray-700);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        /* Impact Stats */
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .impact-item {
-            text-align: center;
-            padding: 2rem;
-            background: var(--gray-50);
-            border-radius: 12px;
-        }
-
-        .impact-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--brand-blue), var(--brand-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .impact-label {
-            color: var(--gray-700);
-            font-size: 1rem;
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
         }
 
         /* Floating CTA */
@@ -173,17 +186,18 @@
         .cta-bubble {
             width: 3.5rem;
             height: 3.5rem;
-            background: linear-gradient(135deg, var(--brand-green), var(--brand-blue));
+            background: var(--button-gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 1.25rem;
-            box-shadow: 0 8px 25px rgba(52, 168, 83, 0.3);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.3);
             cursor: pointer;
             transition: all 0.3s;
             animation: float 3s ease-in-out infinite;
+            text-decoration: none;
         }
 
         @keyframes float {
@@ -193,37 +207,345 @@
 
         .cta-bubble:hover {
             transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(52, 168, 83, 0.4);
+            box-shadow: 0 12px 35px rgba(236, 72, 153, 0.4);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 80px 0 60px;
+            text-align: center;
+            animation: riseIn 0.7s ease-out;
+        }
+
+        .project-badge {
+            background: linear-gradient(135deg, #22c55e, #3b82f6);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--heading-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn-modern {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            background: var(--button-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+        }
+
+        .btn-modern-outline {
+            background: transparent;
+            border: 2px solid #3b82f6;
+            color: #3b82f6;
+        }
+
+        .btn-modern-outline:hover {
+            background: #3b82f6;
+            color: white;
+        }
+
+        /* Impact Stats */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .impact-item {
+            background: var(--stat-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .impact-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .impact-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--heading-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Vision Card */
+        .vision-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .vision-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .vision-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(59, 130, 246, 0.2));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .vision-quote {
+            background: var(--quote-bg);
+            border-left: 4px solid #ec489a;
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin-top: 1.5rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .modern-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: riseIn 0.7s ease-out;
+        }
+
+        .modern-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .card-border-blue { border-top: 4px solid #3b82f6; }
+        .card-border-green { border-top: 4px solid #22c55e; }
+        .card-border-purple { border-top: 4px solid #8b5cf6; }
+        .card-border-yellow { border-top: 4px solid #f59e0b; }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-badge {
+            background: linear-gradient(135deg, #22c55e, #3b82f6);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .card-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgba(236, 72, 153, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--container-bg);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ec489a;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        footer a {
+            color: #ec489a;
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-section {
+                padding: 60px 0 40px;
+            }
         }
     </style>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body data-theme="light" class="bg-white text-gray-900">
-    
-    <!-- HEADER (EXACTLY AS PROVIDED) -->
+<body data-theme="light">
     <div id="scrollProgressBar"></div>
+    
     <header>
         <nav class="container">
             <div class="logo-section">
                 <a href="../index.html"><img src="../mahsua-technology.png" alt="Mahsua Logo" class="logo-img" /></a>
             </div>
-            <button class="hamburger" onclick="toggleMobileMenu()">⋮</button>
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
             <ul class="nav-links" id="navMenu">
                 <li><a href="../index.html#services">Services</a></li>
                 <li><a href="./free-services.html">Free Services</a></li>
                 <li><a href="../index.html#tech">Technology</a></li>
                 <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="about-us.html">About</a></li>
+                <li><a href="./about-us.html">About</a></li>
                 <li><a href="../index.html#contact">Contact</a></li>
                 <li><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Floating Support Button -->
     <div class="floating-cta">
         <a href="./donate.html" class="cta-bubble">
             <i class="fas fa-hands-helping"></i>
@@ -231,18 +553,15 @@
     </div>
 
     <main>
-        <div class="container mx-auto px-4" style="padding-top: 120px; padding-bottom: 80px;">
-            
+        <div class="container">
             <!-- Hero Section -->
-            <div class="max-w-4xl mx-auto mb-16 text-center">
+            <div class="hero-section">
                 <div class="project-badge">Community Initiative</div>
-                <h1 class="section-title mb-6">
-                    Free Services for <span class="gradient-text">Community Impact</span>
-                </h1>
-                <p class="section-subtitle mb-8">
-                    At <strong class="text-blue-600">Mahsua Technology</strong>, we believe technology should be a right, not a privilege. Our free services provide digital solutions where they matter most in the community.
+                <h1 class="section-title">Free Services for <span style="background: var(--heading-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;">Community Impact</span></h1>
+                <p class="section-subtitle">
+                    At <strong style="color: #ec489a;">Mahsua Technology</strong>, we believe technology should be a right, not a privilege. Our free services provide digital solutions where they matter most in the community.
                 </p>
-                <div class="flex flex-wrap justify-center gap-4">
+                <div class="flex flex-wrap justify-center gap-4" style="display: flex; gap: 1rem; justify-content: center;">
                     <a href="#projects" class="btn-modern">
                         <i class="fas fa-map-marker-alt"></i>
                         View Projects
@@ -255,78 +574,69 @@
             </div>
 
             <!-- Impact Statistics -->
-            <div class="max-w-6xl mx-auto mb-16">
-                <div class="impact-grid">
-                    <div class="impact-item">
-                        <div class="impact-number">8+</div>
-                        <div class="impact-label">Free Community Sites</div>
-                    </div>
-                    <div class="impact-item">
-                        <div class="impact-number">50K+</div>
-                        <div class="impact-label">Monthly Visitors</div>
-                    </div>
-                    <div class="impact-item">
-                        <div class="impact-number">200+</div>
-                        <div class="impact-label">Community Supporters</div>
-                    </div>
-                    <div class="impact-item">
-                        <div class="impact-number">100%</div>
-                        <div class="impact-label">Free Forever</div>
-                    </div>
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <div class="impact-number">8+</div>
+                    <div class="impact-label">Free Community Sites</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-number">50K+</div>
+                    <div class="impact-label">Monthly Visitors</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-number">200+</div>
+                    <div class="impact-label">Community Supporters</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-number">100%</div>
+                    <div class="impact-label">Free Forever</div>
                 </div>
             </div>
 
             <!-- Our Vision -->
-            <div class="max-w-4xl mx-auto mb-16">
-                <div class="modern-card p-8">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-eye text-blue-600 text-xl"></i>
-                        </div>
-                        <h2 class="text-2xl font-bold text-gray-900">Our Vision</h2>
+            <div class="vision-card">
+                <div class="vision-header">
+                    <div class="vision-icon">
+                        <i class="fas fa-eye" style="color: #ec489a;"></i>
                     </div>
-                    <p class="text-lg text-gray-700 mb-6">
-                        We're building a movement where every public space parks, temples, libraries, community centers has a beautiful, functional digital home. Forever free, forever accessible.
+                    <h2 style="font-size: 1.8rem; font-weight: 700; color: var(--text-color);">Our Vision</h2>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1.5rem;">
+                    We're building a movement where every public space — parks, temples, libraries, community centers — has a beautiful, functional digital home. Forever free, forever accessible.
+                </p>
+                <div class="vision-quote">
+                    <p style="color: #ec489a; font-style: italic; font-size: 1.1rem;">
+                        "Foundational digital presence should be a right, not a privilege. By supporting community organizations, we build goodwill and drive positive digital change."
                     </p>
-                    <div class="bg-blue-50 p-6 rounded-lg">
-                        <p class="text-blue-800 italic text-lg">
-                            "Foundational digital presence should be a right, not a privilege. By supporting community organizations, we build goodwill and drive positive digital change."
-                        </p>
-                        <p class="text-blue-700 font-medium mt-4">  Mahsua Technology Team</p>
-                    </div>
+                    <p style="color: var(--text-secondary); font-weight: 600; margin-top: 0.75rem;">— Mahsua Technology Team</p>
                 </div>
             </div>
 
             <!-- Projects Grid -->
-            <div id="projects" class="max-w-6xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Our Public Service Projects</h2>
+            <div id="projects">
+                <h2 style="font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 2rem; background: linear-gradient(135deg, #ec489a, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent;">Our Public Service Projects</h2>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
+                <div class="projects-grid">
                     <!-- Project 1: Chirahulanath Temple -->
                     <div class="modern-card card-border-blue">
-                        <div class="p-6">
-                            <div class="project-badge">Live & Active</div>
-                            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-place-of-worship text-blue-600"></i>
-                                </div>
+                        <div class="card-content">
+                            <div class="card-badge">Live & Active</div>
+                            <div class="card-title">
+                                <div class="card-icon"><i class="fas fa-place-of-worship" style="color: #3b82f6;"></i></div>
                                 श्री चिरहुला नाथ मंदिर
-                            </h3>
-                            <p class="text-gray-700 mb-4">
+                            </div>
+                            <p class="card-text">
                                 चिरहुला नाथ मंदिर रीवा का एक अत्यंत प्रसिद्ध और जागृत स्थान है। यह मंदिर चिरहुला कॉलोनी के पास स्थित सुंदर चिरहुला तालाब के किनारे पर है।
                             </p>
-                            <p class="text-gray-700 mb-6">
+                            <p class="card-text">
                                 यहाँ श्री हनुमान जी 'चिरहुला नाथ स्वामी' के रूप में विराजित हैं। इस मंदिर की सबसे बड़ी विशेषता यह है कि यहाँ सभी 12 ज्योतिर्लिंगों की स्थापना की गई है।
                             </p>
-                            <div class="flex flex-wrap gap-4 items-center justify-between">
-                                <div class="flex gap-4">
-                                    <div class="stat-item">
-                                        <i class="fas fa-users text-blue-600"></i>
-                                        <span>200+ monthly visitors</span>
-                                    </div>
+                            <div class="card-footer">
+                                <div class="stat-item">
+                                    <i class="fas fa-users" style="color: #3b82f6;"></i>
+                                    <span>200+ monthly visitors</span>
                                 </div>
-                                <a href="https://chirahulanath.mahsua.com" target="_blank" class="btn-modern">
+                                <a href="https://chirahulanath.mahsua.com" target="_blank" class="btn-modern" style="padding: 0.6rem 1.2rem;">
                                     <i class="fas fa-external-link-alt"></i>
                                     Visit Website
                                 </a>
@@ -336,28 +646,24 @@
 
                     <!-- Project 2: Kamla Park -->
                     <div class="modern-card card-border-green">
-                        <div class="p-6">
-                            <div class="project-badge">Live & Active</div>
-                            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-tree text-green-600"></i>
-                                </div>
+                        <div class="card-content">
+                            <div class="card-badge">Live & Active</div>
+                            <div class="card-title">
+                                <div class="card-icon"><i class="fas fa-tree" style="color: #22c55e;"></i></div>
                                 Kamla Park, Bhopal
-                            </h3>
-                            <p class="text-gray-700 mb-4">
+                            </div>
+                            <p class="card-text">
                                 Nestled on the natural land bridge separating the Upper Lake (Bhojtal) and the Lower Lake, Kamla Park is one of Bhopal's most treasured landmarks and a Monument of National Importance.
                             </p>
-                            <p class="text-gray-700 mb-6">
-                                Built in 1722 by Nizam Shah as a gift for his wife, Queen Kamlapati, this palace is a stunning example of 18th-century secular architecture, blending Mughal and Rajput styles.
+                            <p class="card-text">
+                                Built in 1722 by Nizam Shah as a gift for his wife, Queen Kamlapati, this palace is a stunning example of 18th-century secular architecture.
                             </p>
-                            <div class="flex flex-wrap gap-4 items-center justify-between">
-                                <div class="flex gap-4">
-                                    <div class="stat-item">
-                                        <i class="fas fa-users text-green-600"></i>
-                                        <span>500+ monthly visitors</span>
-                                    </div>
+                            <div class="card-footer">
+                                <div class="stat-item">
+                                    <i class="fas fa-users" style="color: #22c55e;"></i>
+                                    <span>500+ monthly visitors</span>
                                 </div>
-                                <a href="https://kamlapark.mahsua.com" target="_blank" class="btn-modern">
+                                <a href="https://kamlapark.mahsua.com" target="_blank" class="btn-modern" style="padding: 0.6rem 1.2rem;">
                                     <i class="fas fa-external-link-alt"></i>
                                     Visit Website
                                 </a>
@@ -365,30 +671,26 @@
                         </div>
                     </div>
 
-                    <!-- Project 3: Chitrakoot -->
+                    <!-- Project 3: Chitrakoot Dham -->
                     <div class="modern-card card-border-purple">
-                        <div class="p-6">
-                            <div class="project-badge">Live & Active</div>
-                            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-hands-praying text-purple-600"></i>
-                                </div>
+                        <div class="card-content">
+                            <div class="card-badge">Live & Active</div>
+                            <div class="card-title">
+                                <div class="card-icon"><i class="fas fa-hands-praying" style="color: #8b5cf6;"></i></div>
                                 Chitrakoot Dham
-                            </h3>
-                            <p class="text-gray-700 mb-4">
-                                चित्रकूट धाम वह पावन भूमि है जहाँ भगवान श्रीराम, माता सीता और लक्ष्मण जी ने अपने वनवास का एक बड़ा हिस्सा व्यतीत किया। 
+                            </div>
+                            <p class="card-text">
+                                चित्रकूट धाम वह पावन भूमि है जहाँ भगवान श्रीराम, माता सीता और लक्ष्मण जी ने अपने वनवास का एक बड़ा हिस्सा व्यतीत किया।
                             </p>
-                            <p class="text-gray-700 mb-6">
-                                शांत नदी घाटों से लेकर रहस्यमयी गुफाओं, वन आश्रमों और पवित्र पहाड़ियों तक, यहाँ का हर कोना रामायण की जीवंत कहानी सुनाता है। रामायण के अनुसार, भगवान श्रीराम ने अपने 14 वर्ष के वनवास का एक लंबा समय चित्रकूट में बिताया। विभिन्न शास्त्रों में वर्णित यह स्थान तप, भक्ति और आंतरिक जागृति की भूमि माना जाता है।
+                            <p class="card-text">
+                                शांत नदी घाटों से लेकर रहस्यमयी गुफाओं, वन आश्रमों और पवित्र पहाड़ियों तक, यहाँ का हर कोना रामायण की जीवंत कहानी सुनाता है।
                             </p>
-                            <div class="flex flex-wrap gap-4 items-center justify-between">
-                                <div class="flex gap-4">
-                                    <div class="stat-item">
-                                        <i class="fas fa-users text-purple-600"></i>
-                                        <span>1K+ monthly visitors</span>
-                                    </div>
+                            <div class="card-footer">
+                                <div class="stat-item">
+                                    <i class="fas fa-users" style="color: #8b5cf6;"></i>
+                                    <span>1K+ monthly visitors</span>
                                 </div>
-                                <a href="https://chitrakoot.mahsua.com" target="_blank" class="btn-modern">
+                                <a href="https://chitrakoot.mahsua.com" target="_blank" class="btn-modern" style="padding: 0.6rem 1.2rem;">
                                     <i class="fas fa-external-link-alt"></i>
                                     Visit Website
                                 </a>
@@ -396,30 +698,26 @@
                         </div>
                     </div>
 
-                    <!-- Project 4: Sair Sapata Bhopal -->
+                    <!-- Project 4: Sair Sapata -->
                     <div class="modern-card card-border-yellow">
-                        <div class="p-6">
-                            <div class="project-badge">Live & Active</div>
-                            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-child text-pink-600"></i>
-                                </div>
+                        <div class="card-content">
+                            <div class="card-badge">Live & Active</div>
+                            <div class="card-title">
+                                <div class="card-icon"><i class="fas fa-child" style="color: #f59e0b;"></i></div>
                                 Sair Sapata Bhopal
-                            </h3>
-                            <p class="text-gray-700 mb-4">
-                                Developed by the Madhya Pradesh State Tourism Development Corporation (MPSTDC), Sair Sapata is a tourism and entertainment complex situated on the banks of Bada Talaab (Upper Lake). 
+                            </div>
+                            <p class="card-text">
+                                Developed by the Madhya Pradesh State Tourism Development Corporation (MPSTDC), Sair Sapata is a tourism and entertainment complex situated on the banks of Bada Talaab (Upper Lake).
                             </p>
-                            <p class="text-gray-700 mb-6">
-                                Inaugurated on September 29, 2011, it was designed to provide families and tourists with a world-class recreational space. The architectural highlight is the Suspension Bridge, modeled after the famous Lachman Jhula in Rishikesh.  
+                            <p class="card-text">
+                                Inaugurated on September 29, 2011, it was designed to provide families and tourists with a world-class recreational space.
                             </p>
-                            <div class="flex flex-wrap gap-4 items-center justify-between">
-                                <div class="flex gap-4">
-                                    <div class="stat-item">
-                                        <i class="fas fa-users text-purple-600"></i>
-                                        <span>100+ monthly visitors</span>
-                                    </div>
+                            <div class="card-footer">
+                                <div class="stat-item">
+                                    <i class="fas fa-users" style="color: #f59e0b;"></i>
+                                    <span>100+ monthly visitors</span>
                                 </div>
-                                <a href="https://sairsapata.mahsua.com/" target="_blank" class="btn-modern">
+                                <a href="https://sairsapata.mahsua.com/" target="_blank" class="btn-modern" style="padding: 0.6rem 1.2rem;">
                                     <i class="fas fa-external-link-alt"></i>
                                     Visit Website
                                 </a>
@@ -427,189 +725,149 @@
                         </div>
                     </div>
 
-                    <!-- Project 5: Sair Sapata Bhopal -->
-                    <div class="modern-card card-border-yellow">
-                        <div class="p-6">
-                            <div class="project-badge">Live & Active</div>
-                            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-place-of-worship text-blue-600"></i>
-                                </div>
+                    <!-- Project 5: Kal Bhairav Mandir -->
+                    <div class="modern-card card-border-blue">
+                        <div class="card-content">
+                            <div class="card-badge">Live & Active</div>
+                            <div class="card-title">
+                                <div class="card-icon"><i class="fas fa-place-of-worship" style="color: #3b82f6;"></i></div>
                                 श्री काल भैरव मंदिर उज्जैन
-                            </h3>
-                            <p class="text-gray-700 mb-4">
+                            </div>
+                            <p class="card-text">
                                 ब्रह्मांड का केंद्र। मोक्ष की नगरी। महाकाल का शासन, भैरव का रक्षण।
                             </p>
-                            <p class="text-gray-700 mb-6">
-                                श्री काल भैरव मंदिर उज्जैन शहर के संरक्षक देवता भगवान काल भैरव को समर्पित एक प्रसिद्ध और प्राचीन मंदिर है। यह मंदिर अपनी अनूठी परंपरा के लिए जाना जाता है, जहाँ प्रसाद के रूप में मदिरा (शराब) चढ़ाई जाती है, जिसे भगवान की मूर्ति स्वीकार करती है। ऐसा माना जाता है कि उज्जैन के राजा महाकाल ने शहर की रक्षा के लिए काल भैरव को नियुक्त किया था, इसलिए उन्हें शहर का कोतवाल भी कहा जाता है। महाकालेश्वर मंदिर के दर्शन को श्री काल भैरव के दर्शन के बिना अधूरा माना जाता है।
+                            <p class="card-text">
+                                श्री काल भैरव मंदिर उज्जैन शहर के संरक्षक देवता भगवान काल भैरव को समर्पित एक प्रसिद्ध और प्राचीन मंदिर है।
                             </p>
-                            <div class="flex flex-wrap gap-4 items-center justify-between">
-                                <div class="flex gap-4">
-                                    <div class="stat-item">
-                                        <i class="fas fa-users text-purple-600"></i>
-                                        <span>100+ monthly visitors</span>
-                                    </div>
-                                </div>
-                                <a href="https://kaalbhairavmandir.mahsua.com/" target="_blank" class="btn-modern">
-                                    <i class="fas fa-external-link-alt"></i>
-                                    Visit Website
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Project : Coming Soon -->
-                    <div class="modern-card card-border-yellow">
-                        <div class="p-6">
-                            <div class="project-badge">Live & Active</div>
-                            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-place-of-worship text-blue-600"></i>
-                                </div>
-                                Bhojeshwar Temple
-                            </h3>
-                            <p class="text-gray-700 mb-4">
-                                The Bhojeshwar Mahadev Temple is an architectural enigma. Standing on a hill overlooking the Betwa River, this temple is famous for possessing one of the largest Shiva Lingams in the world and being a magnificent structure that was never completed.
-                            </p>
-                            <ul class="space-y-2 mb-6">
-                                <li class="flex items-center gap-2 text-gray-700">
-                                    <i class="fas fa-check-circle text-green-500"></i>
-                                    Python scripts for data cleaning
-                                </li>
-                                <li class="flex items-center gap-2 text-gray-700">
-                                    <i class="fas fa-check-circle text-green-500"></i>
-                                    Basic web templates
-                                </li>
-                                <li class="flex items-center gap-2 text-gray-700">
-                                    <i class="fas fa-check-circle text-green-500"></i>
-                                    Tutorials and documentation
-                                </li>
-                            </ul>
-                            <div class="flex flex-wrap gap-4 items-center justify-between">
-                                <div class="flex gap-4">
-                                    <div class="stat-item">
-                                        <i class="fas fa-users text-purple-600"></i>
-                                        <span>200+ monthly visitors</span>
-                                    </div>
-                                </div>
-                                <a href="http://bhojpur.mahsua.com" target="_blank" class="btn-modern">
-                                    <i class="fas fa-external-link-alt"></i>
-                                    Visit Website
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Project : Coming Soon -->
-                    <div class="modern-card card-border-yellow">
-                        <div class="p-6">
-                            <div class="project-badge">Coming Soon</div>
-                            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                                <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-code text-yellow-600"></i>
-                                </div>
-                                Bhojeshwar Temple
-                            </h3>
-                            <p class="text-gray-700 mb-4">
-                                The Bhojeshwar Mahadev Temple is an architectural enigma. Standing on a hill overlooking the Betwa River, this temple is famous for possessing one of the largest Shiva Lingams in the world and being a magnificent structure that was never completed.
-                            </p>
-                            <ul class="space-y-2 mb-6">
-                                <li class="flex items-center gap-2 text-gray-700">
-                                    <i class="fas fa-check-circle text-green-500"></i>
-                                    Python scripts for data cleaning
-                                </li>
-                                <li class="flex items-center gap-2 text-gray-700">
-                                    <i class="fas fa-check-circle text-green-500"></i>
-                                    Basic web templates
-                                </li>
-                                <li class="flex items-center gap-2 text-gray-700">
-                                    <i class="fas fa-check-circle text-green-500"></i>
-                                    Tutorials and documentation
-                                </li>
-                            </ul>
-                            <div class="flex gap-4 items-center justify-between">
+                            <div class="card-footer">
                                 <div class="stat-item">
-                                    <i class="fas fa-star text-yellow-500"></i>
-                                    <span>GitHub Repository</span>
+                                    <i class="fas fa-users" style="color: #3b82f6;"></i>
+                                    <span>100+ monthly visitors</span>
                                 </div>
-                                <a href="https://github.com/mahsua/gucchupani-dehradun" target="_blank" class="btn-modern">
-                                    <i class="fab fa-github"></i>
-                                    View on GitHub
+                                <a href="https://kaalbhairavmandir.mahsua.com/" target="_blank" class="btn-modern" style="padding: 0.6rem 1.2rem;">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Visit Website
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: Bhojeshwar Temple -->
+                    <div class="modern-card card-border-green">
+                        <div class="card-content">
+                            <div class="card-badge">Live & Active</div>
+                            <div class="card-title">
+                                <div class="card-icon"><i class="fas fa-place-of-worship" style="color: #22c55e;"></i></div>
+                                Bhojeshwar Temple
+                            </div>
+                            <p class="card-text">
+                                The Bhojeshwar Mahadev Temple is an architectural enigma. Standing on a hill overlooking the Betwa River, this temple is famous for possessing one of the largest Shiva Lingams in the world.
+                            </p>
+                            <div class="card-footer">
+                                <div class="stat-item">
+                                    <i class="fas fa-users" style="color: #22c55e;"></i>
+                                    <span>200+ monthly visitors</span>
+                                </div>
+                                <a href="http://bhojpur.mahsua.com" target="_blank" class="btn-modern" style="padding: 0.6rem 1.2rem;">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Visit Website
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
     
-    <!-- FOOTER (EXACTLY AS PROVIDED) -->
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="about-us.html">About Us</a>
+                <a href="./about-us.html">About Us</a>
                 <a href="../index.html#contact">Contact Us</a>
                 <a href="https://blog.mahsua.com/">Blogs</a>
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="terms-and-condition.html">Terms & Conditions</a>
-                <a href="careers.html">Careers</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="digital-school-plans.html">School Plans</a>
+                <a href="./privacy-policy.html">Privacy Policy</a>
+                <a href="./terms-and-condition.html">Terms & Conditions</a>
+                <a href="./careers.html">Careers</a>
+                <a href="./pricing.html">Pricing</a>
+                <a href="./digital-school-plans.html">School Plans</a>
             </div>
-            <p>Made With ❤️ INDIA ~ Designed by <a href="https://proshivamkushwaha.mahsua.com"> SHIVAM KUSHWAHA </a></p><br>
-            <p class="text-sm opacity-75">Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
+            <p>Made With ❤️ INDIA ~ Designed by <a href="https://proshivamkushwaha.mahsua.com"> SHIVAM KUSHWAHA </a></p>
+            <p>Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
         </div>
     </footer>
 
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-
-    <div class="modal-overlay" id="techModalOverlay">
-        <div class="modal-content">
-            <button class="modal-close" id="modalCloseBtn">&times;</button>
-            <h3 id="modalTitle">Technology Title</h3>
-            <p id="modalDescription">Technology description goes here.</p>
-        </div>
-    </div>
-
-    <!-- JavaScript -->
-    <script src="../script.js"></script>
     <script>
-        // Donation functions
-        function donate(amount) {
-            const upiLink = `upi://pay?pa=technology@mahsua&pn=Mahsua Technology&am=${amount}&tn=Donation for Community Websites&cu=INR`;
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
             
-            // Try to open GPay
-            window.open(upiLink, '_blank');
+            const themeToggle = document.querySelector('.theme-toggle');
+            if (newTheme === 'dark') {
+                themeToggle.innerHTML = '☀️ Light';
+            } else {
+                themeToggle.innerHTML = '🌙 Dark';
+            }
             
-            // Fallback message
-            setTimeout(() => {
-                alert(`If GPay didn't open, please send ₹${amount} to:\n\ntechnology@mahsua\n\nThank you for supporting our community work!`);
-            }, 500);
+            localStorage.setItem('theme', newTheme);
         }
 
-        function copyUPI() {
-            navigator.clipboard.writeText('technology@mahsua')
-                .then(() => {
-                    alert('UPI ID copied to clipboard! Paste it in GPay, PhonePe, or Paytm.');
-                })
-                .catch(err => {
-                    prompt('Please copy this UPI ID manually:', 'technology@mahsua');
-                });
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+        const themeToggleBtn = document.querySelector('.theme-toggle');
+        if (savedTheme === 'dark') {
+            themeToggleBtn.innerHTML = '☀️ Light';
+        } else {
+            themeToggleBtn.innerHTML = '🌙 Dark';
         }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgressBar').style.width = scrolled + '%';
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    const navMenu = document.getElementById('navMenu');
+                    if (navMenu) navMenu.classList.remove('active');
+                }
+            });
+        });
 
         // Animate impact numbers
         function animateCounters() {
             const counters = document.querySelectorAll('.impact-number');
             counters.forEach(counter => {
-                const target = parseInt(counter.textContent);
+                const targetText = counter.textContent;
+                const target = parseInt(targetText);
                 if (!isNaN(target) && target > 0) {
                     let current = 0;
                     const increment = target / 50;
                     const timer = setInterval(() => {
                         current += increment;
                         if (current >= target) {
-                            counter.textContent = counter.textContent.includes('+') ? target + '+' : target;
+                            counter.textContent = targetText.includes('+') ? target + '+' : target;
                             clearInterval(timer);
                         } else {
                             counter.textContent = Math.floor(current);
@@ -629,7 +887,6 @@
             });
         }, { threshold: 0.5 });
 
-        // Observe impact section
         const impactSection = document.querySelector('.impact-grid');
         if (impactSection) {
             observer.observe(impactSection);

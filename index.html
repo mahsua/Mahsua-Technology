@@ -3,32 +3,651 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahsua Technology | mahsua.com</title>
+    <title>Mahsua Technology | Innovative Digital Solutions</title>
     <link rel="icon" href="./favicon.png" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQ0FRXLDWM"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-PQ0FRXLDWM');
     </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables for Pink/Blue/Green Theme */
+        :root {
+            /* Light Mode */
+            --bg-gradient-start: #ffe6f0;
+            --bg-gradient-middle: #e0f3ff;
+            --bg-gradient-end: #e6ffe6;
+            --container-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #2d3748;
+            --text-secondary: #4a5568;
+            --heading-gradient: linear-gradient(135deg, #ec489a, #3b82f6, #22c55e);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(236, 72, 153, 0.2);
+            --button-gradient: linear-gradient(135deg, #ec489a, #3b82f6);
+            --button-hover: linear-gradient(135deg, #db2777, #2563eb);
+            --tag-bg: rgba(236, 72, 153, 0.1);
+            --tag-color: #ec489a;
+            --glass-border: rgba(236, 72, 153, 0.2);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient-start: #1a1a2e;
+            --bg-gradient-middle: #16213e;
+            --bg-gradient-end: #0f3460;
+            --container-bg: rgba(30, 41, 59, 0.95);
+            --text-color: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --card-bg: rgba(51, 65, 85, 0.9);
+            --card-border: rgba(236, 72, 153, 0.2);
+            --tag-bg: rgba(236, 72, 153, 0.2);
+            --tag-color: #f472b6;
+            --glass-border: rgba(236, 72, 153, 0.2);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-middle) 50%, var(--bg-gradient-end) 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* Glass Grid Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            background-image: 
+                linear-gradient(rgba(236, 72, 153, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+                radial-gradient(circle at top left, rgba(236, 72, 153, 0.12), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.1), transparent 26%);
+            background-size: 26px 26px, 26px 26px, 100% 100%, 100% 100%;
+            background-position: 0 0, 0 0, 0 0, 0 0;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Scroll Progress Bar */
+        #scrollProgressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #ec489a, #3b82f6, #22c55e);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--container-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links li a:hover {
+            color: #ec489a;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #ec489a;
+        }
+
+        .theme-toggle {
+            background: var(--button-gradient);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            animation: riseIn 0.7s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: var(--heading-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--button-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid #3b82f6;
+            color: #3b82f6;
+            box-shadow: none;
+        }
+
+        .cta-secondary:hover {
+            background: #3b82f6;
+            color: white;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #ec489a, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Cards Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: riseIn 0.7s ease-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .project-card-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-card-image img {
+            transform: scale(1.05);
+        }
+
+        .project-card-content {
+            padding: 1.5rem;
+        }
+
+        .project-card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .project-card-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags span {
+            background: var(--tag-bg);
+            color: var(--tag-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .project-card-content a {
+            color: #ec489a;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .project-card-content a:hover {
+            color: #3b82f6;
+        }
+
+        /* Project Filters */
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-filters button {
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .project-filters button.active {
+            background: var(--button-gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Tech Stack Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tech-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .tech-item .icon {
+            margin-bottom: 1rem;
+        }
+
+        .tech-item .icon img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .tech-item h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .tech-item p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+        }
+
+        .feature-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            background: var(--container-bg);
+            color: var(--text-color);
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ec489a;
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--button-gradient);
+            color: white;
+            border: none;
+            border-radius: 24px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #ec489a;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--container-bg);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ec489a;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        footer a {
+            color: #ec489a;
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                display: block;
+                margin: 1rem auto;
+                width: 80%;
+            }
+        }
+    </style>
 </head>
 <body data-theme="light">
-    <!-- HEADER PASTED HERE -->
     <div id="scrollProgressBar"></div>
+    
     <header>
         <nav class="container">
             <div class="logo-section">
                 <a href="index.html"><img src="mahsua-technology.png" alt="Mahsua Logo" class="logo-img" /></a>
             </div>
-            <button class="hamburger" onclick="toggleMobileMenu()">⋮</button>
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
             <ul class="nav-links" id="navMenu">
                 <li><a href="#services">Services</a></li>
                 <li><a href="./pages/free-services.html">Free Services</a></li>
-                <li><a href="./pages/opensource.html">🌱Open Source</a></li>
+                <li><a href="./pages/opensource.html">🌱 Open Source</a></li>
                 <li><a href="#tech">Technology</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -55,80 +674,68 @@
             <div class="container">
                 <h2 class="section-title">Our Digital Solutions</h2>
                 <div class="projects-grid">
-                    <div class="project-card" data-category="web-design">
-                        <div class="project-card-image p6">
-                            <img src="./assets/website-dev.jpg" alt="Personal Portfolio" width="800" height="230">
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <img src="./assets/website-dev.jpg" alt="Web Application Development" width="800" height="230">
                         </div>
                         <div class="project-card-content">
                             <h3>Web Application Development</h3>
-                            <p>
-                                Creating interactive websites and web-based tools accessible via browsers, ranging from e-commerce sites to social networks.
-                            </p>
+                            <p>Creating interactive websites and web-based tools accessible via browsers, ranging from e-commerce sites to social networks.</p>
                             <div class="project-tags"><span>HTML, CSS, JS</span><span>React JS</span><span>Ruby on Rails</span><span>Python with Django</span></div>
                         </div>
                     </div>
 
-                    <div class="project-card" data-category="web-design">
-                        <div class="project-card-image p2">
-                            <img src="./assets/mobile-app.jpg" alt="Personal Portfolio" width="800" height="230">
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <img src="./assets/mobile-app.jpg" alt="Mobile Application Development" width="800" height="230">
                         </div>
                         <div class="project-card-content">
                             <h3>Mobile Application Development</h3>
-                            <p>
-                                Designing apps for iOS and Android platforms, often using native languages or cross-platform frameworks like Flutter or React Native.
-                            </p>
+                            <p>Designing apps for iOS and Android platforms, often using native languages or cross-platform frameworks like Flutter or React Native.</p>
                             <div class="project-tags"><span>React Native</span><span>Node JS</span></div>
                         </div>
                     </div>
 
-                    <div class="project-card" data-category="web-design">
-                        <div class="project-card-image p4">
-                            <img src="./assets/custom-software.jpg" alt="Personal Portfolio" width="800" height="230">
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <img src="./assets/custom-software.jpg" alt="Custom Software Development" width="800" height="230">
                         </div>
                         <div class="project-card-content">
                             <h3>Custom Software Development</h3>
-                            <p>
-                                Building bespoke solutions such as ERP Systems or CRM Tools tailored specifically to a company's unique business processes.
-                            </p>
+                            <p>Building bespoke solutions such as ERP Systems or CRM Tools tailored specifically to a company's unique business processes.</p>
                             <div class="project-tags"><span>GitHub</span><span>Firebase</span><span>Site UI Copy</span></div>
                         </div>
                     </div>
 
-                    <div class="project-card" data-category="web-design">
-                        <div class="project-card-image p1">
-                            <img src="./assets/testing-qa.jpg" alt="Personal Portfolio" width="800" height="230">
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <img src="./assets/testing-qa.jpg" alt="Quality Assurance & Testing" width="800" height="230">
                         </div>
                         <div class="project-card-content">
                             <h3>Quality Assurance (QA) & Testing</h3>
-                            <p>
-                                Rigorously checking software for bugs, security vulnerabilities, and performance issues to ensure a high-quality final product.
-                            </p>
+                            <p>Rigorously checking software for bugs, security vulnerabilities, and performance issues to ensure a high-quality final product.</p>
                             <div class="project-tags"><span>Apache JMeter</span><span>LoadRunner</span><span>Postman</span><span>LambdaTest</span></div>
                         </div>
                     </div>
 
-                    <div class="project-card" data-category="web-design">
-                        <div class="project-card-image p1">
-                            <img src="./assets/support-help.jpg" alt="Personal Portfolio" width="800" height="230">
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <img src="./assets/support-help.jpg" alt="Software Maintenance & Support" width="800" height="230">
                         </div>
                         <div class="project-card-content">
                             <h3>Software Maintenance & Support</h3>
-                            <p>
-                                Offering ongoing technical updates, bug fixes, and security patches to keep existing software running smoothly.
-                            </p>
+                            <p>Offering ongoing technical updates, bug fixes, and security patches to keep existing software running smoothly.</p>
                             <div class="project-tags"><span>GitHub</span><span>MantisBT</span><span>Jira</span></div>
                         </div>
                     </div>
 
-                    <div class="project-card" data-category="web-design">
-                        <div class="project-card-image p6">
-                            <img src="./assets/ai-ml.jpg" alt="Personal Portfolio" width="800" height="230">
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <img src="./assets/ai-ml.jpg" alt="AI & Machine Learning" width="800" height="230">
                         </div>
                         <div class="project-card-content">
                             <h3>Artificial Intelligence (AI) & Machine Learning</h3>
-                            <p>
-                                Developing intelligent systems for predictive analytics, chatbots, image recognition, and automation.
-                            </p>
+                            <p>Developing intelligent systems for predictive analytics, chatbots, image recognition, and automation.</p>
                             <div class="project-tags"><span>TensorFlow</span><span>PyTorch</span><span>Scikit learn</span></div>
                         </div>
                     </div>
@@ -138,7 +745,7 @@
 
         <!-- Tech Stack Section -->
         <section class="tech-stack" id="tech">
-             <div class="container">
+            <div class="container">
                 <h2 class="section-title">How We Build It</h2>
                 <p class="section-subtitle">We use a flexible tech stack depending on the project's needs</p>
                 <div class="tech-grid">
@@ -164,27 +771,23 @@
                 <div class="project-filters">
                     <button class="active" data-filter="all">All Projects</button>
                     <button data-filter="web-design">Web Design</button>
-                    <!-- <button data-filter="mobile-apps">Mobile Apps</button>
-                    <button data-filter="branding">Branding</button> -->
                 </div>
                 <div class="projects-grid">
-                    <div class="project-card" data-category="web-design"><div class="project-card-image p6"><img src="./assets/school.webp" alt="Personal Portfolio" width="800" height="230"></div><div class="project-card-content"><h3>School Portfolio</h3><p>A school portfolio is a systematic and purposeful collection of student work that shows their efforts, progress, and achievements over a period of time. Unlike a single exam, it provides a comprehensive, holistic view of a student's learning journey and growth.</p><div class="project-tags"><span>Node JS</span><span>React JS</span><span>CSS3</span></div><a href="./aps-school/index.html">View Project →</a></div></div>
-                    <div class="project-card" data-category="web-design"><div class="project-card-image p2"><img src="./assets/restorent.webp" alt="Personal Portfolio" width="800" height="230"></div><div class="project-card-content"><h3>Fast Food Order</h3><p>This is a modern, user-friendly ordering platform designed to enhance the customer experience for fast-food restaurants. The website features a clean, intuitive interface for browsing the menu and a streamlined process for placing and customizing orders.</p><div class="project-tags"><span>Flutter</span><span>Firebase</span></div><a href="./quick-bite/index.html">View Project →</a></div></div>
-                    <div class="project-card" data-category="web-design"><div class="project-card-image p4"><img src="./assets/personal-portfolio.webp" alt="Personal Portfolio" width="800" height="230"></div><div class="project-card-content"><h3>Personal Portfolio Page</h3><p>Creating a personal portfolio page is a powerful way to showcase your skills, projects, and experiences to potential employers or clients. It acts as a visual and narrative complement to a traditional text resume, making a stronger impression.</p><div class="project-tags"><span>React JS</span><span>Firebase</span></div><a href="https://proshivamkushwaha.mahsua.com/">View Project →</a></div></div>
-                    <div class="project-card" data-category="web-design"><div class="project-card-image p1"><img src="./assets/beauty-salon.webp" alt="Personal Portfolio" width="800" height="230"></div><div class="project-card-content"><h3>Beauty Salon</h3></p>Whether you're preparing for a special occasion or simply indulging in self-care, we provide personalized services to make you look and feel your best.</p><div class="project-tags"><span>HTML</span><span>JS</span><span>Google Sites</span></div><a href="https://sites.google.com/view/mahsua-beauty-salon/">View Project →</a></div></div>
-                    <div class="project-card" data-category="web-design"><div class="project-card-image p1"><img src="./assets/coaching-institute.webp" alt="Personal Portfolio" width="800" height="230"></div><div class="project-card-content"><h3>Coaching Institute</h3></p>Mahsua Classes, a premier coaching institute dedicated to nurturing academic excellence and guiding students toward success in JEE, NEET, and Board Examinations (Class 10th & 12th).</p><div class="project-tags"><span>HTML</span><span>JS</span><span>Google Sites</span></div><a href="https://sites.google.com/view/mahsua-classes/">View Project →</a></div></div>
-                    <div class="project-card" data-category="web-design"><div class="project-card-image p6"><img src="./assets/result-portal.webp" alt="Personal Portfolio" width="800" height="230"></div><div class="project-card-content"><h3>Online Result Portal</h3><p>With just a few clicks, students can instantly view and download their results anytime, anywhere</p><div class="project-tags"><span>React JS</span><span>Firebase</span><span>Sql</span></div><a href="https://resultportal.mahsua.com/">View Project →</a></div></div>
-                    <div class="project-card" data-category="web-design"><div class="project-card-image p6"><img src="./assets/marriage-garden.webp" alt="Personal Portfolio" width="800" height="230"></div><div class="project-card-content"><h3>Marriage Garden</h3><p>Your Perfect Venue for Every Celebration, We specialize in turning your dream events into unforgettable realities.</p><div class="project-tags"><span>React JS</span><span>Firebase</span><span>Sql</span></div><a href="./marriage-garden/index.html">View Project →</a></div></div>
-                    <div class="project-card" data-category="web-design"><div class="project-card-image p1"><img src="./assets/e-commerce.webp" alt="Personal Portfolio" width="800" height="230"></div><div class="project-card-content"><h3>E-Commerce Platform</h3><p>Modern online shopping experience with seamless user interface and secure payment integration.</p><div class="project-tags"><span>React</span><span>Node.js</span></div><a href="./mahsua-market/index.html">View Project →</a></div></div>
-                    <!-- <div class="project-card" data-category="mobile-apps"><div class="project-card-image p5"><img src="./assets/personal-portfolio.jpg" alt="Personal Portfolio" width="800" height="230"></div><div class="project-card-content"><h3>Restaurant Ordering App</h3><p>Mobile app for restaurant ordering with real-time tracking and payment processing.</p><div class="project-tags"><span>React Native</span><span>Stripe</span></div><a href="#">View Project →</a></div></div> -->
-                    <!-- <div class="project-card" data-category="branding"><div class="project-card-image p3"><img src="./assets/personal-portfolio.jpg" alt="Personal Portfolio" width="800" height="230"></div><div class="project-card-content"><h3>Brand Identity Design</h3><p>Complete brand identity package including logo design, color palette, and brand guidelines.</p><div class="project-tags"><span>Illustrator</span><span>Photoshop</span></div><a href="#">View Project →</a></div></div> -->
+                    <div class="project-card" data-category="web-design"><div class="project-card-image"><img src="./assets/school.webp" alt="School Portfolio" width="800" height="230"></div><div class="project-card-content"><h3>School Portfolio</h3><p>A school portfolio is a systematic and purposeful collection of student work that shows their efforts, progress, and achievements over a period of time.</p><div class="project-tags"><span>Node JS</span><span>React JS</span><span>CSS3</span></div><a href="./aps-school/index.html">View Project →</a></div></div>
+                    <div class="project-card" data-category="web-design"><div class="project-card-image"><img src="./assets/restorent.webp" alt="Fast Food Order" width="800" height="230"></div><div class="project-card-content"><h3>Fast Food Order</h3><p>A modern, user-friendly ordering platform designed to enhance the customer experience for fast-food restaurants.</p><div class="project-tags"><span>Flutter</span><span>Firebase</span></div><a href="./quick-bite/index.html">View Project →</a></div></div>
+                    <div class="project-card" data-category="web-design"><div class="project-card-image"><img src="./assets/personal-portfolio.webp" alt="Personal Portfolio" width="800" height="230"></div><div class="project-card-content"><h3>Personal Portfolio Page</h3><p>Creating a personal portfolio page is a powerful way to showcase your skills, projects, and experiences to potential employers or clients.</p><div class="project-tags"><span>React JS</span><span>Firebase</span></div><a href="https://proshivamkushwaha.mahsua.com/">View Project →</a></div></div>
+                    <div class="project-card" data-category="web-design"><div class="project-card-image"><img src="./assets/beauty-salon.webp" alt="Beauty Salon" width="800" height="230"></div><div class="project-card-content"><h3>Beauty Salon</h3><p>Whether you're preparing for a special occasion or simply indulging in self-care, we provide personalized services to make you look and feel your best.</p><div class="project-tags"><span>HTML</span><span>JS</span><span>Google Sites</span></div><a href="https://sites.google.com/view/mahsua-beauty-salon/">View Project →</a></div></div>
+                    <div class="project-card" data-category="web-design"><div class="project-card-image"><img src="./assets/coaching-institute.webp" alt="Coaching Institute" width="800" height="230"></div><div class="project-card-content"><h3>Coaching Institute</h3><p>Mahsua Classes, a premier coaching institute dedicated to nurturing academic excellence and guiding students toward success.</p><div class="project-tags"><span>HTML</span><span>JS</span><span>Google Sites</span></div><a href="https://sites.google.com/view/mahsua-classes/">View Project →</a></div></div>
+                    <div class="project-card" data-category="web-design"><div class="project-card-image"><img src="./assets/result-portal.webp" alt="Online Result Portal" width="800" height="230"></div><div class="project-card-content"><h3>Online Result Portal</h3><p>With just a few clicks, students can instantly view and download their results anytime, anywhere.</p><div class="project-tags"><span>React JS</span><span>Firebase</span><span>Sql</span></div><a href="https://resultportal.mahsua.com/">View Project →</a></div></div>
+                    <div class="project-card" data-category="web-design"><div class="project-card-image"><img src="./assets/marriage-garden.webp" alt="Marriage Garden" width="800" height="230"></div><div class="project-card-content"><h3>Marriage Garden</h3><p>Your Perfect Venue for Every Celebration, We specialize in turning your dream events into unforgettable realities.</p><div class="project-tags"><span>React JS</span><span>Firebase</span><span>Sql</span></div><a href="./marriage-garden/index.html">View Project →</a></div></div>
+                    <div class="project-card" data-category="web-design"><div class="project-card-image"><img src="./assets/e-commerce.webp" alt="E-Commerce Platform" width="800" height="230"></div><div class="project-card-content"><h3>E-Commerce Platform</h3><p>Modern online shopping experience with seamless user interface and secure payment integration.</p><div class="project-tags"><span>React</span><span>Node.js</span></div><a href="./mahsua-market/index.html">View Project →</a></div></div>
                 </div>
             </div>
         </section>
 
         <!-- Why Choose Us Section -->
         <section class="why-choose" id="about">
-             <div class="container">
+            <div class="container">
                 <h2 class="section-title">Why Choose Mahsua Technology?</h2>
                 <div class="features-grid">
                     <div class="feature-item"><div class="feature-icon">✅</div><div><h4>Browser-Based Solutions</h4><p>No complex software or heavy systems – Everything runs in your browser</p></div></div>
@@ -200,8 +803,8 @@
         <!-- Contact Section -->
         <section class="contact" id="contact">
             <div class="container">
-                <h2>Get Started with Us</h2>
-                <p>Let's talk about your idea — we'll guide you through tech, design, development, and beyond.</p>
+                <h2 class="section-title">Get Started with Us</h2>
+                <p class="section-subtitle">Let's talk about your idea — we'll guide you through tech, design, development, and beyond.</p>
                 <form class="contact-form" id="contactForm">
                     <div class="form-group"><input type="text" id="fullName" name="fullName" placeholder="Full Name *" required></div>
                     <div class="form-group"><input type="tel" id="phone" name="phone" placeholder="Mobile/Phone Number *" required></div>
@@ -217,12 +820,11 @@
         </section>
     </main>
     
-    <!-- FOOTER PASTED HERE -->
     <footer>
         <div class="container">
             <div class="footer-links">
                 <a href="./pages/about-us.html">About Us</a>
-                <a href="./pages/opensource.html">🌱Open Source</a>
+                <a href="./pages/opensource.html">🌱 Open Source</a>
                 <a href="#contact">Contact Us</a>
                 <a href="https://blog.mahsua.com/">Blogs</a>
                 <a href="./pages/privacy-policy.html">Privacy Policy</a>
@@ -232,21 +834,103 @@
                 <a href="./pages/digital-school-plans.html">School Plans</a>
             </div>
             <p>Made With ❤️ INDIA ~ Designed by <a href="https://proshivamkushwaha.mahsua.com/"> SHIVAM KUSHWAHA </a></p>
-            <p class="text-sm opacity-75">Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
+            <p class="text-sm">Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
         </div>
     </footer>
 
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            
+            const themeToggle = document.querySelector('.theme-toggle');
+            if (newTheme === 'dark') {
+                themeToggle.innerHTML = '☀️ Light';
+            } else {
+                themeToggle.innerHTML = '🌙 Dark';
+            }
+            
+            localStorage.setItem('theme', newTheme);
+        }
 
-    <div class="modal-overlay" id="techModalOverlay">
-        <div class="modal-content">
-            <button class="modal-close" id="modalCloseBtn">&times;</button>
-            <h3 id="modalTitle">Technology Title</h3>
-            <p id="modalDescription">Technology description goes here.</p>
-        </div>
-    </div>
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+        const themeToggleBtn = document.querySelector('.theme-toggle');
+        if (savedTheme === 'dark') {
+            themeToggleBtn.innerHTML = '☀️ Light';
+        } else {
+            themeToggleBtn.innerHTML = '🌙 Dark';
+        }
 
-    <script src="script.js"></script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgressBar').style.width = scrolled + '%';
+        });
+
+        // Project Filters
+        const filterButtons = document.querySelectorAll('.project-filters button');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    const navMenu = document.getElementById('navMenu');
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Contact Form Handler
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('fullName').value;
+                const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                const whatsappMessage = `Name: ${name}%0APhone: ${phone}%0AEmail: ${email}%0AMessage: ${message}`;
+                window.open(`https://wa.me/919752107808?text=${whatsappMessage}`, '_blank');
+            });
+        }
+    </script>
 </body>
 </html>
