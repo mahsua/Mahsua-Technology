@@ -3,26 +3,405 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers - Mahsua Technology</title>
+    <title>Privacy Policy - Mahsua Technology</title>
     <link rel="icon" href="../favicon.png" type="image/svg+xml">
-    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables for Pink/Blue/Green Theme */
+        :root {
+            /* Light Mode */
+            --bg-gradient-start: #ffe6f0;
+            --bg-gradient-middle: #e0f3ff;
+            --bg-gradient-end: #e6ffe6;
+            --container-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #2d3748;
+            --text-secondary: #4a5568;
+            --heading-gradient: linear-gradient(135deg, #ec489a, #3b82f6, #22c55e);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(236, 72, 153, 0.2);
+            --button-gradient: linear-gradient(135deg, #ec489a, #3b82f6);
+            --glass-border: rgba(236, 72, 153, 0.2);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            --table-header-bg: rgba(236, 72, 153, 0.1);
+            --table-border: rgba(236, 72, 153, 0.2);
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient-start: #1a1a2e;
+            --bg-gradient-middle: #16213e;
+            --bg-gradient-end: #0f3460;
+            --container-bg: rgba(30, 41, 59, 0.95);
+            --text-color: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --card-bg: rgba(51, 65, 85, 0.9);
+            --card-border: rgba(236, 72, 153, 0.2);
+            --glass-border: rgba(236, 72, 153, 0.2);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            --table-header-bg: rgba(236, 72, 153, 0.2);
+            --table-border: rgba(236, 72, 153, 0.2);
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-middle) 50%, var(--bg-gradient-end) 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* Glass Grid Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            background-image: 
+                linear-gradient(rgba(236, 72, 153, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+                radial-gradient(circle at top left, rgba(236, 72, 153, 0.12), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.1), transparent 26%);
+            background-size: 26px 26px, 26px 26px, 100% 100%, 100% 100%;
+            background-position: 0 0, 0 0, 0 0, 0 0;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Scroll Progress Bar */
+        #scrollProgressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #ec489a, #3b82f6, #22c55e);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--container-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #ec489a;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #ec489a;
+        }
+
+        .theme-toggle {
+            background: linear-gradient(135deg, #ec489a, #3b82f6);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+
+        /* Main Content */
+        .policy-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 32px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            animation: riseIn 0.7s ease-out;
+        }
+
+        .policy-container h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--heading-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .policy-container h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 1.5rem 0 1rem;
+            color: var(--text-color);
+            border-left: 4px solid #ec489a;
+            padding-left: 1rem;
+        }
+
+        .policy-container h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem;
+            color: var(--text-color);
+        }
+
+        .policy-container p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .policy-container strong {
+            color: #ec489a;
+        }
+
+        .policy-container ul {
+            list-style: none;
+            margin: 1rem 0;
+            padding-left: 0;
+        }
+
+        .policy-container ul li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .policy-container ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #ec489a;
+        }
+
+        .policy-container ul ul {
+            margin: 0.5rem 0 0.5rem 1.5rem;
+        }
+
+        .policy-container hr {
+            margin: 2rem 0;
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+        }
+
+        /* Table Styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid var(--table-border);
+            padding: 1rem;
+            text-align: left;
+            color: var(--text-secondary);
+        }
+
+        .data-table th {
+            background: var(--table-header-bg);
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .data-table td {
+            background: transparent;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(59, 130, 246, 0.1));
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info i {
+            color: #ec489a;
+            margin-right: 0.5rem;
+            width: 24px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--container-bg);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 0 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ec489a;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        footer a {
+            color: #ec489a;
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .policy-container {
+                padding: 1.5rem;
+            }
+
+            .policy-container h1 {
+                font-size: 1.8rem;
+            }
+
+            .policy-container h2 {
+                font-size: 1.3rem;
+            }
+
+            .data-table {
+                font-size: 0.85rem;
+                display: block;
+                overflow-x: auto;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
 </head>
 <body data-theme="light">
-    
-    <!-- HEADER PASTED HERE (NOTICE THE UPDATED PATHS: ../) -->
     <div id="scrollProgressBar"></div>
+    
     <header>
         <nav class="container">
             <div class="logo-section">
                 <a href="../index.html"><img src="../mahsua-technology.png" alt="Mahsua Logo" class="logo-img" /></a>
             </div>
-            <button class="hamburger" onclick="toggleMobileMenu()">⋮</button>
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
             <ul class="nav-links" id="navMenu">
                 <li><a href="../index.html#services">Services</a></li>
                 <li><a href="./free-services.html">Free Services</a></li>
+                <li><a href="./opensource.html">🌱 Open Source</a></li>
                 <li><a href="../index.html#tech">Technology</a></li>
                 <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="about-us.html">About</a></li>
+                <li><a href="./about-us.html">About</a></li>
                 <li><a href="../index.html#contact">Contact</a></li>
                 <li><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></li>
             </ul>
@@ -30,222 +409,257 @@
     </header>
 
     <main>
-        <div class="container" style="padding-top: 50px; padding-bottom: 20px;">
-            <h1>Mahsua Technology - Detailed Privacy Policy</h1>
+        <div class="container">
+            <div class="policy-container">
+                <h1>Privacy Policy</h1>
+                <p><strong>Mahsua Technology - Detailed Privacy Policy</strong></p>
+                <p><strong>Effective Date:</strong> October 5, 2025</p>
+                <p><strong>Last Updated:</strong> October 5, 2025</p>
 
-            <p><strong>Effective Date:</strong> October 5, 2025</p>
-            <p><strong>Last Updated:</strong> October 5, 2025</p>
+                <hr>
 
-            <hr>
+                <h2>1. Our Commitment and Scope</h2>
+                <p>
+                    <strong>Mahsua Technology</strong> (referred to as "Mahsua," "we," "us," or "our"), a core division of <strong>Mahsua India</strong>, is committed to our vision of making technology simple, affordable, and accessible while upholding the highest standards of data protection.
+                </p>
+                <p>
+                    This Privacy Policy governs the manner in which we collect, use, maintain, and disclose information collected from clients (schools, businesses, etc.) and end-users (students, parents, and employees) through our digital services, including the <strong>Mahsua Result Portal</strong>, custom applications, websites, and digital consulting services (collectively, the "Service").
+                </p>
+                <p>
+                    By using any part of our Service, you confirm your understanding and agreement to the terms outlined in this policy.
+                </p>
 
-            <h2>1. Our Commitment and Scope</h2>
+                <hr>
 
-            <p>
-                <strong>Mahsua Technology</strong> (referred to as "Mahsua," "we," "us," or "our"), a core division of <strong>Mahsua India</strong>, is committed to our vision of making technology simple, affordable, and accessible while upholding the highest standards of data protection.
-            </p>
+                <h2>2. Roles in Data Processing</h2>
+                <p>Understanding the roles is critical, particularly for the Mahsua Result Portal, which handles sensitive educational data:</p>
+                <ul>
+                    <li>
+                        <strong>Data Controller (Our Client):</strong> This is the client organization (e.g., the school or business) that owns the data and decides <em>why</em> and <em>how</em> personal information is processed. <strong>They are the first point of contact for all data rights requests.</strong>
+                    </li>
+                    <li>
+                        <strong>Data Processor (Mahsua Technology):</strong> We act strictly on behalf of and under the instructions of the Data Controller. Our role is limited to providing the secure platform and tools to process, store, and display the data as directed by the client. We do not use the data for any purpose outside of our client agreement.
+                    </li>
+                </ul>
 
-            <p>
-                This Privacy Policy governs the manner in which we collect, use, maintain, and disclose information collected from clients (schools, businesses, etc.) and end-users (students, parents, and employees) through our digital services, including the <strong>Mahsua Result Portal</strong>, custom applications, websites, and digital consulting services (collectively, the "Service").
-            </p>
+                <hr>
 
-            <p>
-                By using any part of our Service, you confirm your understanding and agreement to the terms outlined in this policy.
-            </p>
+                <h2>3. Information We Collect and Sources</h2>
 
-            <hr>
+                <h3>A. Client/Organization Administrative Data</h3>
+                <p>This information is collected directly from the client to establish and manage the service contract.</p>
+                <ul>
+                    <li><strong>Source:</strong> Direct communication, registration forms, and contract documents.</li>
+                    <li><strong>Data Collected:</strong> Organization legal name, physical and billing addresses, contact numbers, official email addresses, GST/tax information, and the names/credentials of authorized administrative personnel.</li>
+                </ul>
 
-            <h2>2. Roles in Data Processing</h2>
+                <h3>B. End-User (Student/Employee) Sensitive Data</h3>
+                <p>This information is provided to us by the Data Controller (the client) for processing through the Mahsua Result Portal or other custom apps.</p>
+                <ul>
+                    <li><strong>Source:</strong> Provided directly by the client organization (school/business) via secure channels.</li>
+                    <li><strong>Data Collected:</strong>
+                        <ul>
+                            <li><strong>Personal Identifiers:</strong> Full name, date of birth, unique registration/enrollment ID, employee ID, and class/grade.</li>
+                            <li><strong>Academic/Performance Records:</strong> Subject-wise grades, marks, internal assessment results, attendance records, promotion/status history, and related metadata necessary for official documentation.</li>
+                            <li><strong>Contact Information:</strong> Parent/Guardian names, contact numbers, and emails provided by the client for official notifications related to the service.</li>
+                        </ul>
+                    </li>
+                </ul>
 
-            <p>Understanding the roles is critical, particularly for the Mahsua Result Portal, which handles sensitive educational data:</p>
-            <ul style="list-style-type: disc; list-style-position: outside; padding-left: 2.5rem;">
-                <li>
-                    <strong>Data Controller (Our Client):</strong> This is the client organization (e.g., the school or business) that owns the data and decides <em>why</em> and <em>how</em> personal information is processed. <strong>They are the first point of contact for all data rights requests.</strong>
-                </li>
-                <li>
-                    <strong>Data Processor (Mahsua Technology):</strong> We act strictly on behalf of and under the instructions of the Data Controller. Our role is limited to providing the secure platform and tools to process, store, and display the data as directed by the client. We do not use the data for any purpose outside of our client agreement.
-                </li>
-            </ul>
+                <h3>C. Technical & Usage Data</h3>
+                <p>This information is automatically collected when users interact with our website or applications to ensure system stability and optimize service delivery.</p>
+                <ul>
+                    <li><strong>Source:</strong> Automated server logs and tracking mechanisms.</li>
+                    <li><strong>Data Collected:</strong> Internet Protocol (IP) address, browser type and version, device identification, operating system, referrer URLs, pages of our Service visited, the time and date of the visit, and time spent on those pages.</li>
+                    <li><strong>Cookies:</strong> We use cookies to improve user experience, maintain login sessions, and analyze traffic. You can choose to disable cookies via your browser settings, though this may impact certain features of the Service.</li>
+                </ul>
 
-            <hr>
+                <hr>
 
-            <h2>3. Information We Collect and Sources</h2>
+                <h2>4. How We Utilize the Collected Information</h2>
+                <p>We use the data strictly to execute our contractual obligations, maintain security, and enhance the quality of our Service, in line with our "simple technology" commitment.</p>
 
-            <h3>A. Client/Organization Administrative Data</h3>
-            <p>This information is collected directly from the client to establish and manage the service contract.</p>
-            <ul style="list-style-type: disc; list-style-position: outside; padding-left: 2.5rem;">
-                <li><strong>Source:</strong> Direct communication, registration forms, and contract documents.</li>
-                <li><strong>Data Collected:</strong> Organization legal name, physical and billing addresses, contact numbers, official email addresses, GST/tax information, and the names/credentials of authorized administrative personnel.</li>
-            </ul>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Category of Data Use</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Service Delivery & Operation</strong></td>
+                            <td>To securely host, process, and present academic or performance results via the Mahsua Result Portal, ensuring instant and accurate digital delivery as per client instructions.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Account & Billing Management</strong></td>
+                            <td>To issue invoices, manage client subscriptions, process payments, and maintain the legal and financial validity of our contracts.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>System Integrity & Security</strong></td>
+                            <td>To diagnose and resolve technical problems, monitor the system for vulnerabilities, prevent unauthorized access, and protect against malicious activities and fraud.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Service Improvement & Analysis</strong></td>
+                            <td>To perform non-personally-identifiable internal research and usage analysis to optimize the functionality, speed, and user interface of our technology solutions.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Essential Communication</strong></td>
+                            <td>To send essential administrative messages, technical support information, and security alerts to the authorized client contacts.</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <h3>B. End-User (Student/Employee) Sensitive Data</h3>
-            <p>This information is provided to us by the Data Controller (the client) for processing through the Mahsua Result Portal or other custom apps.</p>
-            <ul style="list-style-type: disc; list-style-position: outside; padding-left: 2.5rem;">
-                <li><strong>Source:</strong> Provided directly by the client organization (school/business) via secure channels.</li>
-                <li><strong>Data Collected:</strong>
-                    <ul style="list-style-type: disc; list-style-position: outside; padding-left: 2.5rem;">
-                        <li><strong>Personal Identifiers:</strong> Full name, date of birth, unique registration/enrollment ID, employee ID, and class/grade.</li>
-                        <li><strong>Academic/Performance Records:</strong> Subject-wise grades, marks, internal assessment results, attendance records, promotion/status history, and related metadata necessary for official documentation.</li>
-                        <li><strong>Contact Information:</strong> Parent/Guardian names, contact numbers, and emails provided by the client for official notifications related to the service.</li>
-                    </ul>
-                </li>
-            </ul>
+                <hr>
 
-            <h3>C. Technical & Usage Data</h3>
-            <p>This information is automatically collected when users interact with our website or applications to ensure system stability and optimize service delivery.</p>
-            <ul style="list-style-type: disc; list-style-position: outside; padding-left: 2.5rem;">
-                <li><strong>Source:</strong> Automated server logs and tracking mechanisms.</li>
-                <li><strong>Data Collected:</strong> Internet Protocol (IP) address, browser type and version, device identification, operating system, referrer URLs, pages of our Service visited, the time and date of the visit, and time spent on those pages.</li>
-                <li><strong>Cookies:</strong> We use cookies to improve user experience, maintain login sessions, and analyze traffic. You can choose to disable cookies via your browser settings, though this may impact certain features of the Service.</li>
-            </ul>
+                <h2>5. Data Security Measures</h2>
+                <p>Mahsua Technology is committed to protecting your data. In line with industry best practices, we implement robust security practices:</p>
+                <ul>
+                    <li><strong>Data Minimization:</strong> We only process the data strictly necessary to provide the Service.</li>
+                    <li><strong>Encryption at Rest and in Transit:</strong> All sensitive data is stored using advanced encryption and transmitted over secure protocols (HTTPS/SSL) to prevent interception.</li>
+                    <li><strong>Access Controls:</strong> We enforce the principle of least privilege, meaning access to Personal Data is limited strictly to Mahsua employees who require it to perform their job duties (e.g., technical support and deployment).</li>
+                    <li><strong>Data Segregation:</strong> Client data is logically separated within our systems to ensure data from one client cannot be accessed by another.</li>
+                </ul>
+                <p>However, no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to protect your Personal Data, we cannot guarantee its absolute security.</p>
 
-            <hr>
+                <hr>
 
-            <h2>4. How We Utilize the Collected Information</h2>
+                <h2>6. User Responsibility for Data Protection</h2>
+                <p>
+                    <strong>ATTENTION USERS AND CLIENTS:</strong>
+                </p>
+                <p>
+                    While Mahsua Technology takes comprehensive measures to secure the platform and the data entrusted to us, <strong>data security is a shared responsibility.</strong>
+                </p>
+                <p>
+                    <strong>
+                        Mahsua Technology will not be responsible or held liable for the loss or unauthorized disclosure of any Personal Data resulting from a user's or client's decision to willingly share their login credentials, passwords, enrollment details, or any other authentication information with family members, friends, or any unauthorized third party.
+                    </strong>
+                </p>
+                <p>
+                    Users are strictly responsible for maintaining the confidentiality of their access credentials and for all activities that occur under their account. Sharing this information compromises the security measures we have put in place and voids our responsibility for any subsequent data leakage or misuse.
+                </p>
 
-            <p>We use the data strictly to execute our contractual obligations, maintain security, and enhance the quality of our Service, in line with our "simple technology" commitment.</p>
+                <hr>
 
-            <table border="1" cellpadding="10" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Category of Data Use</th>
-                        <th>Purpose</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Service Delivery & Operation</strong></td>
-                        <td>To securely host, process, and present academic or performance results via the Mahsua Result Portal, ensuring instant and accurate digital delivery as per client instructions.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Account & Billing Management</strong></td>
-                        <td>To issue invoices, manage client subscriptions, process payments, and maintain the legal and financial validity of our contracts.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>System Integrity & Security</strong></td>
-                        <td>To diagnose and resolve technical problems, monitor the system for vulnerabilities, prevent unauthorized access, and protect against malicious activities and fraud.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Service Improvement & Analysis</strong></td>
-                        <td>To perform non-personally-identifiable internal research and usage analysis to optimize the functionality, speed, and user interface of our technology solutions.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Essential Communication</strong></td>
-                        <td>To send essential administrative messages, technical support information, and security alerts to the authorized client contacts.</td>
-                    </tr>
-                </tbody>
-            </table>
+                <h2>7. Disclosure of Information</h2>
+                <p>We do not sell, trade, or rent Personal Data to third parties. We disclose information only as necessary and under strict confidentiality agreements:</p>
+                <ul>
+                    <li><strong>To the Data Controller:</strong> All end-user data (student, employee, etc.) is fully accessible to the client organization (the school or business) that provided it.</li>
+                    <li><strong>To Sub-processors (Vendors):</strong> We may use trusted third-party service providers (e.g., cloud hosting, database management) to assist us in operating our Service. These third parties are contractually bound to process data only on our instructions and to maintain confidentiality and security standards equal to or greater than our own.</li>
+                    <li><strong>Legal Compliance:</strong> When required by law, subpoena, or government request to cooperate with legal proceedings or to protect our rights or the safety of others.</li>
+                </ul>
 
-            <hr>
+                <hr>
 
-            <h2>5. Data Security Measures</h2>
+                <h2>8. Data Retention and Your Rights</h2>
 
-            <p>Mahsua Technology is committed to protecting your data. In line with industry best practices, we implement robust security practices:</p>
-            <ul style="list-style-type: disc; list-style-position: outside; padding-left: 2.5rem;">
-                <li><strong>Data Minimization:</strong> We only process the data strictly necessary to provide the Service.</li>
-                <li><strong>Encryption at Rest and in Transit:</strong> All sensitive data is stored using advanced encryption and transmitted over secure protocols (HTTPS/SSL) to prevent interception.</li>
-                <li><strong>Access Controls:</strong> We enforce the principle of least privilege, meaning access to Personal Data is limited strictly to Mahsua employees who require it to perform their job duties (e.g., technical support and deployment).</li>
-                <li><strong>Data Segregation:</strong> Client data is logically separated within our systems to ensure data from one client cannot be accessed by another.</li>
-            </ul>
-            <p>However, no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to protect your Personal Data, we cannot guarantee its absolute security.</p>
+                <h3>A. Data Retention</h3>
+                <p>
+                    We will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy and as strictly required by the client agreement with the respective organization. Upon termination of a client contract, we adhere to the client's instructions regarding the secure deletion or return of their data.
+                </p>
 
-            <hr>
+                <h3>B. Exercising Your Rights</h3>
+                <p>
+                    To exercise your right to access, rectify, erase, or object to the processing of your Personal Data (especially academic results), you must first directly contact the <strong>Data Controller</strong> (the school or organization) that provided us with your data. We will fully cooperate with the client to fulfill any verified requests within the legal timelines.
+                </p>
 
-            <h2>6. User Responsibility for Data Protection</h2>
+                <hr>
 
-            <p>
-                <strong>ATTENTION USERS AND CLIENTS:</strong>
-            </p>
+                <h2>9. Changes to This Privacy Policy</h2>
+                <p>
+                    We reserve the right to update this Privacy Policy at any time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top. We encourage you to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+                </p>
 
-            <p>
-                While Mahsua Technology takes comprehensive measures to secure the platform and the data entrusted to us, **data security is a shared responsibility.**
-            </p>
+                <hr>
 
-            <p>
-                <strong>
-                    Mahsua Technology will not be responsible or held liable for the loss or unauthorized disclosure of any Personal Data resulting from a user's or client's decision to willingly share their login credentials, passwords, enrollment details, or any other authentication information with family members, friends, or any unauthorized third party.
-                </strong>
-            </p>
-
-            <p>
-                Users are strictly responsible for maintaining the confidentiality of their access credentials and for all activities that occur under their account. Sharing this information compromises the security measures we have put in place and voids our responsibility for any subsequent data leakage or misuse.
-            </p>
-
-            <hr>
-
-            <h2>7. Disclosure of Information</h2>
-
-            <p>We do not sell, trade, or rent Personal Data to third parties. We disclose information only as necessary and under strict confidentiality agreements:</p>
-            <ul style="list-style-type: disc; list-style-position: outside; padding-left: 2.5rem;">
-                <li><strong>To the Data Controller:</strong> All end-user data (student, employee, etc.) is fully accessible to the client organization (the school or business) that provided it.</li>
-                <li><strong>To Sub-processors (Vendors):</strong> We may use trusted third-party service providers (e.g., cloud hosting, database management) to assist us in operating our Service. These third parties are contractually bound to process data only on our instructions and to maintain confidentiality and security standards equal to or greater than our own.</li>
-                <li><strong>Legal Compliance:</strong> When required by law, subpoena, or government request to cooperate with legal proceedings or to protect our rights or the safety of others.</li>
-            </ul>
-
-            <hr>
-
-            <h2>8. Data Retention and Your Rights</h2>
-
-            <h3>A. Data Retention</h3>
-            <p>
-                We will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy and as strictly required by the client agreement with the respective organization. Upon termination of a client contract, we adhere to the client’s instructions regarding the secure deletion or return of their data.
-            </p>
-
-            <h3>B. Exercising Your Rights</h3>
-            <p>
-                To exercise your right to access, rectify, erase, or object to the processing of your Personal Data (especially academic results), you must first directly contact the <strong>Data Controller</strong> (the school or organization) that provided us with your data. We will fully cooperate with the client to fulfill any verified requests within the legal timelines.
-            </p>
-
-            <hr>
-
-            <h2>9. Changes to This Privacy Policy</h2>
-
-            <p>
-                We reserve the right to update this Privacy Policy at any time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top. We encourage you to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
-            </p>
-
-            <hr>
-
-            <h2>10. Contact Us</h2>
-
-            <p>If you have any questions, comments, or concerns regarding this Privacy Policy or our practices, please contact us:</p>
-
-            <ul style="list-style-type: disc; list-style-position: outside; padding-left: 2.5rem;">
-                <li><strong>Email:</strong> mahsuatechnology@gmail.com</li>
-                <li><strong>Address:</strong> Mahsua India, Mahsua Technology, Rewa, Madhya Pradesh 486114</li>
-                <li><strong>Phone:</strong> +91 9752107808</li>
-            </ul>
+                <h2>10. Contact Us</h2>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> mahsuatechnology@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Mahsua India, Mahsua Technology, Rewa, Madhya Pradesh 486114</p>
+                    <p><i class="fas fa-phone"></i> <strong>Phone:</strong> +91 9752107808</p>
+                </div>
+            </div>
         </div>
     </main>
     
-    <!-- FOOTER PASTED HERE (NOTICE THE UPDATED PATHS: ../) -->
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="about-us.html">About Us</a>
-                <a href="#contact">Contact Us</a>
+                <a href="./about-us.html">About Us</a>
+                <a href="../index.html#contact">Contact Us</a>
                 <a href="https://blog.mahsua.com/">Blogs</a>
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="terms-and-condition.html">Terms & Conditions</a>
-                <a href="careers.html">Careers</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="digital-school-plans.html">School Plans</a>
+                <a href="./privacy-policy.html">Privacy Policy</a>
+                <a href="./terms-and-condition.html">Terms & Conditions</a>
+                <a href="./careers.html">Careers</a>
+                <a href="./pricing.html">Pricing</a>
+                <a href="./digital-school-plans.html">School Plans</a>
             </div>
-            <p>Made With ❤️ INDIA ~ Designed by <a href="https://proshivamkushwaha.mahsua.com"> SHIVAM KUSHWAHA </a></p><br>
-            <p class="text-sm opacity-75">Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
+            <p>Made With ❤️ INDIA ~ Designed by <a href="https://proshivamkushwaha.mahsua.com"> SHIVAM KUSHWAHA </a></p>
+            <p>Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
         </div>
     </footer>
 
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            
+            const themeToggle = document.querySelector('.theme-toggle');
+            if (newTheme === 'dark') {
+                themeToggle.innerHTML = '☀️ Light';
+            } else {
+                themeToggle.innerHTML = '🌙 Dark';
+            }
+            
+            localStorage.setItem('theme', newTheme);
+        }
 
-    <div class="modal-overlay" id="techModalOverlay">
-        <div class="modal-content">
-            <button class="modal-close" id="modalCloseBtn">&times;</button>
-            <h3 id="modalTitle">Privacy Policy</h3>
-            <p id="modalDescription">Technology description goes here.</p>
-        </div>
-    </div>
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+        const themeToggleBtn = document.querySelector('.theme-toggle');
+        if (savedTheme === 'dark') {
+            themeToggleBtn.innerHTML = '☀️ Light';
+        } else {
+            themeToggleBtn.innerHTML = '🌙 Dark';
+        }
 
-    <script src="../script.js"></script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const progressBar = document.getElementById('scrollProgressBar');
+            if (progressBar) {
+                progressBar.style.width = scrolled + '%';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    const navMenu = document.getElementById('navMenu');
+                    if (navMenu) navMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

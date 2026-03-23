@@ -3,27 +3,544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers - Mahsua Technology</title>
+    <title>Pricing - Mahsua Technology</title>
     <link rel="icon" href="../favicon.png" type="image/svg+xml">
-    <link rel="stylesheet" href="../style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables for Pink/Blue/Green Theme */
+        :root {
+            /* Light Mode */
+            --bg-gradient-start: #ffe6f0;
+            --bg-gradient-middle: #e0f3ff;
+            --bg-gradient-end: #e6ffe6;
+            --container-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #2d3748;
+            --text-secondary: #4a5568;
+            --heading-gradient: linear-gradient(135deg, #ec489a, #3b82f6, #22c55e);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(236, 72, 153, 0.2);
+            --button-gradient: linear-gradient(135deg, #ec489a, #3b82f6);
+            --button-hover: linear-gradient(135deg, #db2777, #2563eb);
+            --tag-bg: rgba(236, 72, 153, 0.1);
+            --tag-color: #ec489a;
+            --glass-border: rgba(236, 72, 153, 0.2);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --faq-bg: rgba(255, 255, 255, 0.8);
+            --border-blue: #3b82f6;
+            --border-pink: #ec489a;
+            --border-green: #22c55e;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient-start: #1a1a2e;
+            --bg-gradient-middle: #16213e;
+            --bg-gradient-end: #0f3460;
+            --container-bg: rgba(30, 41, 59, 0.95);
+            --text-color: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --card-bg: rgba(51, 65, 85, 0.9);
+            --card-border: rgba(236, 72, 153, 0.2);
+            --tag-bg: rgba(236, 72, 153, 0.2);
+            --tag-color: #f472b6;
+            --glass-border: rgba(236, 72, 153, 0.2);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --faq-bg: rgba(51, 65, 85, 0.8);
+            --border-blue: #3b82f6;
+            --border-pink: #ec489a;
+            --border-green: #22c55e;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-middle) 50%, var(--bg-gradient-end) 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* Glass Grid Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            background-image: 
+                linear-gradient(rgba(236, 72, 153, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+                radial-gradient(circle at top left, rgba(236, 72, 153, 0.12), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.1), transparent 26%);
+            background-size: 26px 26px, 26px 26px, 100% 100%, 100% 100%;
+            background-position: 0 0, 0 0, 0 0, 0 0;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Scroll Progress Bar */
+        #scrollProgressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #ec489a, #3b82f6, #22c55e);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--container-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #ec489a;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #ec489a;
+        }
+
+        .theme-toggle {
+            background: var(--button-gradient);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+
+        /* Section Styles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: var(--heading-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Pricing Grid */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+            animation: riseIn 0.7s ease-out;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .badge-blue { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .badge-pink { background: linear-gradient(135deg, #ec489a, #db2777); }
+        .badge-green { background: linear-gradient(135deg, #22c55e, #16a34a); }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 1rem 0 1rem;
+            color: var(--text-color);
+        }
+
+        .price {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--heading-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .price-desc {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .features-list li i {
+            margin-top: 0.2rem;
+            font-size: 0.85rem;
+        }
+
+        .check-blue { color: #3b82f6; }
+        .check-pink { color: #ec489a; }
+        .check-green { color: #22c55e; }
+
+        .pricing-btn {
+            width: 100%;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            margin-top: 1rem;
+        }
+
+        .btn-blue { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; }
+        .btn-pink { background: linear-gradient(135deg, #ec489a, #db2777); color: white; }
+        .btn-green { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; }
+
+        .pricing-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Process Steps */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .process-step {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-4px);
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--button-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .step-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .faq-item {
+            background: var(--faq-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Why Choose Section */
+        .why-choose-grid {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .why-choose-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .why-choose-item:hover {
+            background: rgba(236, 72, 153, 0.05);
+        }
+
+        .why-icon {
+            font-size: 1.25rem;
+            min-width: 32px;
+        }
+
+        .why-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .why-text strong {
+            color: var(--text-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--container-bg);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ec489a;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        footer a {
+            color: #ec489a;
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body data-theme="light">
-    
-    <!-- HEADER PASTED HERE (NOTICE THE UPDATED PATHS: ../) -->
     <div id="scrollProgressBar"></div>
+    
     <header>
         <nav class="container">
             <div class="logo-section">
                 <a href="../index.html"><img src="../mahsua-technology.png" alt="Mahsua Logo" class="logo-img" /></a>
             </div>
-            <button class="hamburger" onclick="toggleMobileMenu()">⋮</button>
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
             <ul class="nav-links" id="navMenu">
                 <li><a href="../index.html#services">Services</a></li>
                 <li><a href="./free-services.html">Free Services</a></li>
+                <li><a href="./opensource.html">🌱 Open Source</a></li>
                 <li><a href="../index.html#tech">Technology</a></li>
                 <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="about-us.html">About</a></li>
+                <li><a href="./about-us.html">About</a></li>
                 <li><a href="../index.html#contact">Contact</a></li>
                 <li><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></li>
             </ul>
@@ -31,239 +548,231 @@
     </header>
 
     <main>
-       <!-- Pricing Page Content (Version 6) -->
-    <!-- Pricing Section -->
-    <section class="py-16 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
+        <div class="container" style="padding-top: 80px; padding-bottom: 60px;">
+            <!-- Pricing Section -->
+            <section>
                 <h2 class="section-title">Digital Presence Solutions</h2>
                 <p class="section-subtitle">The foundational element, acting as a central point to showcase your brand, products, and services.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Plan 1: Basic Website -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-2 border-blue-500 card-hover relative transition-colors duration-300">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <span class="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Business Starter</span>
+                
+                <div class="pricing-grid">
+                    <!-- Plan 1: Basic Website -->
+                    <div class="pricing-card">
+                        <div class="card-badge badge-blue">Business Starter</div>
+                        <h3>Single Page Website</h3>
+                        <div class="price">
+                            <span class="price-amount">₹3,000 – ₹4,000</span>
+                        </div>
+                        <div class="price-desc">Great for personal resumes, freelancer pages, or quick campaigns</div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check check-blue"></i> <span>Custom domain (.in or .com)</span></li>
+                            <li><i class="fas fa-check check-blue"></i> <span>Custom layout and color palette</span></li>
+                            <li><i class="fas fa-check check-blue"></i> <span>WhatsApp chat button, contact forms</span></li>
+                            <li><i class="fas fa-check check-blue"></i> <span>Lightweight and fast to load</span></li>
+                            <li><i class="fas fa-check check-blue"></i> <span>Professional online presence</span></li>
+                        </ul>
+                        <button class="pricing-btn btn-blue" onclick="window.location.href='../index.html#contact'">Get Started</button>
                     </div>
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Single Page Website</h3>
-                        <div class="text-4xl font-bold text-blue-600 mb-2">₹3,000 – ₹4,000</div>
-                        <div class="text-gray-500">Great for personal resumes, freelancer pages, or quick campaigns</div>
-                    </div>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span>Custom domain (.in or .com)</span>
-                        </li>
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span>Custom layout and color palette.</span>
-                        </li>
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span>WhatsApp chat button, contact forms.</span>
-                        </li>
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span>Lightweight and fast to load.</span>
-                        </li>
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span>Professional online presence</span>
-                        </li>
-                    </ul>
-                    <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                        Get Started
-                    </button>
-                </div>
 
-                <!-- Plan 5: Complete Digital School -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-2 border-pink-500 card-hover relative transition-colors duration-300">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <span class="bg-pink-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                    <!-- Plan 2: Multi-Page Website -->
+                    <div class="pricing-card">
+                        <div class="card-badge badge-pink">Most Popular</div>
+                        <h3>5+ Page Website</h3>
+                        <div class="price">
+                            <span class="price-amount">₹4,500 – ₹50,000</span>
+                        </div>
+                        <div class="price-desc">Perfect for small businesses, wellness professionals, and consultancies</div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check check-pink"></i> <span>Custom domain (.in or .com)</span></li>
+                            <li><i class="fas fa-check check-pink"></i> <span>Pages like Home, About, Services, Contact, Portfolio</span></li>
+                            <li><i class="fas fa-check check-pink"></i> <span>Optional blog or testimonial section</span></li>
+                            <li><i class="fas fa-check check-pink"></i> <span>Google Maps, on-page SEO, contact integration</span></li>
+                            <li><i class="fas fa-check check-pink"></i> <span>Total digital transformation</span></li>
+                        </ul>
+                        <button class="pricing-btn btn-pink" onclick="window.location.href='../index.html#contact'">Get Started</button>
                     </div>
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">5+ Page Website</h3>
-                        <div class="text-4xl font-bold text-pink-600 dark:text-pink-400 mb-2">₹4,500 – ₹50,000</div>
-                        <div class="text-gray-500">Perfect for small businesses, wellness professionals, and consultancies</div>
-                    </div>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span>Custom domain (.in or .com)</span>
-                        </li>
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span>Pages like Home, About, Services, Contact, and Portfolio</span>
-                        </li>
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span>Optional blog or testimonial section</span>
-                        </li>
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span>Google Maps, on-page SEO, and contact integration</span>
-                        </li>
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span>Total digital transformation</span>
-                        </li>
-                    </ul>
-                    <button class="w-full bg-pink-600 text-white py-3 rounded-lg font-semibold hover:bg-pink-700 transition-colors">
-                        Get Started
-                    </button>
-                </div>
 
-                <!-- Plan 6: Enterprise (Custom) -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-2 border-green-500 card-hover relative transition-colors duration-300">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <span class="bg-green-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Custom</span>
+                    <!-- Plan 3: Enterprise -->
+                    <div class="pricing-card">
+                        <div class="card-badge badge-green">Custom</div>
+                        <h3>Enterprise</h3>
+                        <div class="price">
+                            <span class="price-amount">Custom Pricing</span>
+                        </div>
+                        <div class="price-desc">Tailored for your specific needs</div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check check-green"></i> <span>Custom Programming Language</span></li>
+                            <li><i class="fas fa-check check-green"></i> <span>Custom Database</span></li>
+                            <li><i class="fas fa-check check-green"></i> <span>Custom Domain (.com .in .org etc.)</span></li>
+                            <li><i class="fas fa-check check-green"></i> <span>API integrations</span></li>
+                            <li><i class="fas fa-check check-green"></i> <span>Dedicated server & security</span></li>
+                            <li><i class="fas fa-check check-green"></i> <span>Custom layout and color palette</span></li>
+                        </ul>
+                        <button class="pricing-btn btn-green" onclick="window.location.href='../index.html#contact'">Contact for Custom Plan</button>
                     </div>
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Enterprise</h3>
-                        <div class="text-4xl font-bold text-green-600 dark:text-pink-400 mb-2">₹4,500 – ₹50,000</div>
-                        <div class="text-gray-500">Tailored for your needs</div>
-                    </div>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-300 mr-3 mt-1">✓</span>
-                            <span>Custom Programming Language</span>
-                        </li>
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-300 mr-3 mt-1">✓</span>
-                            <span>Custom DataBase</span>
-                        </li>
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-300 mr-3 mt-1">✓</span>
-                            <span>Custom Domain (.com .in .org etc.)</span>
-                        </li>
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-300 mr-3 mt-1">✓</span>
-                            <span>API integrations</span>
-                        </li>
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-300 mr-3 mt-1">✓</span>
-                            <span>Dedicated server & security</span>
-                        </li>
-                        <li class="flex items-start text-gray-500">
-                            <span class="text-green-300 mr-3 mt-1">✓</span>
-                            <span>Custom layout and color palette.</span>
-                        </li>
-                    </ul>
-                    <button class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
-                        Contact for Custom Plan
-                    </button>
                 </div>
-            </div>
+            </section>
+
             <!-- Payment Process Section -->
-            <div class="mt-20 mx-auto">
-            <h2 class="section-title flex items-center justify-center gap-2">
-                💳 Payment Process
-            </h2>
-            <p class="section-subtitle text-center mb-10">
-                Transparent and milestone-based payment system for a smooth project journey.
-            </p>
+            <section>
+                <h2 class="section-title">💳 Payment Process</h2>
+                <p class="section-subtitle">Transparent and milestone-based payment system for a smooth project journey.</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Step 1 -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-blue-500 transition-all hover:shadow-2xl">
-                <h3 class="text-xl font-semibold text-blue-600 mb-3">1️⃣ 20% – Project Initiation</h3>
-                <p class="text-gray-500">
-                    After completing the requirement gathering phase and confirming the project workflow, 
-                    a payment of <b>20% of the total cost</b> is required to begin development. 
-                    Once received, we start the project and provide <b>daily updates</b> on progress.
-                </p>
-                </div>
+                <div class="process-grid">
+                    <div class="process-step">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">20% – Project Initiation</div>
+                        </div>
+                        <p class="step-text">After completing the requirement gathering phase and confirming the project workflow, a payment of <strong>20% of the total cost</strong> is required to begin development. Once received, we start the project and provide <strong>daily updates</strong> on progress.</p>
+                    </div>
 
-                <!-- Step 2 -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-pink-500 transition-all hover:shadow-2xl">
-                <h3 class="text-xl font-semibold text-pink-600 mb-3">2️⃣ 60% – Development Completion (80% Milestone)</h3>
-                <p class="text-gray-500">
-                    When <b>80% of the project</b> is complete, we’ll share a <b>live testing link</b> for review. 
-                    The next <b>60% payment</b> confirms continued development toward final delivery.
-                </p>
-                </div>
+                    <div class="process-step">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-title">60% – Development Completion</div>
+                        </div>
+                        <p class="step-text">When <strong>80% of the project</strong> is complete, we'll share a <strong>live testing link</strong> for review. The next <strong>60% payment</strong> confirms continued development toward final delivery.</p>
+                    </div>
 
-                <!-- Step 3 -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-green-500 transition-all hover:shadow-2xl">
-                <h3 class="text-xl font-semibold text-green-600 mb-3">3️⃣ 20% – Final Delivery & Handover</h3>
-                <p class="text-gray-500">
-                    Once the project is <b>100% complete</b> and approved, the final <b>20% payment</b> is due. 
-                    After receiving it, we’ll deliver the full project code, configure your custom domain, 
-                    and hand over <b>Admin credentials</b> securely.
-                </p>
+                    <div class="process-step">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-title">20% – Final Delivery</div>
+                        </div>
+                        <p class="step-text">Once the project is <strong>100% complete</strong> and approved, the final <strong>20% payment</strong> is due. After receiving it, we'll deliver the full project code, configure your custom domain, and hand over <strong>Admin credentials</strong> securely.</p>
+                    </div>
                 </div>
-            </div>
-            </div>
-            <!-- End Payment Process Section -->
+            </section>
 
             <!-- FAQ Section -->
-            <div class="mt-20 mx-auto">
+            <section>
                 <h2 class="section-title">Frequently Asked Questions</h2>
-                <div class="space-y-6">
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">How long does it take to build a Website?</h3>
-                        <p class="text-gray-500">Single-page sites are usually delivered within 2–4 days. Five-page sites or revamps typically take 5–7 working days, depending on content readiness and feedback.</p>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">How long does it take to build a Website?</div>
+                        <div class="faq-answer">Single-page sites are usually delivered within 2–4 days. Five-page sites or revamps typically take 5–7 working days, depending on content readiness and feedback.</div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Is there any ongoing cost after development? </h3>
-                        <p class="text-gray-500">No hosting fees! You only pay for future updates or maintenance if you need our help. Otherwise, you can manage your site for free.</p>
+                    <div class="faq-item">
+                        <div class="faq-question">Is there any ongoing cost after development?</div>
+                        <div class="faq-answer">No hosting fees! You only pay for future updates or maintenance if you need our help. Otherwise, you can manage your site for free.</div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">What if I need more than 5 pages or special features? </h3>
-                        <p class="text-gray-500">We offer custom packages for larger websites or advanced features—just let us know your requirements! </p>
-                    </div>
-                </div>
-            </div>
-            <!-- FAQ Section -->
-            <div class="mt-20 mx-auto">
-                <h2 class="section-title">Why Choose Mahsua Technology For Your Business?</h2>
-                <div class="space-y-6">
-                    <div class="bg-white p-10 rounded-lg shadow-sm">
-                        <p class="text-gray-500"><b>✅ Multiple Technology Options :</b> Google Sites, WordPress, Firebase, or fully custom code — we adapt to your unique needs</p>
-                        <p class="text-gray-500"><b>✅ Mobile-First Design :</b> Sites are 100% responsive, fast, and compatible across devices</p>
-                        <p class="text-gray-500"><b>✅ SEO & Performance Focused :</b> Structured for high visibility, speed, and results</p>
-                        <p class="text-gray-500"><b>✅ Real-Time Collaboration :</b> Client access to dashboards and progress tools via Google Workspace</p>
-                        <p class="text-gray-500"><b>✅ Inclusive Development :</b>  Women-led, rooted in empathy, innovation, and local impact</p>
-                        <p class="text-gray-500"><b>✅ Global Clientele :</b> Language-ready, adaptable solutions for any country or region</p>
+                    <div class="faq-item">
+                        <div class="faq-question">What if I need more than 5 pages or special features?</div>
+                        <div class="faq-answer">We offer custom packages for larger websites or advanced features—just let us know your requirements!</div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
+            <!-- Why Choose Section -->
+            <section>
+                <h2 class="section-title">Why Choose Mahsua Technology For Your Business?</h2>
+                <div class="why-choose-grid">
+                    <div class="why-choose-item">
+                        <div class="why-icon">✅</div>
+                        <div class="why-text"><strong>Multiple Technology Options :</strong> Google Sites, WordPress, Firebase, or fully custom code — we adapt to your unique needs</div>
+                    </div>
+                    <div class="why-choose-item">
+                        <div class="why-icon">✅</div>
+                        <div class="why-text"><strong>Mobile-First Design :</strong> Sites are 100% responsive, fast, and compatible across devices</div>
+                    </div>
+                    <div class="why-choose-item">
+                        <div class="why-icon">✅</div>
+                        <div class="why-text"><strong>SEO & Performance Focused :</strong> Structured for high visibility, speed, and results</div>
+                    </div>
+                    <div class="why-choose-item">
+                        <div class="why-icon">✅</div>
+                        <div class="why-text"><strong>Real-Time Collaboration :</strong> Client access to dashboards and progress tools via Google Workspace</div>
+                    </div>
+                    <div class="why-choose-item">
+                        <div class="why-icon">✅</div>
+                        <div class="why-text"><strong>Inclusive Development :</strong> Women-led, rooted in empathy, innovation, and local impact</div>
+                    </div>
+                    <div class="why-choose-item">
+                        <div class="why-icon">✅</div>
+                        <div class="why-text"><strong>Global Clientele :</strong> Language-ready, adaptable solutions for any country or region</div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
     
-    <!-- FOOTER PASTED HERE (NOTICE THE UPDATED PATHS: ../) -->
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="about-us.html">About Us</a>
-                <a href="#contact">Contact Us</a>
+                <a href="./about-us.html">About Us</a>
+                <a href="../index.html#contact">Contact Us</a>
                 <a href="https://blog.mahsua.com/">Blogs</a>
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="terms-and-condition.html">Terms & Conditions</a>
-                <a href="careers.html">Careers</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="digital-school-plans.html">School Plans</a>
+                <a href="./privacy-policy.html">Privacy Policy</a>
+                <a href="./terms-and-condition.html">Terms & Conditions</a>
+                <a href="./careers.html">Careers</a>
+                <a href="./pricing.html">Pricing</a>
+                <a href="./digital-school-plans.html">School Plans</a>
             </div>
-            <p>Made With ❤️ INDIA ~ Designed by <a href="https://proshivamkushwaha.mahsua.com"> SHIVAM KUSHWAHA </a></p><br>
-            <p class="text-sm opacity-75">Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
+            <p>Made With ❤️ INDIA ~ Designed by <a href="https://proshivamkushwaha.mahsua.com"> SHIVAM KUSHWAHA </a></p>
+            <p>Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
         </div>
     </footer>
 
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            
+            const themeToggle = document.querySelector('.theme-toggle');
+            if (newTheme === 'dark') {
+                themeToggle.innerHTML = '☀️ Light';
+            } else {
+                themeToggle.innerHTML = '🌙 Dark';
+            }
+            
+            localStorage.setItem('theme', newTheme);
+        }
 
-    <div class="modal-overlay" id="techModalOverlay">
-        <div class="modal-content">
-            <button class="modal-close" id="modalCloseBtn">&times;</button>
-            <h3 id="modalTitle">Technology Title</h3>
-            <p id="modalDescription">Technology description goes here.</p>
-        </div>
-    </div>
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+        const themeToggleBtn = document.querySelector('.theme-toggle');
+        if (savedTheme === 'dark') {
+            themeToggleBtn.innerHTML = '☀️ Light';
+        } else {
+            themeToggleBtn.innerHTML = '🌙 Dark';
+        }
 
-    <script src="../script.js"></script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const progressBar = document.getElementById('scrollProgressBar');
+            if (progressBar) {
+                progressBar.style.width = scrolled + '%';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    const navMenu = document.getElementById('navMenu');
+                    if (navMenu) navMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

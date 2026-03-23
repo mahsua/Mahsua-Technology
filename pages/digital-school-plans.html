@@ -3,27 +3,502 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers - Mahsua Technology</title>
+    <title>School Digital Solutions - Mahsua Technology</title>
     <link rel="icon" href="../favicon.png" type="image/svg+xml">
-    <link rel="stylesheet" href="../style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables for Pink/Blue/Green Theme */
+        :root {
+            /* Light Mode */
+            --bg-gradient-start: #ffe6f0;
+            --bg-gradient-middle: #e0f3ff;
+            --bg-gradient-end: #e6ffe6;
+            --container-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #2d3748;
+            --text-secondary: #4a5568;
+            --heading-gradient: linear-gradient(135deg, #ec489a, #3b82f6, #22c55e);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(236, 72, 153, 0.2);
+            --button-gradient: linear-gradient(135deg, #ec489a, #3b82f6);
+            --button-hover: linear-gradient(135deg, #db2777, #2563eb);
+            --glass-border: rgba(236, 72, 153, 0.2);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --faq-bg: rgba(255, 255, 255, 0.8);
+            --border-blue: #3b82f6;
+            --border-pink: #ec489a;
+            --border-green: #22c55e;
+            --border-yellow: #f59e0b;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient-start: #1a1a2e;
+            --bg-gradient-middle: #16213e;
+            --bg-gradient-end: #0f3460;
+            --container-bg: rgba(30, 41, 59, 0.95);
+            --text-color: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --card-bg: rgba(51, 65, 85, 0.9);
+            --card-border: rgba(236, 72, 153, 0.2);
+            --glass-border: rgba(236, 72, 153, 0.2);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --faq-bg: rgba(51, 65, 85, 0.8);
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-middle) 50%, var(--bg-gradient-end) 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* Glass Grid Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            background-image: 
+                linear-gradient(rgba(236, 72, 153, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+                radial-gradient(circle at top left, rgba(236, 72, 153, 0.12), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.1), transparent 26%);
+            background-size: 26px 26px, 26px 26px, 100% 100%, 100% 100%;
+            background-position: 0 0, 0 0, 0 0, 0 0;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Scroll Progress Bar */
+        #scrollProgressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #ec489a, #3b82f6, #22c55e);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--container-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #ec489a;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #ec489a;
+        }
+
+        .theme-toggle {
+            background: var(--button-gradient);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+
+        /* Section Styles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: var(--heading-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Pricing Grid */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+            animation: riseIn 0.7s ease-out;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .badge-blue { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .badge-pink { background: linear-gradient(135deg, #ec489a, #db2777); }
+        .badge-green { background: linear-gradient(135deg, #22c55e, #16a34a); }
+        .badge-yellow { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 1rem 0 1rem;
+            color: var(--text-color);
+        }
+
+        .price {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--heading-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .price-desc {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .features-list li i {
+            margin-top: 0.2rem;
+            font-size: 0.85rem;
+            color: #22c55e;
+        }
+
+        .pricing-btn {
+            width: 100%;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-blue { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; }
+        .btn-pink { background: linear-gradient(135deg, #ec489a, #db2777); color: white; }
+        .btn-green { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; }
+        .btn-yellow { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+
+        .pricing-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Process Steps */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .process-step {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-4px);
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--button-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .step-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+
+        .faq-item {
+            background: var(--faq-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--container-bg);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ec489a;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        footer a {
+            color: #ec489a;
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body data-theme="light">
-    
-    <!-- HEADER PASTED HERE (NOTICE THE UPDATED PATHS: ../) -->
     <div id="scrollProgressBar"></div>
+    
     <header>
         <nav class="container">
             <div class="logo-section">
                 <a href="../index.html"><img src="../mahsua-technology.png" alt="Mahsua Logo" class="logo-img" /></a>
             </div>
-            <button class="hamburger" onclick="toggleMobileMenu()">⋮</button>
+            <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
             <ul class="nav-links" id="navMenu">
                 <li><a href="../index.html#services">Services</a></li>
                 <li><a href="./free-services.html">Free Services</a></li>
+                <li><a href="./opensource.html">🌱 Open Source</a></li>
                 <li><a href="../index.html#tech">Technology</a></li>
                 <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="about-us.html">About</a></li>
+                <li><a href="./about-us.html">About</a></li>
                 <li><a href="../index.html#contact">Contact</a></li>
                 <li><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></li>
             </ul>
@@ -31,328 +506,251 @@
     </header>
 
     <main>
-    <!-- Pricing Section -->
-    <section class="py-16 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
+        <div class="container" style="padding-top: 80px; padding-bottom: 60px;">
+            <!-- School Digital Solutions Section -->
+            <section>
                 <h1 class="section-title">School Digital Solutions</h1>
-                <p class="text-xl text-black-300 max-w-3xl mx-auto">Choose the perfect plan to transform your school's digital presence and streamline operations</p>
-            </div>
+                <p class="section-subtitle">Choose the perfect plan to transform your school's digital presence and streamline operations</p>
+                
+                <div class="pricing-grid">
+                    <!-- Plan 1: Online Result Portal -->
+                    <div class="pricing-card">
+                        <div class="card-badge badge-blue">Starter</div>
+                        <h3>Online Result Portal</h3>
+                        <div class="price">
+                            <span class="price-amount">₹2<span style="font-size: 1rem;">/student</span></span>
+                        </div>
+                        <div class="price-desc">Annual & Custom Subscription</div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> <span>Secure parent access</span></li>
+                            <li><i class="fas fa-check"></i> <span>Instant result viewing</span></li>
+                            <li><i class="fas fa-check"></i> <span>No printing costs</span></li>
+                            <li><i class="fas fa-check"></i> <span>High Speed Server</span></li>
+                            <li><i class="fas fa-check"></i> <span>Basic support</span></li>
+                        </ul>
+                        <a href="https://wa.me/919977666219?text=Hello%20I%20am%20Interested%20on%20%22Online%20Result%20Portal%22%20Plan%2C%20Please%20Contact%20us." class="pricing-btn btn-blue">Get Started</a>
+                    </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Plan 1: Digital Starter -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-2 border-blue-500 card-hover relative transition-colors duration-300">
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Online Result Portal</h3>
-                        <div class="text-4xl font-bold text-blue-600 mb-2">₹2<span class="text-lg">/student</span></div>
-                        <div class="text-gray-600 dark:text-gray-300">Annual & Custom Subscription</div>
+                    <!-- Plan 2: Question Paper Service -->
+                    <div class="pricing-card">
+                        <div class="card-badge badge-blue">Service</div>
+                        <h3>Question Paper Service</h3>
+                        <div class="price">
+                            <span class="price-amount">₹2<span style="font-size: 1rem;">/student</span></span>
+                        </div>
+                        <div class="price-desc">Based on Total Subjects</div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> <span>Design & formatting Question Paper</span></li>
+                            <li><i class="fas fa-check"></i> <span>High-quality printing</span></li>
+                            <li><i class="fas fa-check"></i> <span>Saves teacher hours</span></li>
+                            <li><i class="fas fa-check"></i> <span>Deliver directly on School</span></li>
+                            <li><i class="fas fa-check"></i> <span>100% Accuracy & Satisfaction</span></li>
+                        </ul>
+                        <a href="https://wa.me/919977666219?text=Hello%20I%20am%20Interested%20on%20%22Question%20Paper%20Service%22%20Plan%2C%20Please%20Contact%20us." class="pricing-btn btn-blue">Get Started</a>
                     </div>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Secure parent access</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Instant result viewing</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">No printing costs</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">High Speed Server</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Basic support</span>
-                        </li>
-                    </ul>
-                    <a href="https://wa.me/919977666219?text=Hello%20I%20am%20Intrested%20on%20%22Online%20Result%20Portal%22%20Plan%2C%20Please%20Contact%20us.">
-                        <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                            Get Started
-                        </button>
-                    </a>
-                </div>
 
-                <!-- Plan 2: Question Paper Service -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-2 border-blue-500 card-hover relative transition-colors duration-300">
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Question Paper Service</h3>
-                        <div class="text-4xl font-bold text-blue-600 mb-2">₹2<span class="text-lg">/student</span></div>
-                        <div class="text-gray-600 dark:text-gray-300">Based on Total Subjects</div>
+                    <!-- Plan 3: Digital School (Popular) -->
+                    <div class="pricing-card">
+                        <div class="card-badge badge-yellow">Popular</div>
+                        <h3>Digital School</h3>
+                        <div class="price">
+                            <span class="price-amount">₹3<span style="font-size: 1rem;">/student</span></span>
+                        </div>
+                        <div class="price-desc">Total Subjects & Custom Subscription</div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> <span>Everything in Online Result Portal</span></li>
+                            <li><i class="fas fa-check"></i> <span>Everything in Question Paper Service</span></li>
+                            <li><i class="fas fa-check"></i> <span>Dedicated account manager</span></li>
+                            <li><i class="fas fa-check"></i> <span>Phone & email support</span></li>
+                        </ul>
+                        <a href="https://wa.me/919977666219?text=Hello%20I%20am%20Interested%20on%20%22Digital%20School%22%20Plan%2C%20Please%20Contact%20us." class="pricing-btn btn-yellow">Get Started</a>
                     </div>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Design & formatting Question Paper</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">High-quality printing</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Saves teacher hours</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Deliver directly on School</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Deliver After *100% Accuracy & Satisfaction</span>
-                        </li>
-                    </ul>
-                    <a href="https://wa.me/919977666219?text=Hello%20I%20am%20Intrested%20on%20%22Question%20Paper%20Service%22%20Plan%2C%20Please%20Contact%20us.">
-                        <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                            Get Started
-                        </button>
-                    </a>
-                </div>
 
-                <!-- Plan 4: Efficiency Pro (Most Popular) -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-2 border-yellow-500 card-hover relative transition-colors duration-300">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <span class="bg-yellow-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Popular</span>
+                    <!-- Plan 4: Website Development -->
+                    <div class="pricing-card">
+                        <div class="card-badge badge-blue">One-time</div>
+                        <h3>Website Development</h3>
+                        <div class="price">
+                            <span class="price-amount">₹3,000 - ₹50,000</span>
+                        </div>
+                        <div class="price-desc">One-time fee</div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> <span>Custom domain (.in or .com)</span></li>
+                            <li><i class="fas fa-check"></i> <span>Up to 10 web pages</span></li>
+                            <li><i class="fas fa-check"></i> <span>Mobile-friendly design</span></li>
+                            <li><i class="fas fa-check"></i> <span>Basic contact forms</span></li>
+                            <li><i class="fas fa-check"></i> <span>Professional online presence</span></li>
+                        </ul>
+                        <a href="https://technology.mahsua.com/" class="pricing-btn btn-blue">Get Started</a>
                     </div>
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Digital School</h3>
-                        <div class="text-4xl font-bold text-yellow-600 dark:text-yellow-400 mb-2">₹3<span class="text-lg">/student</span></div>
-                        <div class="text-gray-600 dark:text-gray-300">Total Subjects & Custom Subscription</div>
-                    </div>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Everything in Online Result Portal</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Everything in Question Paper Service</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Dedicated account manager</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Phone & email support</span>
-                        </li>
-                    </ul>
-                    <a href="https://wa.me/919977666219?text=Hello%20I%20am%20Intrested%20on%20%22Digital%20School%22%20Plan%2C%20Please%20Contact%20us.">
-                        <button class="w-full bg-yellow-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                            Get Started
-                        </button>
-                    </a>
-                </div>
 
-                <!-- Plan 1: Basic Website -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-2 border-blue-500 card-hover relative transition-colors duration-300">
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Website Development</h3>
-                        <div class="text-4xl font-bold text-blue-600 mb-2">₹3,000 - ₹50,000</div>
-                        <div class="text-gray-600 dark:text-gray-300">One-time fee</div>
+                    <!-- Plan 5: Digital School Plus (Most Popular) -->
+                    <div class="pricing-card">
+                        <div class="card-badge badge-pink">Most Popular</div>
+                        <h3>Digital School Plus</h3>
+                        <div class="price">
+                            <span class="price-amount">₹6<span style="font-size: 1rem;">/student</span></span>
+                        </div>
+                        <div class="price-desc">Annual subscription</div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> <span>Custom Website</span></li>
+                            <li><i class="fas fa-check"></i> <span>Online Result Portal</span></li>
+                            <li><i class="fas fa-check"></i> <span>Question Paper Service</span></li>
+                            <li><i class="fas fa-check"></i> <span>Priority support</span></li>
+                            <li><i class="fas fa-check"></i> <span>Total digital transformation</span></li>
+                        </ul>
+                        <a href="https://wa.me/919977666219?text=Hello%20I%20am%20Interested%20on%20%22Digital%20School%20Plus%22%20Plan%2C%20Please%20Contact%20us." class="pricing-btn btn-pink">Get Started</a>
                     </div>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Custom domain (.in or .com)</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Up to 10 web pages</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Mobile-friendly design</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Basic contact forms</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Professional online presence</span>
-                        </li>
-                    </ul>
-                    <a href="https://technology.mahsua.com/">
-                        <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                            Get Started
-                        </button>
-                    </a>
-                </div>
 
-                <!-- Plan 5: Complete Digital School -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-2 border-pink-500 card-hover relative transition-colors duration-300">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <span class="bg-pink-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                    <!-- Plan 6: Enterprise (Custom) -->
+                    <div class="pricing-card">
+                        <div class="card-badge badge-green">Custom</div>
+                        <h3>Enterprise</h3>
+                        <div class="price">
+                            <div class="price-desc" style="margin-top: 0.5rem;">Tailored for your needs</div>
+                        </div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> <span>All features from Complete Digital School</span></li>
+                            <li><i class="fas fa-check"></i> <span>Unlimited students</span></li>
+                            <li><i class="fas fa-check"></i> <span>Multi-campus support</span></li>
+                            <li><i class="fas fa-check"></i> <span>API integrations</span></li>
+                            <li><i class="fas fa-check"></i> <span>Dedicated server & security</span></li>
+                        </ul>
+                        <a href="https://wa.me/919977666219?text=Hello%20I%20am%20Interested%20on%20%22Custom%20Enterprise%22%20Plan%2C%20Please%20Contact%20us." class="pricing-btn btn-green">Contact for Custom Plan</a>
                     </div>
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Digital School Plus</h3>
-                        <div class="text-4xl font-bold text-pink-600 dark:text-pink-400 mb-2">₹6<span class="text-lg">/student</span></div>
-                        <div class="text-gray-600 dark:text-gray-300">Annual subscription</div>
-                    </div>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Custom Website</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Online Result Portal</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Question Paper Service</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Priority support</span>
-                        </li>
-                        <li class="flex items-start text-black-300">
-                            <span class="text-green-500 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Total digital transformation</span>
-                        </li>
-                    </ul>
-                    <a href="https://wa.me/919977666219?text=Hello%20I%20am%20Intrested%20on%20%22Digital%20School%20Plus%22%20Plan%2C%20Please%20Contact%20us.">
-                        <button class="w-full bg-pink-600 text-white py-3 rounded-lg font-semibold hover:bg-pink-700 transition-colors">
-                            Get Started
-                        </button>
-                    </a>
                 </div>
+            </section>
 
-                <!-- Plan 6: Enterprise (Custom) -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-2 border-green-500 card-hover relative transition-colors duration-300">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <span class="bg-green-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Custom</span>
-                    </div>
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Enterprise</h3>
-                        <div class="text-gray-600 dark:text-gray-300">Tailored for your needs</div>
-                    </div>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start">
-                            <span class="text-green-300 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">All features from Complete Digital School</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-300 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Unlimited students</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-300 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Multi-campus support</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-300 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">API integrations</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-300 mr-3 mt-1">✓</span>
-                            <span class="text-gray-600 dark:text-gray-300">Dedicated server & security</span>
-                        </li>
-                    </ul>
-                    <a href="https://wa.me/919977666219?text=Hello%20I%20am%20Intrested%20on%20%22Custom%20Enterprise%22%20Plan%2C%20Please%20Contact%20us.">
-                        <button class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
-                            Contact for Custom Plan
-                        </button>
-                    </a>
-                </div>
-            </div>
             <!-- Payment Process Section -->
-            <div class="mt-20 mx-auto">
-            <h2 class="section-title flex items-center justify-center gap-2">
-                💳 Payment Process
-            </h2>
-            <p class="section-subtitle text-center mb-10">
-                Transparent and milestone-based payment system for a smooth project journey.
-            </p>
+            <section>
+                <h2 class="section-title">💳 Payment Process</h2>
+                <p class="section-subtitle">Transparent and milestone-based payment system for a smooth project journey.</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Step 1 -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-blue-500 transition-all hover:shadow-2xl">
-                <h3 class="text-xl font-semibold text-blue-600 mb-3">1️⃣ 20% – Project Initiation</h3>
-                <p class="text-gray-500">
-                    After completing the requirement gathering phase and confirming the project workflow, 
-                    a payment of <b>20% of the total cost</b> is required to begin development. 
-                    Once received, we start the project and provide <b>daily updates</b> on progress.
-                </p>
-                </div>
+                <div class="process-grid">
+                    <div class="process-step">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">20% – Project Initiation</div>
+                        </div>
+                        <p class="step-text">After completing the requirement gathering phase and confirming the project workflow, a payment of <strong>20% of the total cost</strong> is required to begin development. Once received, we start the project and provide <strong>daily updates</strong> on progress.</p>
+                    </div>
 
-                <!-- Step 2 -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-pink-500 transition-all hover:shadow-2xl">
-                <h3 class="text-xl font-semibold text-pink-600 mb-3">2️⃣ 60% – Development Completion (80% Milestone)</h3>
-                <p class="text-gray-500">
-                    When <b>80% of the project</b> is complete, we’ll share a <b>live testing link</b> for review. 
-                    The next <b>60% payment</b> confirms continued development toward final delivery.
-                </p>
-                </div>
+                    <div class="process-step">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-title">60% – Development Completion</div>
+                        </div>
+                        <p class="step-text">When <strong>80% of the project</strong> is complete, we'll share a <strong>live testing link</strong> for review. The next <strong>60% payment</strong> confirms continued development toward final delivery.</p>
+                    </div>
 
-                <!-- Step 3 -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-green-500 transition-all hover:shadow-2xl">
-                <h3 class="text-xl font-semibold text-green-600 mb-3">3️⃣ 20% – Final Delivery & Handover</h3>
-                <p class="text-gray-500">
-                    Once the project is <b>100% complete</b> and approved, the final <b>20% payment</b> is due. 
-                    After receiving it, we’ll deliver the full project code, configure your custom domain, 
-                    and hand over <b>Admin credentials</b> securely.
-                </p>
+                    <div class="process-step">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-title">20% – Final Delivery</div>
+                        </div>
+                        <p class="step-text">Once the project is <strong>100% complete</strong> and approved, the final <strong>20% payment</strong> is due. After receiving it, we'll deliver the full project code, configure your custom domain, and hand over <strong>Admin credentials</strong> securely.</p>
+                    </div>
                 </div>
-            </div>
-            </div>
-            <!-- End Payment Process Section -->
-             
+            </section>
+
             <!-- FAQ Section -->
-            <div class="mt-20 max-w-4xl mx-auto">
+            <section>
                 <h2 class="section-title">Frequently Asked Questions</h2>
-                <div class="space-y-6">
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">How does the per-student pricing work?</h3>
-                        <p class="text-black-300">We calculate pricing based on your total student enrollment. You'll be billed annually for the number of students enrolled at the beginning of the academic year.</p>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">How does the per-student pricing work?</div>
+                        <div class="faq-answer">We calculate pricing based on your total student enrollment. You'll be billed annually for the number of students enrolled at the beginning of the academic year.</div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Can I upgrade my plan later?</h3>
-                        <p class="text-black-300">Yes, you can upgrade at any time. We'll prorate the cost difference for the remainder of your billing cycle.</p>
+                    <div class="faq-item">
+                        <div class="faq-question">Can I upgrade my plan later?</div>
+                        <div class="faq-answer">Yes, you can upgrade at any time. We'll prorate the cost difference for the remainder of your billing cycle.</div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Is training included with these plans?</h3>
-                        <p class="text-black-300">Yes, we provide comprehensive training for your staff with all our plans. The Complete Digital School and Enterprise plans include priority training sessions.</p>
+                    <div class="faq-item">
+                        <div class="faq-question">Is training included with these plans?</div>
+                        <div class="faq-answer">Yes, we provide comprehensive training for your staff with all our plans. The Complete Digital School and Enterprise plans include priority training sessions.</div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
     </main>
     
-    <!-- FOOTER PASTED HERE (NOTICE THE UPDATED PATHS: ../) -->
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="about-us.html">About Us</a>
-                <a href="#contact">Contact Us</a>
+                <a href="./about-us.html">About Us</a>
+                <a href="../index.html#contact">Contact Us</a>
                 <a href="https://blog.mahsua.com/">Blogs</a>
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="terms-and-condition.html">Terms & Conditions</a>
-                <a href="careers.html">Careers</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="digital-school-plans.html">School Plans</a>
+                <a href="./privacy-policy.html">Privacy Policy</a>
+                <a href="./terms-and-condition.html">Terms & Conditions</a>
+                <a href="./careers.html">Careers</a>
+                <a href="./pricing.html">Pricing</a>
+                <a href="./digital-school-plans.html">School Plans</a>
             </div>
-            <p>Made With ❤️ INDIA ~ Designed by <a href="https://proshivamkushwaha.mahsua.com"> SHIVAM KUSHWAHA </a></p><br>
-            <p class="text-sm opacity-75">Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
+            <p>Made With ❤️ INDIA ~ Designed by <a href="https://proshivamkushwaha.mahsua.com"> SHIVAM KUSHWAHA </a></p>
+            <p>Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
         </div>
     </footer>
 
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            
+            const themeToggle = document.querySelector('.theme-toggle');
+            if (newTheme === 'dark') {
+                themeToggle.innerHTML = '☀️ Light';
+            } else {
+                themeToggle.innerHTML = '🌙 Dark';
+            }
+            
+            localStorage.setItem('theme', newTheme);
+        }
 
-    <div class="modal-overlay" id="techModalOverlay">
-        <div class="modal-content">
-            <button class="modal-close" id="modalCloseBtn">&times;</button>
-            <h3 id="modalTitle">Technology Title</h3>
-            <p id="modalDescription">Technology description goes here.</p>
-        </div>
-    </div>
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+        const themeToggleBtn = document.querySelector('.theme-toggle');
+        if (savedTheme === 'dark') {
+            themeToggleBtn.innerHTML = '☀️ Light';
+        } else {
+            themeToggleBtn.innerHTML = '🌙 Dark';
+        }
 
-    <script src="../script.js"></script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const progressBar = document.getElementById('scrollProgressBar');
+            if (progressBar) {
+                progressBar.style.width = scrolled + '%';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    const navMenu = document.getElementById('navMenu');
+                    if (navMenu) navMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
