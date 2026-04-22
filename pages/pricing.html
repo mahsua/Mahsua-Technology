@@ -438,6 +438,126 @@
             color: var(--text-color);
         }
 
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #ec489a;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .modal-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            background: var(--container-bg);
+            color: var(--text-color);
+            font-family: 'Outfit', sans-serif;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #ec489a;
+        }
+
+        /* Fixed Phone Input Layout Elements */
+        .phone-input-group {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        /* Country select styling to fit emojis */
+        .form-group .country-select {
+            width: 100px; 
+            flex-shrink: 0;
+            cursor: pointer;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+        
+        .form-group .phone-input-group input {
+            flex-grow: 1;
+            width: auto;
+        }
+
         /* Footer */
         footer {
             background: var(--container-bg);
@@ -549,13 +669,11 @@
 
     <main>
         <div class="container" style="padding-top: 80px; padding-bottom: 60px;">
-            <!-- Pricing Section -->
             <section>
                 <h2 class="section-title">Digital Presence Solutions</h2>
                 <p class="section-subtitle">The foundational element, acting as a central point to showcase your brand, products, and services.</p>
                 
                 <div class="pricing-grid">
-                    <!-- Plan 1: Basic Website -->
                     <div class="pricing-card">
                         <div class="card-badge badge-blue">Business Starter</div>
                         <h3>Single Page Website</h3>
@@ -570,10 +688,9 @@
                             <li><i class="fas fa-check check-blue"></i> <span>Lightweight and fast to load</span></li>
                             <li><i class="fas fa-check check-blue"></i> <span>Professional online presence</span></li>
                         </ul>
-                        <button class="pricing-btn btn-blue" onclick="window.location.href='../index.html#contact'">Get Started</button>
+                        <button class="pricing-btn btn-blue" onclick="openModal('Single Page Website')">Get Started</button>
                     </div>
 
-                    <!-- Plan 2: Multi-Page Website -->
                     <div class="pricing-card">
                         <div class="card-badge badge-pink">Most Popular</div>
                         <h3>5+ Page Website</h3>
@@ -588,10 +705,9 @@
                             <li><i class="fas fa-check check-pink"></i> <span>Google Maps, on-page SEO, contact integration</span></li>
                             <li><i class="fas fa-check check-pink"></i> <span>Total digital transformation</span></li>
                         </ul>
-                        <button class="pricing-btn btn-pink" onclick="window.location.href='../index.html#contact'">Get Started</button>
+                        <button class="pricing-btn btn-pink" onclick="openModal('5+ Page Website')">Get Started</button>
                     </div>
 
-                    <!-- Plan 3: Enterprise -->
                     <div class="pricing-card">
                         <div class="card-badge badge-green">Custom</div>
                         <h3>Enterprise</h3>
@@ -607,12 +723,11 @@
                             <li><i class="fas fa-check check-green"></i> <span>Dedicated server & security</span></li>
                             <li><i class="fas fa-check check-green"></i> <span>Custom layout and color palette</span></li>
                         </ul>
-                        <button class="pricing-btn btn-green" onclick="window.location.href='../index.html#contact'">Contact for Custom Plan</button>
+                        <button class="pricing-btn btn-green" onclick="openModal('Enterprise Custom Plan')">Contact for Custom Plan</button>
                     </div>
                 </div>
             </section>
 
-            <!-- Payment Process Section -->
             <section>
                 <h2 class="section-title">💳 Payment Process</h2>
                 <p class="section-subtitle">Transparent and milestone-based payment system for a smooth project journey.</p>
@@ -644,7 +759,6 @@
                 </div>
             </section>
 
-            <!-- FAQ Section -->
             <section>
                 <h2 class="section-title">Frequently Asked Questions</h2>
                 <div class="faq-grid">
@@ -663,7 +777,6 @@
                 </div>
             </section>
 
-            <!-- Why Choose Section -->
             <section>
                 <h2 class="section-title">Why Choose Mahsua Technology For Your Business?</h2>
                 <div class="why-choose-grid">
@@ -712,6 +825,49 @@
             <p>Copyright &copy; 2025 <a href="http://mahsua.com/"> by MAHSUA </a>. All rights reserved.</p>
         </div>
     </footer>
+
+    <div id="waModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3 class="modal-title">Get Started</h3>
+            <p class="modal-desc">Enter your details to continue on WhatsApp.</p>
+            <form id="waForm" onsubmit="sendWhatsApp(event)">
+                <input type="hidden" id="selectedPlan" name="plan">
+                <div class="form-group">
+                    <label for="userName">Your Name</label>
+                    <input type="text" id="userName" required placeholder="Ex. John Doe">
+                </div>
+                
+                <div class="form-group">
+                    <label for="userContact">Contact Number</label>
+                    <div class="phone-input-group">
+                        <select id="countryCode" class="country-select">
+                            <option value="+91">🇮🇳 +91</option>
+                            <option value="+1">🇺🇸 +1</option>
+                            <option value="+44">🇬🇧 +44</option>
+                            <option value="+61">🇦🇺 +61</option>
+                            <option value="+971">🇦🇪 +971</option>
+                            <option value="+65">🇸🇬 +65</option>
+                            <option value="+49">🇩🇪 +49</option>
+                            <option value="+33">🇫🇷 +33</option>
+                            <option value="+81">🇯🇵 +81</option>
+                            <option value="+86">🇨🇳 +86</option>
+                            <option value="+55">🇧🇷 +55</option>
+                            <option value="+27">🇿🇦 +27</option>
+                            <option value="+64">🇳🇿 +64</option>
+                            <option value="+39">🇮🇹 +39</option>
+                            <option value="+34">🇪🇸 +34</option>
+                        </select>
+                        <input type="tel" id="userContact" required placeholder="XXXXX XXXXX">
+                    </div>
+                </div>
+
+                <button type="submit" class="pricing-btn btn-blue" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    Continue to WhatsApp <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i>
+                </button>
+            </form>
+        </div>
+    </div>
 
     <script>
         // Theme Toggle
@@ -772,6 +928,55 @@
                     if (navMenu) navMenu.classList.remove('active');
                 }
             });
+        });
+
+        // --- WHATSAPP MODAL LOGIC ---
+        
+        function openModal(planName) {
+            document.getElementById('selectedPlan').value = planName;
+            document.getElementById('waModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('waModal').classList.remove('active');
+        }
+
+        function sendWhatsApp(event) {
+            event.preventDefault(); 
+            
+            const name = document.getElementById('userName').value.trim();
+            const countryCode = document.getElementById('countryCode').value;
+            const contactNumber = document.getElementById('userContact').value.trim();
+            const plan = document.getElementById('selectedPlan').value;
+            const targetPhone = "919752107808";
+
+            // Combine code and number
+            const fullContactString = `${countryCode} ${contactNumber}`;
+
+            // Build the string with actual newlines (\n)
+            const messageText = `Hello Mahsua Technology Team,\n\n` +
+                                `My name is *${name}*. I am interested in your *${plan}* and would like to proceed.\n\n` +
+                                `You can reach me at *${fullContactString}* or we can continue discussing the details here on chat.\n\n` +
+                                `Looking forward to hearing from you!`;
+
+            // encodeURIComponent fixes the bug where "+" signs are converted to empty spaces in URLs
+            const encodedMessage = encodeURIComponent(messageText);
+
+            // Open WhatsApp
+            const waUrl = `https://wa.me/${targetPhone}?text=${encodedMessage}`;
+            window.open(waUrl, '_blank');
+            
+            // Clean up UI
+            closeModal();
+            document.getElementById('waForm').reset();
+        }
+
+        // Close modal if user clicks outside
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('waModal');
+            if (e.target === modal) {
+                closeModal();
+            }
         });
     </script>
 </body>
