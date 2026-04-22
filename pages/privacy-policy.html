@@ -347,41 +347,57 @@
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
+                z-index: 1001;
+                font-size: 24px;
+                transition: transform 0.3s ease;
             }
 
             .nav-links {
-                display: none;
+                /* Take the menu out of normal flow */
+                position: absolute;
+                top: 100%; /* Drop down directly below the header */
+                left: 0;
                 width: 100%;
+                
+                /* Modern Glassmorphism styling */
+                background: var(--container-bg);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--glass-border);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                
                 flex-direction: column;
-                padding: 1rem 0;
-                gap: 1rem;
+                padding: 1.5rem 24px 2rem;
+                gap: 1.5rem;
+                
+                /* Smooth Animated Dropdown */
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-15px);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                display: flex; /* Keep flex active, handle hiding via opacity/visibility */
             }
 
             .nav-links.active {
-                display: flex;
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
             }
 
-            .policy-container {
-                padding: 1.5rem;
+            .section-title {
+                font-size: 2rem;
             }
 
-            .policy-container h1 {
-                font-size: 1.8rem;
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
 
-            .policy-container h2 {
-                font-size: 1.3rem;
+            .card-footer {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
-            .data-table {
-                font-size: 0.85rem;
-                display: block;
-                overflow-x: auto;
-            }
-
-            .data-table th,
-            .data-table td {
-                padding: 0.5rem;
+            .hero-section {
+                padding: 60px 0 40px;
             }
         }
     </style>
@@ -631,7 +647,18 @@
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const navMenu = document.getElementById('navMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
             navMenu.classList.toggle('active');
+            
+            // Modern touch: Change icon to '✕' when menu is open
+            if (navMenu.classList.contains('active')) {
+                hamburger.innerHTML = '✕';
+                hamburger.style.transform = 'rotate(90deg)';
+            } else {
+                hamburger.innerHTML = '☰';
+                hamburger.style.transform = 'rotate(0deg)';
+            }
         }
 
         // Scroll Progress Bar
