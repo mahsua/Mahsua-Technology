@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support Us | Mahsua Technology Initiative</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Lato:wght@300;400;700&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -35,14 +32,11 @@
     </script>
 </head>
 <body class="bg-light-gray flex flex-col min-h-screen font-sans">
-    <!-- Main Content -->
     <main class="flex-grow container mx-auto px-4 py-12 flex items-center justify-center">
         <div class="w-full max-w-5xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
             <div class="md:flex">
-                <!-- Left Side: Text Content -->
                 <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
                     
-                    <!-- Language Toggle Button (Moved Here) -->
                     <div class="mb-6">
                         <button onclick="toggleLanguage()" class="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium transition border border-gray-200 shadow-sm">
                             <i class="fas fa-language text-mahsua-pink text-lg"></i>
@@ -72,70 +66,78 @@
                     </div>
                 </div>
 
-                <!-- Right Side: Quick Donation Plans -->
                 <div class="md:w-1/2 bg-gradient-to-br from-mahsua-pink to-mahsua-blue p-8 md:p-12 flex flex-col justify-center relative">
-                    <!-- Decorative Circles -->
                     <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
                     <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
 
-                    <div class="relative z-10 text-center mb-6">
-                        <h2 class="font-serif text-2xl font-bold text-white" id="plan-heading">Choose Support Amount</h2>
-                        <p class="text-blue-100 text-sm" id="plan-sub">Tap a card to pay via UPI</p>
+                    <div class="relative z-10 text-center mb-8">
+                        <h2 class="font-serif text-2xl md:text-3xl font-bold text-white mb-2" id="plan-heading">Scan QR to Support</h2>
+                        <p class="text-blue-100 text-sm md:text-base" id="plan-sub">Use any UPI app to scan and pay</p>
                     </div>
 
-                    <div class="relative z-10 space-y-4">
+                    <div class="relative z-10 bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center mx-auto max-w-sm w-full">
                         
-                        <!-- Plan 1: Basic -->
-                        <a href="upi://pay?pa=9752107808-1@okbizaxis&pn=Mahsua%20Technology&am=50&cu=INR" class="group flex items-center justify-between bg-white/90 hover:bg-white rounded-xl shadow-lg p-4 cursor-pointer transition duration-200 transform hover:-translate-y-1">
-                            <div class="flex items-center">
-                                <div class="bg-gray-100 rounded-full w-10 h-10 flex items-center justify-center text-gray-500 group-hover:text-mahsua-pink group-hover:bg-pink-50 transition">
-                                    <i class="fas fa-coffee"></i>
-                                </div>
-                                <div class="ml-4 text-left">
-                                    <h3 class="font-bold text-gray-800" id="plan1-title">Basic Support</h3>
-                                    <p class="text-xs text-gray-500" id="plan1-desc">Coffee for the developer</p>
-                                </div>
-                            </div>
-                            <div class="text-xl font-bold text-mahsua-blue">₹50</div>
-                        </a>
+                        <div class="bg-gray-50 p-3 rounded-xl mb-5 border border-gray-100 shadow-sm">
+                            <img src="../assets/g-pay.jpg" alt="UPI QR Code" class="w-48 h-48 md:w-56 md:h-56 rounded-lg object-contain">
+                        </div>
+                        
+                        <div class="flex space-x-4 mb-4 text-gray-400 text-2xl">
+                            <i class="fab fa-google-pay hover:text-gray-600 transition"></i>
+                            <i class="fas fa-mobile-alt hover:text-gray-600 transition"></i>
+                            <i class="fab fa-amazon-pay hover:text-gray-600 transition"></i>
+                        </div>
 
-                        <!-- Plan 2: Regular (Highlighted) -->
-                        <a href="upi://pay?pa=9752107808-1@okbizaxis&pn=Mahsua%20Technology&am=100&cu=INR" class="group flex items-center justify-between bg-white rounded-xl shadow-xl border-l-4 border-mahsua-blue p-5 cursor-pointer transition duration-200 transform hover:scale-105 relative">
-                            <div class="absolute -top-3 right-4 bg-mahsua-blue text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider" id="tag-popular">Popular</div>
-                            <div class="flex items-center">
-                                <div class="bg-blue-50 rounded-full w-12 h-12 flex items-center justify-center text-mahsua-blue">
-                                    <i class="fas fa-thumbs-up text-lg"></i>
-                                </div>
-                                <div class="ml-4 text-left">
-                                    <h3 class="font-bold text-gray-900 text-lg" id="plan2-title">Regular Support</h3>
-                                    <p class="text-xs text-gray-500" id="plan2-desc">Helps keep servers running</p>
-                                </div>
+                        <p class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-2" id="upi-label">Or pay using UPI ID</p>
+                        
+                        <div class="flex items-center justify-between bg-blue-50 border border-blue-100 rounded-lg w-full overflow-hidden mb-1">
+                            <div class="px-4 py-2 text-mahsua-blue font-bold text-sm md:text-base tracking-wide truncate w-full text-center">
+                                9752107808-1@okbizaxis
                             </div>
-                            <div class="text-2xl font-bold text-mahsua-blue">₹100</div>
-                        </a>
+                            <button onclick="copyUPI()" class="bg-mahsua-blue hover:bg-blue-600 text-white px-4 py-3 transition-colors flex items-center justify-center focus:outline-none" title="Copy UPI ID">
+                                <i id="copy-icon" class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <p id="copy-feedback" class="text-park-green text-xs font-bold opacity-0 transition-opacity duration-300">UPI ID Copied!</p>
 
-                        <!-- Plan 3: Premium -->
-                        <a href="upi://pay?pa=9752107808-1@okbizaxis&pn=Mahsua%20Technology&am=500&cu=INR" class="group flex items-center justify-between bg-white/90 hover:bg-white rounded-xl shadow-lg p-4 cursor-pointer transition duration-200 transform hover:-translate-y-1">
-                            <div class="flex items-center">
-                                <div class="bg-gray-100 rounded-full w-10 h-10 flex items-center justify-center text-gray-500 group-hover:text-park-green group-hover:bg-green-50 transition">
-                                    <i class="fas fa-gem"></i>
-                                </div>
-                                <div class="ml-4 text-left">
-                                    <h3 class="font-bold text-gray-800" id="plan3-title">Premium Support</h3>
-                                    <p class="text-xs text-gray-500" id="plan3-desc">Fuel future projects</p>
-                                </div>
-                            </div>
-                            <div class="text-xl font-bold text-mahsua-blue">₹500</div>
-                        </a>
-
+                        <div class="mt-4 flex items-start bg-yellow-50 p-3 rounded-lg border border-yellow-100 text-left w-full">
+                            <i class="fas fa-exclamation-circle text-yellow-500 mt-0.5 mr-2 text-sm"></i>
+                            <p class="text-[11px] text-yellow-800 leading-tight" id="refund-notice">
+                                <strong>Please note:</strong> All contributions are strictly non-refundable. Kindly verify the amount before proceeding with the payment.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Translation Script -->
     <script>
+        // Copy UPI Function
+        function copyUPI() {
+            const upiId = "9752107808-1@okbizaxis";
+            navigator.clipboard.writeText(upiId).then(() => {
+                const icon = document.getElementById('copy-icon');
+                const feedback = document.getElementById('copy-feedback');
+                
+                // Change icon to checkmark
+                icon.classList.remove('fa-copy');
+                icon.classList.add('fa-check');
+                
+                // Show feedback text
+                feedback.classList.remove('opacity-0');
+                
+                // Revert back after 2.5 seconds
+                setTimeout(() => {
+                    icon.classList.remove('fa-check');
+                    icon.classList.add('fa-copy');
+                    feedback.classList.add('opacity-0');
+                }, 2500);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
         // Content Dictionary
         const content = {
             en: {
@@ -149,15 +151,11 @@
                 supportText: "If you appreciate this effort to provide free digital resources, you can voluntarily support us. Your contribution helps cover server costs and fuels future public welfare digital projects.",
                 contribLabel: "Contribution",
                 contribSub: "100% Voluntary & Secure",
-                planHeading: "Choose Support Amount",
-                planSub: "Tap a card to pay via UPI",
-                plan1Title: "Basic Support",
-                plan1Desc: "Coffee for the developer",
-                plan2Title: "Regular Support",
-                plan2Desc: "Helps keep servers running",
-                plan3Title: "Premium Support",
-                plan3Desc: "Fuel future projects",
-                tagPopular: "Popular",
+                planHeading: "Scan QR to Support",
+                planSub: "Use any UPI app to scan and pay",
+                upiLabel: "Or pay using UPI ID",
+                copyFeedback: "UPI ID Copied!",
+                refundNotice: "<strong>Please note:</strong> All contributions are strictly non-refundable. Kindly verify the amount before proceeding with the payment.",
                 footerCopy: "&copy; 2025 Mahsua Digital Initiative. All rights reserved.",
                 footerDesign: "Design and Developed by",
                 footerContact: "Contact at",
@@ -175,15 +173,11 @@
                 supportText: "यदि आप मुफ्त डिजिटल संसाधन प्रदान करने के इस प्रयास की सराहना करते हैं, तो आप स्वेच्छा से हमारा समर्थन कर सकते हैं। आपका योगदान सर्वर लागत को कवर करने और भविष्य की जनकल्याणकारी परियोजनाओं को बढ़ावा देने में मदद करता है।",
                 contribLabel: "योगदान",
                 contribSub: "100% स्वैच्छिक और सुरक्षित",
-                planHeading: "सहयोग राशि चुनें",
-                planSub: "UPI भुगतान के लिए कार्ड पर टैप करें",
-                plan1Title: "बुनियादी सहयोग",
-                plan1Desc: "डेवलपर के लिए कॉफी",
-                plan2Title: "नियमित सहयोग",
-                plan2Desc: "सर्वर को चालू रखने में मदद करता है",
-                plan3Title: "प्रीमियम सहयोग",
-                plan3Desc: "भविष्य की परियोजनाओं को बढ़ावा दें",
-                tagPopular: "लोकप्रिय",
+                planHeading: "सहयोग के लिए QR स्कैन करें",
+                planSub: "स्कैन और भुगतान करने के लिए किसी भी UPI ऐप का उपयोग करें",
+                upiLabel: "या UPI ID का उपयोग करके भुगतान करें",
+                copyFeedback: "UPI ID कॉपी हो गया!",
+                refundNotice: "<strong>कृपया ध्यान दें:</strong> सभी योगदान पूरी तरह से गैर-वापसी योग्य हैं। कृपया भुगतान करने से पहले राशि की अच्छी तरह जांच कर लें।",
                 footerCopy: "&copy; 2025 महसुआ डिजिटल पहल। सर्वाधिकार सुरक्षित।",
                 footerDesign: "डिज़ाइन और विकसित करता:",
                 footerContact: "संपर्क करें:",
@@ -194,6 +188,18 @@
 
         // State
         let currentLang = 'en';
+
+        // Helper function to safely update text to prevent JS errors if elements are missing from the DOM
+        function updateElement(id, text, isHTML = false) {
+            const el = document.getElementById(id);
+            if (el) {
+                if (isHTML) {
+                    el.innerHTML = text;
+                } else {
+                    el.innerText = text;
+                }
+            }
+        }
 
         function toggleLanguage() {
             // Switch Language
@@ -210,36 +216,31 @@
             }
 
             // Update Text content
-            document.getElementById('lang-btn-text').innerText = data.btnText;
-            document.getElementById('nav-back').innerText = data.navBack;
-            document.getElementById('nav-tagline').innerText = data.navTagline;
-            document.getElementById('brand-label').innerText = data.brandLabel;
-            document.getElementById('main-heading').innerText = data.mainHeading;
-            document.getElementById('intro-text').innerHTML = data.introText;
-            document.getElementById('mission-text').innerHTML = data.missionText;
-            document.getElementById('support-text').innerText = data.supportText;
-            document.getElementById('contribution-label').innerText = data.contribLabel;
-            document.getElementById('contribution-sub').innerText = data.contribSub;
-            document.getElementById('plan-heading').innerText = data.planHeading;
-            document.getElementById('plan-sub').innerText = data.planSub;
+            updateElement('lang-btn-text', data.btnText);
+            updateElement('nav-back', data.navBack);
+            updateElement('nav-tagline', data.navTagline);
+            updateElement('brand-label', data.brandLabel);
+            updateElement('main-heading', data.mainHeading);
+            updateElement('intro-text', data.introText, true);
+            updateElement('mission-text', data.missionText, true);
+            updateElement('support-text', data.supportText);
+            updateElement('contribution-label', data.contribLabel);
+            updateElement('contribution-sub', data.contribSub);
             
-            document.getElementById('plan1-title').innerText = data.plan1Title;
-            document.getElementById('plan1-desc').innerText = data.plan1Desc;
+            // Updated QR Section
+            updateElement('plan-heading', data.planHeading);
+            updateElement('plan-sub', data.planSub);
+            updateElement('upi-label', data.upiLabel);
+            updateElement('copy-feedback', data.copyFeedback);
+            updateElement('refund-notice', data.refundNotice, true);
             
-            document.getElementById('plan2-title').innerText = data.plan2Title;
-            document.getElementById('plan2-desc').innerText = data.plan2Desc;
-            document.getElementById('tag-popular').innerText = data.tagPopular;
-            
-            document.getElementById('plan3-title').innerText = data.plan3Title;
-            document.getElementById('plan3-desc').innerText = data.plan3Desc;
-            
-            document.getElementById('footer-copy').innerHTML = data.footerCopy;
-            document.getElementById('footer-design').innerText = data.footerDesign;
-            document.getElementById('footer-contact').innerText = data.footerContact;
-            document.getElementById('footer-need').innerText = data.footerNeed;
-            document.getElementById('footer-click').innerText = data.footerClick;
+            // Footer
+            updateElement('footer-copy', data.footerCopy, true);
+            updateElement('footer-design', data.footerDesign);
+            updateElement('footer-contact', data.footerContact);
+            updateElement('footer-need', data.footerNeed);
+            updateElement('footer-click', data.footerClick);
         }
     </script>
-
 </body>
 </html>
